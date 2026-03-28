@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STALK THE WOLVES</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #000000;
+      --paper: #ffffff;
+      --paper-dark: #ffffff;
+      --accent: #cc0000;
+      --muted: #551a8b;
+      --border: rgba(0,0,0,0.2);
+      --gap: 3px;
+    }
+
+    html { background: #ffffff; }
+
+    body {
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      border-bottom: 1px solid rgba(244,240,232,0.1);
+    }
+
+    .site-title {
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      font-size: 1.25rem;
+      letter-spacing: 0.02em;
+      color: var(--paper);
+    }
+
+    .header-count {
+      font-size: 0.7rem;
+      color: #0000ee;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Subheader ── */
+    .subheader {
+      background: var(--paper);
+      border-bottom: 1px solid var(--border);
+      padding: 7px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .subheader-left {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .filter-toggle {
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0000ee;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .filter-toggle:hover { color: #551a8b; }
+
+    /* ── Filter bar ── */
+    .filter-bar {
+      background: var(--paper-dark);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: none;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .filter-bar.open {
+      display: flex;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .filter-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .pill {
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      font-size: 0.68rem;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.12s;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .pill:hover { border-color: var(--ink); }
+    .pill.active {
+      background: #0000ee;
+      color: var(--paper);
+      border-color: #0000ee;
+    }
+
+    .search-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .search-input {
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 2px;
+      outline: none;
+      width: 100%;
+      letter-spacing: 0.02em;
+    }
+    .search-input:focus { border-color: var(--ink); }
+    .search-input::placeholder { color: var(--muted); }
+
+    .filter-clear {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      border: none;
+      background: none;
+      padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      margin-top: auto;
+      align-self: flex-end;
+    }
+
+    /* ── Grid ── */
+    .grid-wrap {
+      padding: var(--gap);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--gap);
+    }
+
+    @media (min-width: 600px) {
+      .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    }
+    @media (min-width: 1000px) {
+      .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    }
+    @media (min-width: 1400px) {
+      .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    }
+
+    .card {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--paper-dark);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .card:hover img { transform: scale(1.04); }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,20,16,0.88) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 10px;
+    }
+
+    .card:hover .card-overlay { opacity: 1; }
+
+    .card-text {
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      color: #0000ee;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .card-meta {
+      font-size: 0.6rem;
+      color: rgba(244,240,232,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .card-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .card.selected .card-dot { opacity: 1; }
+
+    .card-new-badge {
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: #fff;
+      padding: 2px 5px;
+      line-height: 1.4;
+      pointer-events: none;
+    }
+
+    .lb-share {
+      font-size: 0.65rem;
+      color: #0000ee;
+      text-decoration: underline;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      background: none;
+      border: none;
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      padding: 0;
+    }
+    .lb-share:hover { color: #551a8b; }
+    .lb-share-copied { color: #551a8b; text-decoration: none; }
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--muted);
+    }
+    .empty-state .big { font-family: 'Instrument Serif', serif; font-size: 2rem; margin-bottom: 8px; }
+    .empty-state .small { font-size: 0.72rem; letter-spacing: 0.06em; }
+
+    /* ── Lightbox (desktop) ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(26,20,16,0.96);
+      backdrop-filter: blur(4px);
+    }
+    .lightbox.open { display: flex; }
+
+    .lb-inner { display: flex; width: 100%; height: 100%; }
+
+    .lb-image-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .lb-image-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+    }
+
+    .lb-panel {
+      width: 300px;
+      flex-shrink: 0;
+      background: var(--paper);
+      overflow-y: auto;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 320px;
+      background: none;
+      border: none;
+      color: rgba(244,240,232,0.5);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+      line-height: 1;
+      transition: color 0.15s;
+    }
+    .lb-close:hover { color: var(--paper); }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(244,240,232,0.4);
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 16px;
+      transition: color 0.15s;
+    }
+    .lb-nav:hover { color: var(--paper); }
+    .lb-prev { left: 12px; }
+    .lb-next { right: 320px; margin-right: 48px; }
+
+    /* ── Drawer (mobile) ── */
+    .drawer-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.4);
+    }
+    .drawer-backdrop.open { display: block; }
+
+    .drawer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 201;
+      background: var(--paper);
+      border-top: 2px solid var(--ink);
+      transform: translateY(100%);
+      transition: transform 0.32s cubic-bezier(0.32,0.72,0,1);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .drawer.open { transform: translateY(0); }
+
+    .drawer-handle-bar {
+      display: flex;
+      justify-content: center;
+      padding: 10px 0 4px;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+    }
+    .drawer-handle {
+      width: 36px; height: 3px;
+      background: #ccc;
+      border-radius: 2px;
+    }
+    .drawer-close-btn {
+      position: absolute;
+      right: 16px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      font-size: 1rem; color: var(--muted);
+      cursor: pointer; padding: 4px;
+      font-family: 'Courier Prime', monospace;
+    }
+
+    .drawer-image-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      flex-shrink: 0;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+    .drawer-image-wrap img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .drawer-nav {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      border: none; color: #fff;
+      font-size: 1.4rem;
+      padding: 10px 14px;
+      cursor: pointer; line-height: 1;
+    }
+    .drawer-prev { left: 0; }
+    .drawer-next { right: 0; }
+
+    .drawer-body {
+      overflow-y: auto;
+      padding: 16px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ── Shared panel content ── */
+    .lb-sign-text {
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      font-weight: 700;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      color: #0000ee;
+    }
+    .lb-description {
+      font-size: 0.72rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .lb-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .lb-tag {
+      font-size: 0.62rem;
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: #0000ee;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      text-decoration: underline;
+    }
+    .lb-tag:hover { color: #551a8b; }
+    .lb-fields { display: flex; flex-direction: column; gap: 8px; }
+    .lb-field { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .lb-field-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .lb-field-value { font-size: 0.72rem; color: #551a8b; text-align: right; }
+    .lb-colors { display: flex; gap: 4px; flex-wrap: wrap; }
+    .color-swatch {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+    .lb-share {
+      font-size: 0.65rem;
+      color: #0000ee;
+      text-decoration: underline;
+      cursor: pointer;
+      background: none; border: none;
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      padding: 0; text-align: left;
+      letter-spacing: 0.04em;
+    }
+    .lb-share:hover { color: #551a8b; }
+    .lb-share-copied { color: #551a8b; text-decoration: none; }
+
+    /* hide each on wrong breakpoint */
+    @media (max-width: 699px) {
+      .lightbox { display: none !important; }
+    }
+    @media (min-width: 700px) {
+      .drawer, .drawer-backdrop { display: none !important; }
+    }
+
+    /* ── Anim ── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      animation: fadeIn 0.3s ease both;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="site-title">STALK THE WOLVES</span>
+  <span class="header-count" id="header-count">— images</span>
+</header>
+
+<div class="subheader">
+  <span class="subheader-left">reference material</span>
+  <button class="filter-toggle" id="filter-toggle">filter ↓</button>
+</div>
+
+<div class="filter-bar" id="filter-bar">
+  <div class="search-wrap">
+    <span class="filter-label">Search text</span>
+    <input class="search-input" id="search" placeholder="COIFFEUR, OPEN, FRESH FISH…" autocomplete="off">
+  </div>
+
+  <div class="filter-group">
+    <span class="filter-label">Finish</span>
+    <div class="filter-pills" id="filter-finish"></div>
+  </div>
+
+  <div class="filter-group">
+    <span class="filter-label">Typography</span>
+    <div class="filter-pills" id="filter-typography"></div>
+  </div>
+
+  <div class="filter-group">
+    <span class="filter-label">Condition</span>
+    <div class="filter-pills" id="filter-condition"></div>
+  </div>
+
+  <div class="filter-group">
+    <span class="filter-label">Location</span>
+    <div class="filter-pills" id="filter-location_context"></div>
+  </div>
+
+  <div class="filter-group" id="filter-group-new" style="display:none">
+    <span class="filter-label">Added by</span>
+    <div class="filter-pills" id="filter-new"></div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:6px;margin-top:auto;align-self:flex-end">
+    <button class="filter-clear" id="share-filter-btn" style="color:#0000ee">copy filter link</button>
+    <button class="filter-clear" id="clear-btn">clear all filters</button>
+  </div>
+</div>
+
+<div class="grid-wrap">
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- Lightbox (desktop) -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-inner">
+    <div class="lb-image-wrap">
+      <img id="lb-img" src="" alt="">
+    </div>
+    <div class="lb-panel" id="lb-panel">
+      <!-- filled by JS -->
+    </div>
+  </div>
+  <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-nav lb-prev" id="lb-prev">‹</button>
+  <button class="lb-nav lb-next" id="lb-next">›</button>
+</div>
+
+<!-- Drawer (mobile) -->
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-handle-bar" id="drawer-handle-bar">
+    <div class="drawer-handle"></div>
+    <button class="drawer-close-btn" id="drawer-close">✕</button>
+  </div>
+  <div class="drawer-image-wrap">
+    <img id="drawer-img" src="" alt="">
+    <button class="drawer-nav drawer-prev" id="drawer-prev">‹</button>
+    <button class="drawer-nav drawer-next" id="drawer-next">›</button>
+  </div>
+  <div class="drawer-body" id="drawer-body">
+    <!-- filled by JS -->
+  </div>
+</div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────────────
+
+async function loadData() {
+  try {
+    const resp = await fetch('signs.json');
+    if (!resp.ok) throw new Error('no signs.json');
+    const db = await resp.json();
+    const aiImages = Object.values(db.images);
+
+    // Also load additions.json (manual additions) if present — merge on top
+    let additionImages = [];
+    try {
+      const addResp = await fetch('additions.json');
+      if (addResp.ok) {
+        const addDb = await addResp.json();
+        additionImages = Object.values(addDb.images);
+      }
+    } catch {}
+
+    // Additions go first so they appear at the top of the grid
+    return [...additionImages, ...aiImages];
+  } catch {
+    return DEMO_DATA;
+  }
+}
+
+const DEMO_DATA = [
+  { id:'d1', url:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400', text_content:'OPEN', finish:'neon', typography:'neon_tube', condition:'pristine', location_context:'exterior_wall', colors:['pink','blue'], era_estimate:'1980s', country_hint:'United States', description:'Classic pink and blue neon open sign.', tags:['neon','diner','american'] },
+  { id:'d2', url:'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=400', text_content:'FRESH FISH', finish:'painted', typography:'hand_painted', condition:'worn', location_context:'shop_window', colors:['white','blue'], era_estimate:'1970s', country_hint:'United Kingdom', description:'Hand-painted fishmonger sign.', tags:['fishmonger','hand_painted','blue_and_white'] },
+  { id:'d3', url:'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400', text_content:'COIFFEUR', finish:'gilded', typography:'serif', condition:'good', location_context:'door', colors:['gold','black'], era_estimate:'pre_1950', country_hint:'France', description:'Gilded serif lettering on a Parisian door.', tags:['hairdresser','gilded','french','art_deco'] },
+  { id:'d4', url:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400', text_content:'', finish:'enamel', typography:'sans_serif', condition:'faded', location_context:'exterior_wall', colors:['blue','white','red'], era_estimate:'1950s', country_hint:'United Kingdom', description:'Faded enamel advertising sign on a brick wall.', tags:['enamel','advertising','faded','vintage'] },
+  { id:'d5', url:'https://images.unsplash.com/photo-1514565131-fce0801e6785?w=400', text_content:'MARKET', finish:'wood', typography:'hand_painted', condition:'weathered', location_context:'freestanding', colors:['brown','cream'], era_estimate:'1960s', country_hint:'United Kingdom', description:'Weathered wooden market sign.', tags:['market','wood','weathered'] },
+  { id:'d6', url:'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=400', text_content:'PHARMACY', finish:'illuminated', typography:'sans_serif', condition:'pristine', location_context:'exterior_wall', colors:['green','white'], era_estimate:'2000s', country_hint:'France', description:'Illuminated green pharmacy cross sign.', tags:['pharmacy','illuminated','green','cross'] },
+  { id:'d7', url:'https://images.unsplash.com/photo-1555636222-cae831e670b3?w=400', text_content:'NO ENTRY', finish:'metal', typography:'sans_serif', condition:'good', location_context:'post', colors:['red','white'], era_estimate:'1990s', country_hint:'United Kingdom', description:'Standard red metal no entry road sign on a post.', tags:['road_sign','metal','regulatory'] },
+  { id:'d8', url:'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400', text_content:'SALE', finish:'paper', typography:'hand_painted', condition:'peeling', location_context:'shop_window', colors:['red','white'], era_estimate:'2010s', country_hint:'unknown', description:'Peeling hand-written sale sign in a shop window.', tags:['sale','hand_painted','window','peeling'] },
+  { id:'d9', url:'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400', text_content:'CAFÉ', finish:'painted', typography:'script_cursive', condition:'good', location_context:'awning', colors:['cream','brown'], era_estimate:'1980s', country_hint:'France', description:'Elegant script café lettering on a striped awning.', tags:['cafe','script','awning','french'] },
+  { id:'d10', url:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400', text_content:'', finish:'metal', typography:'dimensional_letters', condition:'rusted', location_context:'exterior_wall', colors:['rust','grey'], era_estimate:'1960s', country_hint:'United States', description:'Rusted dimensional metal letters on an industrial building.', tags:['industrial','rusted','dimensional','metal'] },
+  { id:'d11', url:'https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?w=400', text_content:'HOTEL', finish:'neon', typography:'neon_tube', condition:'damaged', location_context:'exterior_wall', colors:['yellow','orange'], era_estimate:'1970s', country_hint:'United States', description:'Damaged motel sign with several neon tubes out.', tags:['hotel','neon','damaged','americana'] },
+  { id:'d12', url:'https://images.unsplash.com/photo-1552566626-52f8b828a0f3?w=400', text_content:'BUTCHER', finish:'enamel', typography:'serif', condition:'pristine', location_context:'shop_window', colors:['white','black','red'], era_estimate:'1950s', country_hint:'United Kingdom', description:'Pristine enamel butcher shop sign with serif lettering.', tags:['butcher','enamel','serif','pristine'] },
+  { id:'d13', url:'https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=400', text_content:'', finish:'chalk', typography:'hand_painted', condition:'good', location_context:'exterior_wall', colors:['white','black'], era_estimate:'2010s', country_hint:'United Kingdom', description:'Hand-drawn chalk specials board outside a pub.', tags:['chalk','pub','specials','hand_drawn'] },
+  { id:'d14', url:'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?w=400', text_content:'LAUNDRY', finish:'painted', typography:'decorative', condition:'faded', location_context:'exterior_wall', colors:['green','cream','red'], era_estimate:'1950s', country_hint:'United States', description:'Faded laundry shop sign with decorative painted lettering.', tags:['laundry','decorative','faded','americana'] },
+  { id:'d15', url:'https://images.unsplash.com/photo-1464820453369-31d2c0b651af?w=400', text_content:'B&B', finish:'wood', typography:'serif', condition:'weathered', location_context:'gate', colors:['brown','white'], era_estimate:'1970s', country_hint:'United Kingdom', description:'Weathered wooden B&B sign hung on a gate.', tags:['bed_and_breakfast','wood','gate','british'] },
+  { id:'d16', url:'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=400', text_content:'SPECIAL TODAY', finish:'chalk', typography:'hand_painted', condition:'good', location_context:'freestanding', colors:['white','black'], era_estimate:'2020s', country_hint:'unknown', description:'Chalk board sandwich sign announcing daily specials.', tags:['chalk','restaurant','specials','sandwich_board'] },
+];
+
+// ── State ─────────────────────────────────────────────────────────────────────
+
+let allImages = [];
+let filtered = [];
+let activeFilters = { finish: null, typography: null, condition: null, location_context: null };
+let activeTagFilter = null;   // e.g. 'gold' — set from tag clicks or URL
+let showNewOnly = false;
+let searchQuery = '';
+let lbIndex = 0;
+
+// ── Filter config ─────────────────────────────────────────────────────────────
+
+const FILTER_FIELDS = ['finish','typography','condition','location_context'];
+
+const LABELS = {
+  finish: { painted:'Painted', neon:'Neon', illuminated:'Illuminated', vinyl:'Vinyl', metal:'Metal', wood:'Wood', enamel:'Enamel', paper:'Paper', chalk:'Chalk', gilded:'Gilded', plastic:'Plastic', stone:'Stone', other:'Other' },
+  typography: { hand_painted:'Hand painted', serif:'Serif', sans_serif:'Sans-serif', script_cursive:'Script', decorative:'Decorative', stencil:'Stencil', neon_tube:'Neon tube', dimensional_letters:'Dimensional', mixed:'Mixed', none:'None' },
+  condition: { pristine:'Pristine', good:'Good', worn:'Worn', faded:'Faded', damaged:'Damaged', peeling:'Peeling', rusted:'Rusted', weathered:'Weathered' },
+  location_context: { shop_window:'Shop window', door:'Door', exterior_wall:'Exterior wall', interior_wall:'Interior wall', hanging:'Hanging', freestanding:'Freestanding', awning:'Awning', gate:'Gate', post:'Post', vehicle:'Vehicle', other:'Other' }
+};
+
+// ── URL hash state ────────────────────────────────────────────────────────────
+
+// Hash formats:
+//   #image-id          → open a specific image
+//   #tag=gold          → filter by tag
+//   #finish=painted    → filter by structured field
+//   #new               → show new additions only
+
+function parseHash() {
+  const raw = location.hash.slice(1);
+  if (!raw) return {};
+  if (raw.startsWith('tag='))    return { tag: decodeURIComponent(raw.slice(4)) };
+  if (raw.startsWith('new'))     return { new: true };
+  // structured field filters: finish=painted etc
+  for (const field of FILTER_FIELDS) {
+    if (raw.startsWith(field + '=')) return { field, val: decodeURIComponent(raw.slice(field.length + 1)) };
+  }
+  // otherwise treat as image id
+  return { imageId: raw };
+}
+
+function buildFilterHash() {
+  if (activeTagFilter)  return `tag=${encodeURIComponent(activeTagFilter)}`;
+  if (showNewOnly)      return 'new';
+  for (const field of FILTER_FIELDS) {
+    if (activeFilters[field]) return `${field}=${encodeURIComponent(activeFilters[field])}`;
+  }
+  if (searchQuery) return `tag=${encodeURIComponent(searchQuery)}`;
+  return '';
+}
+
+function pushFilterHash() {
+  const h = buildFilterHash();
+  history.replaceState(null, '', h ? `#${h}` : location.pathname);
+}
+
+// ── Render filters ────────────────────────────────────────────────────────────
+
+function buildFilters() {
+  FILTER_FIELDS.forEach(field => {
+    const counts = {};
+    allImages.forEach(img => { if (img[field]) counts[img[field]] = (counts[img[field]]||0)+1; });
+
+    const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1]);
+    const el = document.getElementById(`filter-${field}`);
+    el.innerHTML = sorted.map(([val, count]) => `
+      <button class="pill ${activeFilters[field]===val?'active':''}"
+              data-field="${field}" data-val="${val}">
+        ${LABELS[field]?.[val] || val} <span style="opacity:0.45;margin-left:2px">${count}</span>
+      </button>
+    `).join('');
+
+    el.querySelectorAll('.pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const f = btn.dataset.field, v = btn.dataset.val;
+        activeFilters[f] = activeFilters[f] === v ? null : v;
+        activeTagFilter = null;
+        applyFilters();
+        buildFilters();
+        pushFilterHash();
+      });
+    });
+  });
+
+  // New additions filter — only show if there are any
+  const hasNew = allImages.some(img => img.is_new);
+  const newGroup = document.getElementById('filter-group-new');
+  if (hasNew) {
+    newGroup.style.display = '';
+    const newCount = allImages.filter(img => img.is_new).length;
+    document.getElementById('filter-new').innerHTML = `
+      <button class="pill ${showNewOnly ? 'active' : ''}" id="pill-new">
+        New additions <span style="opacity:0.45;margin-left:2px">${newCount}</span>
+      </button>`;
+    document.getElementById('pill-new').addEventListener('click', () => {
+      showNewOnly = !showNewOnly;
+      activeTagFilter = null;
+      applyFilters();
+      buildFilters();
+      pushFilterHash();
+    });
+  } else {
+    newGroup.style.display = 'none';
+  }
+}
+
+// ── Apply filters ─────────────────────────────────────────────────────────────
+
+function applyFilters() {
+  const q = searchQuery.toLowerCase();
+  filtered = allImages.filter(img => {
+    if (showNewOnly && !img.is_new) return false;
+    for (const field of FILTER_FIELDS) {
+      if (activeFilters[field] && img[field] !== activeFilters[field]) return false;
+    }
+    if (activeTagFilter) {
+      if (!(img.tags||[]).includes(activeTagFilter)) return false;
+    }
+    if (q) {
+      const haystack = [img.text_content, img.description, ...(img.tags||[])].join(' ').toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
+    return true;
+  });
+  renderGrid();
+  const countText = filtered.length < allImages.length
+    ? `${filtered.length} / ${allImages.length} images`
+    : `${allImages.length} images`;
+  document.getElementById('header-count').textContent = countText;
+}
+
+// ── Render grid ───────────────────────────────────────────────────────────────
+
+function renderGrid() {
+  const grid = document.getElementById('grid');
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="empty-state"><div class="big">No signs found</div><div class="small">Try adjusting your filters</div></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((img, i) => `
+    <div class="card" data-idx="${i}" style="animation-delay:${Math.min(i*0.02,0.6)}s">
+      <img src="${img.url}" alt="${img.text_content || img.description || 'Sign'}" loading="lazy">
+      <div class="card-overlay">
+        ${img.text_content ? `<div class="card-text">${img.text_content}</div>` : ''}
+        <div class="card-meta">${img.finish || ''} · ${img.condition || ''}</div>
+      </div>
+      <div class="card-dot"></div>
+      ${img.is_new ? `<div class="card-new-badge">new</div>` : ''}
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => openPanel(+card.dataset.idx));
+  });
+}
+
+// ── Panel content builder (shared) ───────────────────────────────────────────
+
+function buildPanelHTML(img) {
+  const colorSwatches = (img.colors||[]).map(c =>
+    `<span class="color-swatch" style="background:${c}" title="${c}"></span>`
+  ).join('');
+
+  const fields = [
+    ['Finish', img.finish],
+    ['Typography', img.typography],
+    ['Condition', img.condition],
+    ['Location', img.location_context],
+    ['Era', img.era_estimate],
+    ['Country', img.country_hint],
+  ].filter(([,v]) => v && v !== 'unknown');
+
+  return `
+    ${img.text_content ? `<div class="lb-sign-text">${img.text_content}</div>` : ''}
+    <div class="lb-description">${img.description || ''}</div>
+    <div class="lb-tags">${(img.tags||[]).map(t=>`<span class="lb-tag" data-tag="${t}">${t.replace(/_/g,' ')}</span>`).join('')}</div>
+    <div class="lb-fields">
+      ${fields.map(([label,val])=>`
+        <div class="lb-field">
+          <span class="lb-field-label">${label}</span>
+          <span class="lb-field-value">${val.replace(/_/g,' ')}</span>
+        </div>
+      `).join('')}
+      ${colorSwatches ? `<div class="lb-field">
+        <span class="lb-field-label">Colours</span>
+        <div class="lb-colors">${colorSwatches}</div>
+      </div>` : ''}
+    </div>
+    <button class="lb-share" id="lb-share-btn">copy link to this image</button>
+  `;
+}
+
+function bindPanelEvents(img, container) {
+  // Tags — clicking a tag filters to it and makes URL shareable
+  container.querySelectorAll('.lb-tag').forEach(t => {
+    t.addEventListener('click', () => {
+      closeAll();
+      activeTagFilter = t.dataset.tag;
+      searchQuery = '';
+      document.getElementById('search').value = '';
+      applyFilters();
+      buildFilters();
+      pushFilterHash();
+      // Open filter bar so user can see what's active
+      const bar = document.getElementById('filter-bar');
+      if (!bar.classList.contains('open')) {
+        bar.classList.add('open');
+        document.getElementById('filter-toggle').textContent = 'filter ↑';
+      }
+    });
+  });
+  // Share
+  const shareBtn = container.querySelector('#lb-share-btn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', () => {
+      const url = `${location.origin}${location.pathname}#${img.id}`;
+      navigator.clipboard.writeText(url).then(() => {
+        shareBtn.textContent = 'link copied ✓';
+        shareBtn.classList.add('lb-share-copied');
+        setTimeout(() => { shareBtn.textContent = 'copy link to this image'; shareBtn.classList.remove('lb-share-copied'); }, 2000);
+      });
+    });
+  }
+}
+
+// ── Open / close ──────────────────────────────────────────────────────────────
+
+const isMobile = () => window.innerWidth < 700;
+
+function openPanel(idx) {
+  lbIndex = idx;
+  history.replaceState(null, '', `#${filtered[idx].id}`);
+  if (isMobile()) openDrawer();
+  else openLightbox();
+}
+
+function closeAll() {
+  closeLightbox();
+  closeDrawer();
+  history.replaceState(null, '', location.pathname);
+}
+
+// ── Lightbox ──────────────────────────────────────────────────────────────────
+
+function openLightbox() {
+  const img = filtered[lbIndex];
+  document.getElementById('lb-img').src = img.url;
+  document.getElementById('lb-img').alt = img.description || '';
+  const panel = document.getElementById('lb-panel');
+  panel.innerHTML = buildPanelHTML(img);
+  bindPanelEvents(img, panel);
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── Drawer ────────────────────────────────────────────────────────────────────
+
+function openDrawer() {
+  const img = filtered[lbIndex];
+  document.getElementById('drawer-img').src = img.url;
+  document.getElementById('drawer-img').alt = img.description || '';
+  const body = document.getElementById('drawer-body');
+  body.innerHTML = buildPanelHTML(img);
+  bindPanelEvents(img, body);
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('drawer-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawer-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function stepDrawer(dir) {
+  lbIndex = (lbIndex + dir + filtered.length) % filtered.length;
+  history.replaceState(null, '', `#${filtered[lbIndex].id}`);
+  openDrawer();
+}
+
+document.getElementById('drawer-close').addEventListener('click', closeAll);
+document.getElementById('drawer-handle-bar').addEventListener('click', closeAll);
+document.getElementById('drawer-backdrop').addEventListener('click', closeAll);
+document.getElementById('drawer-prev').addEventListener('click', e => { e.stopPropagation(); stepDrawer(-1); });
+document.getElementById('drawer-next').addEventListener('click', e => { e.stopPropagation(); stepDrawer(1); });
+
+// Swipe on drawer image
+(function() {
+  let startX = 0;
+  const el = document.getElementById('drawer-img');
+  el.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) stepDrawer(dx < 0 ? 1 : -1);
+  });
+})();
+
+document.getElementById('lb-close').addEventListener('click', closeAll);
+document.getElementById('lb-prev').addEventListener('click', () => { lbIndex = (lbIndex-1+filtered.length)%filtered.length; history.replaceState(null,'',`#${filtered[lbIndex].id}`); openLightbox(); });
+document.getElementById('lb-next').addEventListener('click', () => { lbIndex = (lbIndex+1)%filtered.length; history.replaceState(null,'',`#${filtered[lbIndex].id}`); openLightbox(); });
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeAll();
+  if (e.key === 'ArrowLeft')  { lbIndex=(lbIndex-1+filtered.length)%filtered.length; history.replaceState(null,'',`#${filtered[lbIndex].id}`); openLightbox(); }
+  if (e.key === 'ArrowRight') { lbIndex=(lbIndex+1)%filtered.length; history.replaceState(null,'',`#${filtered[lbIndex].id}`); openLightbox(); }
+});
+
+// ── Filter toggle ─────────────────────────────────────────────────────────────
+
+document.getElementById('filter-toggle').addEventListener('click', () => {
+  const bar = document.getElementById('filter-bar');
+  const btn = document.getElementById('filter-toggle');
+  const open = bar.classList.toggle('open');
+  btn.textContent = open ? 'filter ↑' : 'filter ↓';
+});
+
+// ── Search ────────────────────────────────────────────────────────────────────
+
+document.getElementById('search').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  applyFilters();
+});
+
+document.getElementById('clear-btn').addEventListener('click', () => {
+  activeFilters = { finish:null, typography:null, condition:null, location_context:null };
+  activeTagFilter = null;
+  showNewOnly = false;
+  searchQuery = '';
+  document.getElementById('search').value = '';
+  history.replaceState(null, '', location.pathname);
+  applyFilters();
+  buildFilters();
+});
+
+document.getElementById('share-filter-btn').addEventListener('click', function() {
+  const h = buildFilterHash();
+  const url = h
+    ? `${location.origin}${location.pathname}#${h}`
+    : `${location.origin}${location.pathname}`;
+  navigator.clipboard.writeText(url).then(() => {
+    this.textContent = 'link copied ✓';
+    setTimeout(() => { this.textContent = 'copy filter link'; }, 2000);
+  });
+});
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+
+(async () => {
+  allImages = await loadData();
+  filtered = [...allImages];
+  document.getElementById('header-count').textContent = `${allImages.length} images`;
+  buildFilters();
+
+  // Restore state from URL hash
+  const parsed = parseHash();
+  if (parsed.tag) {
+    activeTagFilter = parsed.tag;
+    applyFilters();
+    buildFilters();
+    // Open filter bar so it's obvious what's active
+    document.getElementById('filter-bar').classList.add('open');
+    document.getElementById('filter-toggle').textContent = 'filter ↑';
+  } else if (parsed.new) {
+    showNewOnly = true;
+    applyFilters();
+    buildFilters();
+    document.getElementById('filter-bar').classList.add('open');
+    document.getElementById('filter-toggle').textContent = 'filter ↑';
+  } else if (parsed.field) {
+    activeFilters[parsed.field] = parsed.val;
+    applyFilters();
+    buildFilters();
+    document.getElementById('filter-bar').classList.add('open');
+    document.getElementById('filter-toggle').textContent = 'filter ↑';
+  } else {
+    renderGrid();
+    if (parsed.imageId) {
+      const idx = filtered.findIndex(img => img.id === parsed.imageId);
+      if (idx !== -1) openPanel(idx);
+    }
+  }
+})();
+</script>
+</body>
+</html>
