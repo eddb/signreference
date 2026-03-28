@@ -541,24 +541,34 @@
     <input class="search-input" id="search" placeholder="COIFFEUR, OPEN, FRESH FISH…" autocomplete="off">
   </div>
 
-  <div class="filter-group">
-    <span class="filter-label">Finish</span>
-    <div class="filter-pills" id="filter-finish"></div>
+  <div class="filter-group" id="active-filters-group" style="display:none">
+    <span class="filter-label">Active filters</span>
+    <div class="filter-pills" id="active-tags-list"></div>
   </div>
 
   <div class="filter-group">
-    <span class="filter-label">Typography</span>
-    <div class="filter-pills" id="filter-typography"></div>
+    <span class="filter-label">Style</span>
+    <div class="filter-pills" id="filter-style"></div>
   </div>
 
   <div class="filter-group">
-    <span class="filter-label">Condition</span>
-    <div class="filter-pills" id="filter-condition"></div>
+    <span class="filter-label">Technique</span>
+    <div class="filter-pills" id="filter-technique"></div>
   </div>
 
   <div class="filter-group">
-    <span class="filter-label">Location</span>
-    <div class="filter-pills" id="filter-location_context"></div>
+    <span class="filter-label">Era</span>
+    <div class="filter-pills" id="filter-era"></div>
+  </div>
+
+  <div class="filter-group">
+    <span class="filter-label">Format</span>
+    <div class="filter-pills" id="filter-format"></div>
+  </div>
+
+  <div class="filter-group">
+    <span class="filter-label">Colour</span>
+    <div class="filter-pills" id="filter-colour"></div>
   </div>
 
   <div class="filter-group" id="filter-group-new" style="display:none">
@@ -658,22 +668,34 @@ const DEMO_DATA = [
 
 let allImages = [];
 let filtered = [];
-let activeFilters = { finish: null, typography: null, condition: null, location_context: null };
-let activeTagFilter = null;   // e.g. 'gold' — set from tag clicks or URL
+let activeTagFilters = new Set(); // multiple tags, AND logic
 let showNewOnly = false;
 let searchQuery = '';
 let lbIndex = 0;
 
-// ── Filter config ─────────────────────────────────────────────────────────────
+// ── Curated filter groups ─────────────────────────────────────────────────────
 
-const FILTER_FIELDS = ['finish','typography','condition','location_context'];
-
-const LABELS = {
-  finish: { painted:'Painted', neon:'Neon', illuminated:'Illuminated', vinyl:'Vinyl', metal:'Metal', wood:'Wood', enamel:'Enamel', paper:'Paper', chalk:'Chalk', gilded:'Gilded', plastic:'Plastic', stone:'Stone', other:'Other' },
-  typography: { hand_painted:'Hand painted', serif:'Serif', sans_serif:'Sans-serif', script_cursive:'Script', decorative:'Decorative', stencil:'Stencil', neon_tube:'Neon tube', dimensional_letters:'Dimensional', mixed:'Mixed', none:'None' },
-  condition: { pristine:'Pristine', good:'Good', worn:'Worn', faded:'Faded', damaged:'Damaged', peeling:'Peeling', rusted:'Rusted', weathered:'Weathered' },
-  location_context: { shop_window:'Shop window', door:'Door', exterior_wall:'Exterior wall', interior_wall:'Interior wall', hanging:'Hanging', freestanding:'Freestanding', awning:'Awning', gate:'Gate', post:'Post', vehicle:'Vehicle', other:'Other' }
-};
+const CURATED_GROUPS = [
+  { id: 'style', label: 'Style', tags: [
+    'sign_painting','brush_lettering','casual_script','formal_script',
+    'block_letters','hand_lettered','calligraphy','modern_calligraphy',
+    'serif','sans_serif','mixed_styles',
+  ]},
+  { id: 'technique', label: 'Technique', tags: [
+    'gold_gilt','reverse_glass','shadow_block','dimensional_lettering',
+    'flourishes','pencil_sketch','hand_painted','brush_painted','lettering_practice',
+  ]},
+  { id: 'era', label: 'Era', tags: [
+    'victorian_ornate','mid_century','americana','ephemeral',
+  ]},
+  { id: 'format', label: 'Format', tags: [
+    'shop_window','storefront','mural','packaging',
+    'sketchbook','flat_lay','alphabet_sheet','work_in_progress',
+  ]},
+  { id: 'colour', label: 'Colour', tags: [
+    'monochrome','two_colour','three_colour','black_and_white','high_contrast',
+  ]},
+];
 
 // ── URL hash state ────────────────────────────────────────────────────────────
 
@@ -686,23 +708,18 @@ const LABELS = {
 function parseHash() {
   const raw = location.hash.slice(1);
   if (!raw) return {};
-  if (raw.startsWith('tag='))    return { tag: decodeURIComponent(raw.slice(4)) };
-  if (raw.startsWith('new'))     return { new: true };
-  // structured field filters: finish=painted etc
-  for (const field of FILTER_FIELDS) {
-    if (raw.startsWith(field + '=')) return { field, val: decodeURIComponent(raw.slice(field.length + 1)) };
-  }
-  // otherwise treat as image id
+  if (raw.startsWith('tags=')) return { tags: raw.slice(5).split(',').map(decodeURIComponent) };
+  if (raw.startsWith('tag='))  return { tags: [decodeURIComponent(raw.slice(4))] };
+  if (raw.startsWith('new'))   return { new: true };
   return { imageId: raw };
 }
 
 function buildFilterHash() {
-  if (activeTagFilter)  return `tag=${encodeURIComponent(activeTagFilter)}`;
-  if (showNewOnly)      return 'new';
-  for (const field of FILTER_FIELDS) {
-    if (activeFilters[field]) return `${field}=${encodeURIComponent(activeFilters[field])}`;
+  if (activeTagFilters.size > 0) {
+    const tags = [...activeTagFilters].map(encodeURIComponent).join(',');
+    return `tags=${tags}`;
   }
-  if (searchQuery) return `tag=${encodeURIComponent(searchQuery)}`;
+  if (showNewOnly) return 'new';
   return '';
 }
 
@@ -714,30 +731,56 @@ function pushFilterHash() {
 // ── Render filters ────────────────────────────────────────────────────────────
 
 function buildFilters() {
-  FILTER_FIELDS.forEach(field => {
-    const counts = {};
-    allImages.forEach(img => { if (img[field]) counts[img[field]] = (counts[img[field]]||0)+1; });
+  // Count tags across all images
+  const tagCounts = {};
+  allImages.forEach(img => {
+    (img.tags || []).forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
+  });
 
-    const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1]);
-    const el = document.getElementById(`filter-${field}`);
-    el.innerHTML = sorted.map(([val, count]) => `
-      <button class="pill ${activeFilters[field]===val?'active':''}"
-              data-field="${field}" data-val="${val}">
-        ${LABELS[field]?.[val] || val} <span style="opacity:0.45;margin-left:2px">${count}</span>
-      </button>
-    `).join('');
+  // Render each curated group
+  CURATED_GROUPS.forEach(group => {
+    const el = document.getElementById(`filter-${group.id}`);
+    el.innerHTML = group.tags.map(tag => {
+      const count = tagCounts[tag] || 0;
+      const active = activeTagFilters.has(tag);
+      return `<button class="pill ${active ? 'active' : ''}" data-tag="${tag}">
+        ${tag.replace(/_/g,' ')} <span style="opacity:0.45;margin-left:2px">${count}</span>
+      </button>`;
+    }).join('');
 
     el.querySelectorAll('.pill').forEach(btn => {
       btn.addEventListener('click', () => {
-        const f = btn.dataset.field, v = btn.dataset.val;
-        activeFilters[f] = activeFilters[f] === v ? null : v;
-        activeTagFilter = null;
+        const tag = btn.dataset.tag;
+        if (activeTagFilters.has(tag)) activeTagFilters.delete(tag);
+        else activeTagFilters.add(tag);
         applyFilters();
         buildFilters();
         pushFilterHash();
       });
     });
   });
+
+  // Active filters row — shows selected tags as removable chips
+  const activeGroup = document.getElementById('active-filters-group');
+  const activeList  = document.getElementById('active-tags-list');
+  if (activeTagFilters.size > 0) {
+    activeGroup.style.display = '';
+    activeList.innerHTML = [...activeTagFilters].map(tag => `
+      <button class="pill active" data-tag="${tag}">
+        ${tag.replace(/_/g,' ')} ✕
+      </button>
+    `).join('');
+    activeList.querySelectorAll('.pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTagFilters.delete(btn.dataset.tag);
+        applyFilters();
+        buildFilters();
+        pushFilterHash();
+      });
+    });
+  } else {
+    activeGroup.style.display = 'none';
+  }
 
   // New additions filter — only show if there are any
   const hasNew = allImages.some(img => img.is_new);
@@ -751,7 +794,6 @@ function buildFilters() {
       </button>`;
     document.getElementById('pill-new').addEventListener('click', () => {
       showNewOnly = !showNewOnly;
-      activeTagFilter = null;
       applyFilters();
       buildFilters();
       pushFilterHash();
@@ -767,11 +809,9 @@ function applyFilters() {
   const q = searchQuery.toLowerCase();
   filtered = allImages.filter(img => {
     if (showNewOnly && !img.is_new) return false;
-    for (const field of FILTER_FIELDS) {
-      if (activeFilters[field] && img[field] !== activeFilters[field]) return false;
-    }
-    if (activeTagFilter) {
-      if (!(img.tags||[]).includes(activeTagFilter)) return false;
+    // AND logic — every active tag must be present
+    for (const tag of activeTagFilters) {
+      if (!(img.tags||[]).includes(tag)) return false;
     }
     if (q) {
       const haystack = [img.text_content, img.description, ...(img.tags||[])].join(' ').toLowerCase();
@@ -854,7 +894,7 @@ function bindPanelEvents(img, container) {
   container.querySelectorAll('.lb-tag').forEach(t => {
     t.addEventListener('click', () => {
       closeAll();
-      activeTagFilter = t.dataset.tag;
+      activeTagFilters.add(t.dataset.tag);
       searchQuery = '';
       document.getElementById('search').value = '';
       applyFilters();
@@ -988,8 +1028,7 @@ document.getElementById('search').addEventListener('input', e => {
 });
 
 document.getElementById('clear-btn').addEventListener('click', () => {
-  activeFilters = { finish:null, typography:null, condition:null, location_context:null };
-  activeTagFilter = null;
+  activeTagFilters.clear();
   showNewOnly = false;
   searchQuery = '';
   document.getElementById('search').value = '';
@@ -1019,21 +1058,14 @@ document.getElementById('share-filter-btn').addEventListener('click', function()
 
   // Restore state from URL hash
   const parsed = parseHash();
-  if (parsed.tag) {
-    activeTagFilter = parsed.tag;
+  if (parsed.tags) {
+    parsed.tags.forEach(t => activeTagFilters.add(t));
     applyFilters();
     buildFilters();
-    // Open filter bar so it's obvious what's active
     document.getElementById('filter-bar').classList.add('open');
     document.getElementById('filter-toggle').textContent = 'filter ↑';
   } else if (parsed.new) {
     showNewOnly = true;
-    applyFilters();
-    buildFilters();
-    document.getElementById('filter-bar').classList.add('open');
-    document.getElementById('filter-toggle').textContent = 'filter ↑';
-  } else if (parsed.field) {
-    activeFilters[parsed.field] = parsed.val;
     applyFilters();
     buildFilters();
     document.getElementById('filter-bar').classList.add('open');

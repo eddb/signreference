@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDITOR — STALK THE WOLVES</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #000000;
+      --paper: #ffffff;
+      --accent: #cc0000;
+      --muted: #551a8b;
+      --blue: #0000ee;
+      --border: rgba(0,0,0,0.2);
+      --gap: 3px;
+      --sel: rgba(0,0,238,0.12);
+    }
+
+    html, body {
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      gap: 16px;
+    }
+
+    .site-title {
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: var(--paper);
+      white-space: nowrap;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-count {
+      font-size: 0.7rem;
+      color: var(--blue);
+      letter-spacing: 0.08em;
+    }
+
+    a.back-link {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    a.back-link:hover { color: var(--paper); }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      background: var(--paper);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-input {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.72rem;
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 2px;
+      outline: none;
+      width: 280px;
+      letter-spacing: 0.02em;
+    }
+    .search-input:focus { border-color: var(--ink); }
+    .search-input::placeholder { color: var(--muted); }
+
+    .tb-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .tb-btn:hover { border-color: var(--ink); }
+    .tb-btn.danger { color: var(--accent); border-color: var(--accent); }
+    .tb-btn.danger:hover { background: var(--accent); color: var(--paper); }
+    .tb-btn.primary { background: var(--blue); color: var(--paper); border-color: var(--blue); }
+    .tb-btn.primary:hover { background: #0000aa; border-color: #0000aa; }
+
+    .tb-sep {
+      width: 1px;
+      height: 22px;
+      background: var(--border);
+    }
+
+    .tb-label {
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    /* ── Grid ── */
+    .grid-wrap { padding: var(--gap); padding-bottom: 120px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--gap);
+    }
+    @media (min-width: 600px) { .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); } }
+    @media (min-width: 1000px) { .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); } }
+    @media (min-width: 1400px) { .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } }
+
+    .card {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      cursor: pointer;
+      background: #f0f0f0;
+      user-select: none;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .card:hover img { transform: scale(1.04); }
+
+    .card.selected {
+      outline: 3px solid var(--blue);
+      outline-offset: -3px;
+    }
+
+    .card-check {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 2px solid rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--blue);
+      transition: all 0.12s;
+      pointer-events: none;
+    }
+    .card.selected .card-check {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--paper);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8px;
+      pointer-events: none;
+    }
+    .card:hover .card-overlay,
+    .card.selected .card-overlay { opacity: 1; }
+
+    .card-text {
+      font-size: 0.78rem;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-tagcount {
+      font-size: 0.58rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.05em;
+    }
+
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Selection bar (sticky bottom) ── */
+    .sel-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 12px 24px;
+      display: none;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      border-top: 2px solid var(--blue);
+    }
+    .sel-bar.visible { display: flex; }
+
+    .sel-count {
+      font-size: 0.75rem;
+      color: var(--blue);
+      letter-spacing: 0.06em;
+      min-width: 80px;
+    }
+
+    .sel-sep {
+      width: 1px;
+      height: 22px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .tag-action {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-action-label {
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .tag-input {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.08);
+      color: var(--paper);
+      border-radius: 2px;
+      outline: none;
+      width: 180px;
+      letter-spacing: 0.02em;
+    }
+    .tag-input:focus { border-color: var(--blue); }
+    .tag-input::placeholder { color: rgba(255,255,255,0.3); }
+
+    .sel-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: transparent;
+      color: var(--paper);
+      cursor: pointer;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .sel-btn:hover { border-color: var(--paper); }
+    .sel-btn.add-btn { border-color: var(--blue); color: var(--blue); }
+    .sel-btn.add-btn:hover { background: var(--blue); color: var(--paper); }
+    .sel-btn.remove-btn { border-color: var(--accent); color: var(--accent); }
+    .sel-btn.remove-btn:hover { background: var(--accent); color: var(--paper); }
+
+    /* ── Current tags display ── */
+    .sel-tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+      width: 100%;
+      padding-top: 6px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sel-tags-label {
+      font-size: 0.58rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-right: 4px;
+    }
+
+    .sel-tag {
+      font-size: 0.62rem;
+      padding: 2px 7px;
+      border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .sel-tag:hover { border-color: var(--accent); color: var(--accent); }
+    .sel-tag .x { font-size: 0.55rem; opacity: 0.6; }
+    .sel-tag.partial { opacity: 0.5; font-style: italic; }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink);
+      color: var(--paper);
+      border: 1px solid var(--blue);
+      padding: 8px 20px;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      border-radius: 2px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+      z-index: 300;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── Download bar (top) ── */
+    .dl-bar {
+      background: #f7f7f0;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .dl-status {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    .dl-status strong { color: var(--accent); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card { animation: fadeIn 0.25s ease both; }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="site-title">EDITOR — STALK THE WOLVES</span>
+  <div class="header-right">
+    <span class="header-count" id="header-count">loading…</span>
+    <a href="index.html" class="back-link">← gallery</a>
+  </div>
+</header>
+
+<div class="dl-bar" id="dl-bar">
+  <span class="dl-status" id="dl-status">No unsaved changes.</span>
+  <div style="display:flex;gap:8px">
+    <button class="tb-btn" id="undo-btn" style="display:none">↩ undo last</button>
+    <button class="tb-btn primary" id="download-btn">⬇ download signs.json</button>
+  </div>
+</div>
+
+<div class="toolbar">
+  <input class="search-input" id="search" placeholder="search text, tags, description…" autocomplete="off">
+  <div class="tb-sep"></div>
+  <span class="tb-label" id="result-count">— results</span>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" id="select-all-btn">select all visible</button>
+  <button class="tb-btn" id="deselect-btn">deselect all</button>
+</div>
+
+<div class="grid-wrap">
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- Selection action bar -->
+<div class="sel-bar" id="sel-bar">
+  <span class="sel-count" id="sel-count">0 selected</span>
+  <div class="sel-sep"></div>
+
+  <div class="tag-action">
+    <span class="tag-action-label">Add tag</span>
+    <input class="tag-input" id="add-tag-input" placeholder="tag_name" autocomplete="off">
+    <button class="sel-btn add-btn" id="add-tag-btn">Add</button>
+  </div>
+
+  <div class="sel-sep"></div>
+
+  <div class="tag-action">
+    <span class="tag-action-label">Remove tag</span>
+    <input class="tag-input" id="remove-tag-input" placeholder="tag_name" autocomplete="off">
+    <button class="sel-btn remove-btn" id="remove-tag-btn">Remove</button>
+  </div>
+
+  <div class="sel-sep"></div>
+  <button class="sel-btn" id="clear-sel-btn">✕ clear selection</button>
+
+  <div class="sel-tags-wrap" id="sel-tags-wrap" style="display:none">
+    <span class="sel-tags-label">Tags on selected —</span>
+    <div id="sel-tags-list" style="display:flex;flex-wrap:wrap;gap:4px"></div>
+    <span class="sel-tags-label" style="margin-left:8px" id="partial-label" style="display:none"></span>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  let allData = null;       // original parsed signs.json
+  let signs = {};           // working copy (id → sign object)
+  let filtered = [];        // ids currently visible
+  let selected = new Set(); // ids currently selected
+  let editCount = 0;
+  let lastUndo = null;      // snapshot for single undo
+
+  // ── Load ──────────────────────────────────────────────────────────────
+  async function init() {
+    let raw;
+    try {
+      const res = await fetch('./signs.json');
+      raw = await res.json();
+    } catch(e) {
+      document.getElementById('grid').innerHTML =
+        '<div class="empty-state">Could not load signs.json.<br>Make sure you\'re running from a local server or the Vercel URL.</div>';
+      return;
+    }
+
+    allData = raw;
+    // deep clone working copy
+    signs = {};
+    for (const [id, s] of Object.entries(raw.images)) {
+      signs[id] = { ...s, tags: [...(s.tags || [])] };
+    }
+
+    filtered = Object.keys(signs);
+    render();
+    updateHeader();
+    document.getElementById('dl-status').textContent = 'No unsaved changes.';
+  }
+
+  // ── Render grid ───────────────────────────────────────────────────────
+  function render() {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div class="empty-state">No results.</div>';
+      document.getElementById('result-count').textContent = '0 results';
+      return;
+    }
+
+    document.getElementById('result-count').textContent =
+      filtered.length.toLocaleString() + ' result' + (filtered.length === 1 ? '' : 's');
+
+    const frag = document.createDocumentFragment();
+    for (const id of filtered) {
+      const s = signs[id];
+      const card = document.createElement('div');
+      card.className = 'card' + (selected.has(id) ? ' selected' : '');
+      card.dataset.id = id;
+
+      card.innerHTML = `
+        <img src="${s.url}" loading="lazy" alt="">
+        <div class="card-check">✓</div>
+        <div class="card-overlay">
+          <div class="card-text">${s.text_content || '—'}</div>
+          <div class="card-tagcount">${(s.tags || []).length} tags</div>
+        </div>
+      `;
+
+      card.addEventListener('click', () => toggleSelect(id));
+      frag.appendChild(card);
+    }
+    grid.appendChild(frag);
+  }
+
+  // ── Selection ─────────────────────────────────────────────────────────
+  function toggleSelect(id) {
+    if (selected.has(id)) {
+      selected.delete(id);
+    } else {
+      selected.add(id);
+    }
+    const card = document.querySelector(`.card[data-id="${id}"]`);
+    if (card) card.classList.toggle('selected', selected.has(id));
+    updateSelBar();
+  }
+
+  function updateSelBar() {
+    const n = selected.size;
+    const bar = document.getElementById('sel-bar');
+    const countEl = document.getElementById('sel-count');
+
+    bar.classList.toggle('visible', n > 0);
+    countEl.textContent = n.toLocaleString() + ' selected';
+
+    if (n === 0) return;
+
+    // Compute tag intersection (tags ALL selected have) and union (tags SOME have)
+    const ids = [...selected];
+    const intersection = ids.reduce((acc, id) => {
+      const t = new Set(signs[id].tags || []);
+      return acc === null ? t : new Set([...acc].filter(x => t.has(x)));
+    }, null) || new Set();
+
+    const union = new Set();
+    for (const id of ids) {
+      for (const t of (signs[id].tags || [])) union.add(t);
+    }
+
+    const partialTags = [...union].filter(t => !intersection.has(t));
+
+    const wrap = document.getElementById('sel-tags-wrap');
+    const list = document.getElementById('sel-tags-list');
+
+    if (union.size === 0) {
+      wrap.style.display = 'none';
+      return;
+    }
+
+    wrap.style.display = 'flex';
+    list.innerHTML = '';
+
+    // All-tags first (solid), then partial (faded + italic)
+    const sorted = [...intersection].sort();
+    const sortedPartial = partialTags.sort();
+
+    for (const tag of sorted) {
+      list.appendChild(makeTagChip(tag, false));
+    }
+    if (sortedPartial.length) {
+      const sep = document.createElement('span');
+      sep.className = 'sel-tags-label';
+      sep.style.marginLeft = '6px';
+      sep.textContent = '(some:)';
+      list.appendChild(sep);
+      for (const tag of sortedPartial) {
+        list.appendChild(makeTagChip(tag, true));
+      }
+    }
+  }
+
+  function makeTagChip(tag, partial) {
+    const el = document.createElement('span');
+    el.className = 'sel-tag' + (partial ? ' partial' : '');
+    el.title = partial ? `Click to remove "${tag}" from all selected that have it` : `Click to remove "${tag}" from all selected`;
+    el.innerHTML = `${tag} <span class="x">✕</span>`;
+    el.addEventListener('click', () => {
+      removeTagFromSelected(tag);
+    });
+    return el;
+  }
+
+  // ── Tag editing ───────────────────────────────────────────────────────
+  function saveUndo() {
+    lastUndo = {};
+    for (const id of selected) {
+      lastUndo[id] = [...signs[id].tags];
+    }
+  }
+
+  function addTagToSelected(tag) {
+    tag = normaliseTag(tag);
+    if (!tag) return;
+    saveUndo();
+    let count = 0;
+    for (const id of selected) {
+      if (!signs[id].tags.includes(tag)) {
+        signs[id].tags.push(tag);
+        count++;
+      }
+    }
+    markEdited(count > 0);
+    refreshSelectedCards();
+    updateSelBar();
+    toast(`Added "${tag}" to ${count} image${count === 1 ? '' : 's'}`);
+  }
+
+  function removeTagFromSelected(tag) {
+    tag = normaliseTag(tag);
+    if (!tag) return;
+    saveUndo();
+    let count = 0;
+    for (const id of selected) {
+      const before = signs[id].tags.length;
+      signs[id].tags = signs[id].tags.filter(t => t !== tag);
+      if (signs[id].tags.length < before) count++;
+    }
+    markEdited(count > 0);
+    refreshSelectedCards();
+    updateSelBar();
+    toast(`Removed "${tag}" from ${count} image${count === 1 ? '' : 's'}`);
+  }
+
+  function normaliseTag(t) {
+    return t.trim().toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+  }
+
+  function refreshSelectedCards() {
+    for (const id of selected) {
+      const card = document.querySelector(`.card[data-id="${id}"]`);
+      if (card) {
+        const countEl = card.querySelector('.card-tagcount');
+        if (countEl) countEl.textContent = (signs[id].tags || []).length + ' tags';
+      }
+    }
+  }
+
+  // ── Undo ──────────────────────────────────────────────────────────────
+  function undoLast() {
+    if (!lastUndo) return;
+    for (const [id, tags] of Object.entries(lastUndo)) {
+      signs[id].tags = [...tags];
+    }
+    refreshSelectedCards();
+    updateSelBar();
+    lastUndo = null;
+    document.getElementById('undo-btn').style.display = 'none';
+    toast('Undone.');
+  }
+
+  // ── Edit tracking ─────────────────────────────────────────────────────
+  function markEdited(changed) {
+    if (!changed) return;
+    editCount++;
+    document.getElementById('dl-status').innerHTML =
+      `<strong>${editCount} unsaved edit${editCount === 1 ? '' : 's'}</strong> — download signs.json to save`;
+    document.getElementById('undo-btn').style.display = '';
+  }
+
+  // ── Header ────────────────────────────────────────────────────────────
+  function updateHeader() {
+    const total = Object.keys(signs).length;
+    document.getElementById('header-count').textContent =
+      total.toLocaleString() + ' images';
+  }
+
+  // ── Search ────────────────────────────────────────────────────────────
+  let searchTimeout;
+  document.getElementById('search').addEventListener('input', e => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      const q = e.target.value.trim().toLowerCase();
+      if (!q) {
+        filtered = Object.keys(signs);
+      } else {
+        const terms = q.split(/\s+/);
+        filtered = Object.keys(signs).filter(id => {
+          const s = signs[id];
+          const haystack = [
+            s.text_content || '',
+            (s.tags || []).join(' '),
+            s.description || '',
+            s.medium || '',
+            s.lettering_style || '',
+            s.surface || '',
+          ].join(' ').toLowerCase();
+          return terms.every(t => haystack.includes(t));
+        });
+      }
+      render();
+    }, 200);
+  });
+
+  // ── Select all / deselect ─────────────────────────────────────────────
+  document.getElementById('select-all-btn').addEventListener('click', () => {
+    for (const id of filtered) selected.add(id);
+    render();
+    updateSelBar();
+  });
+
+  document.getElementById('deselect-btn').addEventListener('click', () => {
+    selected.clear();
+    render();
+    updateSelBar();
+  });
+
+  document.getElementById('clear-sel-btn').addEventListener('click', () => {
+    selected.clear();
+    render();
+    updateSelBar();
+  });
+
+  // ── Add/remove buttons ────────────────────────────────────────────────
+  document.getElementById('add-tag-btn').addEventListener('click', () => {
+    const input = document.getElementById('add-tag-input');
+    addTagToSelected(input.value);
+    input.value = '';
+    input.focus();
+  });
+
+  document.getElementById('add-tag-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      addTagToSelected(e.target.value);
+      e.target.value = '';
+    }
+  });
+
+  document.getElementById('remove-tag-btn').addEventListener('click', () => {
+    const input = document.getElementById('remove-tag-input');
+    removeTagFromSelected(input.value);
+    input.value = '';
+    input.focus();
+  });
+
+  document.getElementById('remove-tag-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      removeTagFromSelected(e.target.value);
+      e.target.value = '';
+    }
+  });
+
+  // ── Undo button ───────────────────────────────────────────────────────
+  document.getElementById('undo-btn').addEventListener('click', undoLast);
+
+  // ── Download ──────────────────────────────────────────────────────────
+  document.getElementById('download-btn').addEventListener('click', () => {
+    const out = {
+      ...allData,
+      generated: new Date().toISOString(),
+      images: signs,
+    };
+    const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'signs.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+    editCount = 0;
+    document.getElementById('dl-status').textContent = 'Downloaded — replace signs.json and push to deploy.';
+    document.getElementById('undo-btn').style.display = 'none';
+  });
+
+  // ── Toast ─────────────────────────────────────────────────────────────
+  let toastTimer;
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+  }
+
+  init();
+</script>
+</body>
+</html>
