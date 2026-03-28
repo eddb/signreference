@@ -364,7 +364,7 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* ── Download bar (top) ── */
+    /* ── Save bar (top) ── */
     .dl-bar {
       background: #f7f7f0;
       border-bottom: 1px solid var(--border);
@@ -373,6 +373,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
     .dl-status {
@@ -381,6 +382,64 @@
       letter-spacing: 0.06em;
     }
     .dl-status strong { color: var(--accent); }
+
+    .token-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .token-label {
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .token-input {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 2px;
+      outline: none;
+      width: 220px;
+      letter-spacing: 0.02em;
+    }
+    .token-input:focus { border-color: var(--ink); }
+    .token-input::placeholder { color: var(--muted); }
+
+    .token-set-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.62rem;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .token-set-btn:hover { border-color: var(--ink); }
+
+    .token-saved-msg {
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .token-change-link {
+      font-size: 0.62rem;
+      color: var(--blue);
+      cursor: pointer;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      font-family: 'Courier Prime', monospace;
+      padding: 0;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(4px); }
@@ -401,9 +460,23 @@
 
 <div class="dl-bar" id="dl-bar">
   <span class="dl-status" id="dl-status">No unsaved changes.</span>
-  <div style="display:flex;gap:8px">
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+
+    <!-- Token: input mode (shown when no token saved) -->
+    <div class="token-area" id="token-input-area">
+      <span class="token-label">GitHub token</span>
+      <input class="token-input" id="token-input" type="password" placeholder="ghp_…" autocomplete="off">
+      <button class="token-set-btn" id="token-set-btn">set token</button>
+    </div>
+
+    <!-- Token: saved mode (shown when token exists) -->
+    <div class="token-area" id="token-saved-area" style="display:none">
+      <span class="token-saved-msg">token saved</span>
+      <button class="token-change-link" id="token-change-btn">change</button>
+    </div>
+
     <button class="tb-btn" id="undo-btn" style="display:none">↩ undo last</button>
-    <button class="tb-btn primary" id="download-btn">⬇ download signs.json</button>
+    <button class="tb-btn primary" id="save-btn">↑ save to GitHub</button>
   </div>
 </div>
 
@@ -670,7 +743,7 @@
     if (!changed) return;
     editCount++;
     document.getElementById('dl-status').innerHTML =
-      `<strong>${editCount} unsaved edit${editCount === 1 ? '' : 's'}</strong> — download signs.json to save`;
+      `<strong>${editCount} unsaved edit${editCount === 1 ? '' : 's'}</strong>`;
     document.getElementById('undo-btn').style.display = '';
   }
 
@@ -759,23 +832,103 @@
   // ── Undo button ───────────────────────────────────────────────────────
   document.getElementById('undo-btn').addEventListener('click', undoLast);
 
-  // ── Download ──────────────────────────────────────────────────────────
-  document.getElementById('download-btn').addEventListener('click', () => {
+  // ── GitHub token management ───────────────────────────────────────────
+  function refreshTokenUI() {
+    const token = localStorage.getItem('gh_token');
+    document.getElementById('token-input-area').style.display = token ? 'none' : '';
+    document.getElementById('token-saved-area').style.display  = token ? ''     : 'none';
+  }
+
+  document.getElementById('token-set-btn').addEventListener('click', () => {
+    const val = document.getElementById('token-input').value.trim();
+    if (!val) return;
+    localStorage.setItem('gh_token', val);
+    document.getElementById('token-input').value = '';
+    refreshTokenUI();
+    toast('Token saved.');
+  });
+
+  document.getElementById('token-change-btn').addEventListener('click', () => {
+    localStorage.removeItem('gh_token');
+    refreshTokenUI();
+  });
+
+  refreshTokenUI();
+
+  // ── Save to GitHub ────────────────────────────────────────────────────
+  async function saveToGitHub() {
+    const token = localStorage.getItem('gh_token');
+    if (!token) {
+      toast('Enter your GitHub token first');
+      document.getElementById('token-input').focus();
+      return;
+    }
+
+    const saveBtn = document.getElementById('save-btn');
+    const statusEl = document.getElementById('dl-status');
+    saveBtn.textContent = 'saving…';
+    saveBtn.disabled = true;
+
     const out = {
       ...allData,
       generated: new Date().toISOString(),
       images: signs,
     };
-    const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'signs.json';
-    a.click();
-    URL.revokeObjectURL(a.href);
-    editCount = 0;
-    document.getElementById('dl-status').textContent = 'Downloaded — replace signs.json and push to deploy.';
-    document.getElementById('undo-btn').style.display = 'none';
-  });
+
+    // GitHub API requires base64-encoded content
+    const json = JSON.stringify(out, null, 2);
+    const encoded = btoa(unescape(encodeURIComponent(json)));
+
+    const apiUrl = 'https://api.github.com/repos/eddb/signreference/contents/signs.json';
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+    };
+
+    // Step 1: get current file SHA (required by GitHub API to update a file)
+    let sha;
+    try {
+      const infoRes = await fetch(apiUrl, { headers });
+      if (!infoRes.ok) throw new Error(`${infoRes.status}`);
+      const info = await infoRes.json();
+      sha = info.sha;
+    } catch(e) {
+      toast(`Couldn't reach GitHub: ${e.message} — check your token`);
+      saveBtn.textContent = '↑ save to GitHub';
+      saveBtn.disabled = false;
+      return;
+    }
+
+    // Step 2: commit the updated file
+    try {
+      const putRes = await fetch(apiUrl, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({
+          message: `Update tags (${editCount} edit${editCount === 1 ? '' : 's'})`,
+          content: encoded,
+          sha,
+        }),
+      });
+      if (!putRes.ok) {
+        const err = await putRes.json().catch(() => ({}));
+        throw new Error(err.message || putRes.status);
+      }
+      editCount = 0;
+      lastUndo = null;
+      statusEl.textContent = 'Saved — Vercel deploying (~30s)';
+      document.getElementById('undo-btn').style.display = 'none';
+      toast('Saved to GitHub ✓ Vercel is deploying');
+    } catch(e) {
+      toast(`Save failed: ${e.message}`);
+    }
+
+    saveBtn.textContent = '↑ save to GitHub';
+    saveBtn.disabled = false;
+  }
+
+  document.getElementById('save-btn').addEventListener('click', saveToGitHub);
 
   // ── Toast ─────────────────────────────────────────────────────────────
   let toastTimer;
