@@ -532,7 +532,10 @@
 
 <div class="subheader">
   <span class="subheader-left">reference material</span>
-  <button class="filter-toggle" id="filter-toggle">filter ↓</button>
+  <div style="display:flex;gap:16px;align-items:center">
+    <button class="filter-toggle" id="shuffle-btn">shuffle ↺</button>
+    <button class="filter-toggle" id="filter-toggle">filter ↓</button>
+  </div>
 </div>
 
 <div class="filter-bar" id="filter-bar">
@@ -1012,6 +1015,14 @@ document.addEventListener('keydown', e => {
 });
 
 // ── Filter toggle ─────────────────────────────────────────────────────────────
+
+document.getElementById('shuffle-btn').addEventListener('click', () => {
+  for (let i = filtered.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+  }
+  renderGrid();
+});
 
 document.getElementById('filter-toggle').addEventListener('click', () => {
   const bar = document.getElementById('filter-bar');
