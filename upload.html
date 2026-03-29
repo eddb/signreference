@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPLOAD — STALK THE WOLVES</title>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#000;--paper:#fff;--accent:#cc0000;--muted:#551a8b;--blue:#0000ee;--border:rgba(0,0,0,.2);--gap:3px}
+html,body{font-family:'Courier Prime','Courier New',Courier,monospace;background:var(--paper);color:var(--ink);min-height:100vh}
+
+/* ── Header ── */
+header{position:sticky;top:0;z-index:100;background:var(--ink);color:var(--paper);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;gap:16px}
+.site-title{font-size:1.1rem;letter-spacing:.02em;color:var(--paper);white-space:nowrap}
+.header-right{display:flex;align-items:center;gap:20px}
+a.back-link{font-size:.65rem;color:rgba(255,255,255,.5);letter-spacing:.08em;text-decoration:underline;text-underline-offset:2px}
+a.back-link:hover{color:var(--paper)}
+
+/* ── Token bar ── */
+.token-bar{background:#f7f7f0;border-bottom:1px solid var(--border);padding:8px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.token-label{font-size:.6rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.token-input{font-family:'Courier Prime',monospace;font-size:.7rem;padding:4px 8px;border:1px solid var(--border);background:var(--paper);color:var(--ink);border-radius:2px;outline:none;width:220px}
+.token-input:focus{border-color:var(--ink)}
+.token-input::placeholder{color:var(--muted)}
+.token-btn{font-family:'Courier Prime',monospace;font-size:.62rem;padding:4px 10px;border:1px solid var(--border);background:var(--paper);color:var(--ink);cursor:pointer;border-radius:2px}
+.token-btn:hover{border-color:var(--ink)}
+.token-ok{font-size:.62rem;color:var(--muted);letter-spacing:.05em}
+.token-change{background:none;border:none;font-family:inherit;font-size:.62rem;color:var(--blue);text-decoration:underline;cursor:pointer;padding:0}
+
+/* ── Drop zone ── */
+.drop-zone{margin:24px;border:2px dashed var(--border);padding:48px 24px;text-align:center;cursor:pointer;transition:border-color .15s;border-radius:2px}
+.drop-zone:hover,.drop-zone.dragover{border-color:var(--ink)}
+.drop-zone input[type=file]{display:none}
+.drop-title{font-size:1rem;letter-spacing:.04em;margin-bottom:8px}
+.drop-sub{font-size:.65rem;color:var(--muted);letter-spacing:.08em}
+
+/* ── Upload list ── */
+.upload-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--border)}
+
+.upload-item{display:grid;grid-template-columns:160px 1fr;border-bottom:1px solid var(--border)}
+@media(max-width:600px){.upload-item{grid-template-columns:1fr}}
+
+.upload-preview{position:relative;background:#f0f0f0}
+.upload-preview img{width:100%;height:160px;object-fit:cover;display:block}
+@media(max-width:600px){.upload-preview img{height:220px}}
+.upload-status{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;letter-spacing:.08em;font-weight:700;pointer-events:none}
+.upload-status.uploading{background:rgba(255,255,255,.7);color:var(--ink)}
+.upload-status.done{background:rgba(0,0,238,.85);color:#fff}
+.upload-status.error{background:rgba(204,0,0,.85);color:#fff}
+
+.upload-fields{padding:16px;display:flex;flex-direction:column;gap:12px}
+
+.field-label{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;display:block}
+
+.text-input{font-family:'Courier Prime',monospace;font-size:.85rem;padding:5px 10px;border:1px solid var(--border);background:var(--paper);color:var(--ink);border-radius:2px;outline:none;width:100%}
+.text-input:focus{border-color:var(--ink)}
+.text-input::placeholder{color:var(--muted)}
+
+/* ── Tag pills ── */
+.tag-pills{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px}
+.tag-pill{font-family:'Courier Prime',monospace;font-size:.62rem;padding:2px 8px;border:1px solid var(--border);background:var(--paper);color:var(--ink);cursor:pointer;border-radius:2px;transition:all .1s;letter-spacing:.03em;white-space:nowrap;user-select:none}
+.tag-pill:hover{border-color:var(--ink)}
+.tag-pill.active{background:var(--blue);color:var(--paper);border-color:var(--blue)}
+
+.selected-tags{display:flex;flex-wrap:wrap;gap:4px;min-height:22px}
+.sel-tag{font-size:.6rem;padding:2px 7px;border-radius:2px;border:1px solid var(--blue);color:var(--blue);cursor:pointer;letter-spacing:.03em;display:flex;align-items:center;gap:3px}
+.sel-tag:hover{background:var(--blue);color:var(--paper)}
+
+.tag-free-input{font-family:'Courier Prime',monospace;font-size:.7rem;padding:4px 8px;border:1px solid var(--border);background:var(--paper);color:var(--ink);border-radius:2px;outline:none;width:100%}
+.tag-free-input:focus{border-color:var(--ink)}
+.tag-free-input::placeholder{color:var(--muted)}
+
+.tag-group-label{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+
+.remove-item-btn{background:none;border:none;font-size:.6rem;color:var(--muted);cursor:pointer;padding:0;align-self:flex-end;text-decoration:underline;font-family:inherit;letter-spacing:.04em}
+.remove-item-btn:hover{color:var(--accent)}
+
+/* ── Action bar ── */
+.action-bar{position:sticky;bottom:0;background:var(--ink);color:var(--paper);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;z-index:50;border-top:2px solid var(--blue)}
+.action-status{font-size:.65rem;color:var(--blue);letter-spacing:.06em}
+.upload-btn{font-family:'Courier Prime',monospace;font-size:.72rem;padding:8px 20px;background:var(--blue);color:var(--paper);border:none;cursor:pointer;border-radius:2px;letter-spacing:.06em}
+.upload-btn:hover{background:#0000aa}
+.upload-btn:disabled{background:#555;cursor:default}
+
+/* ── Empty state ── */
+.empty-hint{padding:40px 24px;text-align:center;color:var(--muted);font-size:.7rem;letter-spacing:.06em;display:none}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="site-title">UPLOAD — STALK THE WOLVES</span>
+  <div class="header-right">
+    <a href="/" class="back-link">← gallery</a>
+  </div>
+</header>
+
+<!-- Token bar -->
+<div class="token-bar">
+  <div id="token-input-area" style="display:flex;align-items:center;gap:8px">
+    <span class="token-label">GitHub token</span>
+    <input class="token-input" id="token-input" type="password" placeholder="ghp_…" autocomplete="off">
+    <button class="token-btn" id="token-set-btn">set token</button>
+  </div>
+  <div id="token-saved-area" style="display:none;align-items:center;gap:8px">
+    <span class="token-ok">token saved</span>
+    <button class="token-change" id="token-change-btn">change</button>
+  </div>
+</div>
+
+<!-- Drop zone -->
+<div class="drop-zone" id="drop-zone">
+  <input type="file" id="file-input" accept="image/*" multiple>
+  <div class="drop-title">Drop images here</div>
+  <div class="drop-sub">or tap to pick from camera roll · jpeg, png, webp, heic</div>
+</div>
+
+<div class="empty-hint" id="empty-hint">Add images above to start tagging</div>
+
+<!-- Upload items list -->
+<div class="upload-list" id="upload-list"></div>
+
+<!-- Sticky action bar -->
+<div class="action-bar" id="action-bar" style="display:none">
+  <span class="action-status" id="action-status">0 images ready</span>
+  <button class="upload-btn" id="upload-btn">↑ upload &amp; save to gallery</button>
+</div>
+
+<script>
+// ── Curated tag groups (same as gallery) ──────────────────────────────
+const CURATED_GROUPS = [
+  { label: 'Style', tags: ['sign_painting','brush_lettering','casual_script','formal_script','block_letters','hand_lettered','calligraphy','modern_calligraphy','serif','sans_serif','mixed_styles'] },
+  { label: 'Technique', tags: ['gold_gilt','reverse_glass','shadow_block','dimensional_lettering','flourishes','pencil_sketch','hand_painted','brush_painted','lettering_practice'] },
+  { label: 'Era', tags: ['victorian_ornate','mid_century','americana','ephemeral'] },
+  { label: 'Format', tags: ['shop_window','storefront','mural','packaging','sketchbook','flat_lay','alphabet_sheet','work_in_progress'] },
+  { label: 'Colour', tags: ['monochrome','two_colour','three_colour','black_and_white','high_contrast'] },
+];
+
+// ── State ─────────────────────────────────────────────────────────────
+let items = []; // { file, blob, previewUrl, textContent, tags: Set }
+
+// ── Token ─────────────────────────────────────────────────────────────
+function refreshTokenUI() {
+  const t = localStorage.getItem('gh_token');
+  document.getElementById('token-input-area').style.display = t ? 'none' : 'flex';
+  document.getElementById('token-saved-area').style.display  = t ? 'flex' : 'none';
+}
+document.getElementById('token-set-btn').addEventListener('click', () => {
+  const v = document.getElementById('token-input').value.trim();
+  if (!v) return;
+  localStorage.setItem('gh_token', v);
+  document.getElementById('token-input').value = '';
+  refreshTokenUI();
+});
+document.getElementById('token-change-btn').addEventListener('click', () => {
+  localStorage.removeItem('gh_token');
+  refreshTokenUI();
+});
+refreshTokenUI();
+
+// ── Drop zone ─────────────────────────────────────────────────────────
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+
+dropZone.addEventListener('click', () => fileInput.click());
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  addFiles([...e.dataTransfer.files]);
+});
+fileInput.addEventListener('change', () => { addFiles([...fileInput.files]); fileInput.value = ''; });
+
+// ── Add files ─────────────────────────────────────────────────────────
+async function addFiles(files) {
+  const imageFiles = files.filter(f => f.type.startsWith('image/') || /\.(heic|heif)$/i.test(f.name));
+  for (const file of imageFiles) {
+    const blob = await resizeImage(file);
+    const previewUrl = URL.createObjectURL(blob);
+    const item = { file, blob, previewUrl, textContent: '', tags: new Set() };
+    items.push(item);
+    renderItem(item, items.length - 1);
+  }
+  updateActionBar();
+}
+
+// ── Resize image client-side ──────────────────────────────────────────
+function resizeImage(file, maxPx = 1800, quality = 0.88) {
+  return new Promise(resolve => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const scale = Math.min(1, maxPx / Math.max(img.width, img.height));
+      const w = Math.round(img.width * scale);
+      const h = Math.round(img.height * scale);
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      canvas.toBlob(resolve, 'image/jpeg', quality);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
+    img.src = url;
+  });
+}
+
+// ── Render one upload item ────────────────────────────────────────────
+function renderItem(item, idx) {
+  const el = document.createElement('div');
+  el.className = 'upload-item';
+  el.id = `item-${idx}`;
+
+  // Preview
+  const previewDiv = document.createElement('div');
+  previewDiv.className = 'upload-preview';
+  previewDiv.innerHTML = `<img src="${item.previewUrl}" alt=""><div class="upload-status" id="status-${idx}"></div>`;
+  el.appendChild(previewDiv);
+
+  // Fields
+  const fields = document.createElement('div');
+  fields.className = 'upload-fields';
+
+  // Text content
+  const textLabel = document.createElement('div');
+  textLabel.innerHTML = `<span class="field-label">Text on the sign</span>`;
+  const textInput = document.createElement('input');
+  textInput.className = 'text-input';
+  textInput.placeholder = 'OPEN, Coiffeur, Fresh Fish…';
+  textInput.value = item.textContent;
+  textInput.addEventListener('input', e => { item.textContent = e.target.value; });
+  textLabel.appendChild(textInput);
+  fields.appendChild(textLabel);
+
+  // Selected tags display
+  const selTagsWrap = document.createElement('div');
+  selTagsWrap.innerHTML = `<span class="field-label">Selected tags</span>`;
+  const selTagsRow = document.createElement('div');
+  selTagsRow.className = 'selected-tags';
+  selTagsRow.id = `sel-tags-${idx}`;
+  selTagsWrap.appendChild(selTagsRow);
+  fields.appendChild(selTagsWrap);
+
+  // Free-form tag input
+  const freeWrap = document.createElement('div');
+  freeWrap.innerHTML = `<span class="field-label">Add tag (type + enter)</span>`;
+  const freeInput = document.createElement('input');
+  freeInput.className = 'tag-free-input';
+  freeInput.placeholder = 'eg. chalk, neon, victorian…';
+  freeInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const t = normaliseTag(freeInput.value);
+      if (t) { item.tags.add(t); renderSelectedTags(idx, item); }
+      freeInput.value = '';
+    }
+  });
+  freeWrap.appendChild(freeInput);
+  fields.appendChild(freeWrap);
+
+  // Curated tag groups
+  const groupsWrap = document.createElement('div');
+  CURATED_GROUPS.forEach(group => {
+    const g = document.createElement('div');
+    g.style.marginBottom = '6px';
+    g.innerHTML = `<div class="tag-group-label">${group.label}</div>`;
+    const pills = document.createElement('div');
+    pills.className = 'tag-pills';
+    group.tags.forEach(tag => {
+      const btn = document.createElement('button');
+      btn.className = 'tag-pill';
+      btn.textContent = tag.replace(/_/g, ' ');
+      btn.dataset.tag = tag;
+      btn.addEventListener('click', () => {
+        if (item.tags.has(tag)) {
+          item.tags.delete(tag);
+          btn.classList.remove('active');
+        } else {
+          item.tags.add(tag);
+          btn.classList.add('active');
+        }
+        renderSelectedTags(idx, item);
+      });
+      pills.appendChild(btn);
+    });
+    g.appendChild(pills);
+    groupsWrap.appendChild(g);
+  });
+  fields.appendChild(groupsWrap);
+
+  // Remove button
+  const removeBtn = document.createElement('button');
+  removeBtn.className = 'remove-item-btn';
+  removeBtn.textContent = 'remove image';
+  removeBtn.addEventListener('click', () => {
+    items.splice(idx, 1);
+    el.remove();
+    updateActionBar();
+    // re-index remaining items
+    document.querySelectorAll('.upload-item').forEach((el, i) => { el.id = `item-${i}`; });
+  });
+  fields.appendChild(removeBtn);
+
+  el.appendChild(fields);
+  document.getElementById('upload-list').appendChild(el);
+  renderSelectedTags(idx, item);
+}
+
+function renderSelectedTags(idx, item) {
+  const row = document.getElementById(`sel-tags-${idx}`);
+  if (!row) return;
+  row.innerHTML = '';
+  if (item.tags.size === 0) {
+    row.innerHTML = `<span style="font-size:.6rem;color:var(--muted)">none yet</span>`;
+    return;
+  }
+  for (const tag of [...item.tags].sort()) {
+    const chip = document.createElement('span');
+    chip.className = 'sel-tag';
+    chip.innerHTML = `${tag.replace(/_/g,' ')} <span>✕</span>`;
+    chip.addEventListener('click', () => {
+      item.tags.delete(tag);
+      // un-highlight pill if present
+      const pill = document.querySelector(`#item-${idx} [data-tag="${tag}"]`);
+      if (pill) pill.classList.remove('active');
+      renderSelectedTags(idx, item);
+    });
+    row.appendChild(chip);
+  }
+}
+
+function normaliseTag(t) {
+  return t.trim().toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');
+}
+
+// ── Action bar ────────────────────────────────────────────────────────
+function updateActionBar() {
+  const bar = document.getElementById('action-bar');
+  const n = items.length;
+  bar.style.display = n > 0 ? 'flex' : 'none';
+  document.getElementById('action-status').textContent =
+    n + ' image' + (n===1?'':'s') + ' ready to upload';
+}
+
+// ── Upload ────────────────────────────────────────────────────────────
+document.getElementById('upload-btn').addEventListener('click', uploadAll);
+
+async function uploadAll() {
+  const token = localStorage.getItem('gh_token');
+  if (!token) { alert('Set your GitHub token first.'); return; }
+  if (items.length === 0) return;
+
+  const btn = document.getElementById('upload-btn');
+  btn.disabled = true;
+  btn.textContent = 'uploading…';
+
+  const newEntries = {};
+  let failed = 0;
+
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const statusEl = document.getElementById(`status-${i}`);
+    statusEl.textContent = 'uploading…';
+    statusEl.className = 'upload-status uploading';
+
+    try {
+      const url = await uploadImageToGitHub(token, item.blob, item.file.name);
+      const id = generateId();
+      newEntries[id] = {
+        id,
+        url,
+        filename: url.split('/').pop(),
+        tagged_at: new Date().toISOString(),
+        text_content: item.textContent.trim(),
+        tags: [...item.tags].sort(),
+        description: '',
+        medium: 'unknown',
+        surface: 'unknown',
+        lettering_style: 'unknown',
+        condition: 'unknown',
+        colors: [],
+        era_estimate: 'unknown',
+        country_hint: 'unknown',
+      };
+      statusEl.textContent = '✓ done';
+      statusEl.className = 'upload-status done';
+    } catch(e) {
+      statusEl.textContent = '✗ failed';
+      statusEl.className = 'upload-status error';
+      console.error('Upload failed for item', i, e);
+      failed++;
+    }
+  }
+
+  if (Object.keys(newEntries).length === 0) {
+    alert('All uploads failed. Check your token and try again.');
+    btn.disabled = false;
+    btn.textContent = '↑ upload & save to gallery';
+    return;
+  }
+
+  // Add new entries to signs.json
+  document.getElementById('action-status').textContent = 'Saving to gallery…';
+  try {
+    await addToSignsJson(token, newEntries);
+    const n = Object.keys(newEntries).length;
+    document.getElementById('action-status').textContent =
+      `✓ ${n} image${n===1?'':'s'} added to gallery. Vercel deploying (~30s)…` +
+      (failed ? ` (${failed} failed)` : '');
+    btn.textContent = '✓ saved';
+
+    // Clear successfully uploaded items
+    items = [];
+    document.getElementById('upload-list').innerHTML = '';
+    updateActionBar();
+  } catch(e) {
+    alert('Images uploaded but failed to update gallery: ' + e.message);
+    btn.disabled = false;
+    btn.textContent = '↑ upload & save to gallery';
+  }
+}
+
+async function uploadImageToGitHub(token, blob, originalName) {
+  // Generate a unique filename
+  const ext = 'jpg'; // we always output JPEG
+  const filename = Date.now() + '_' + Math.random().toString(36).slice(2,8) + '.' + ext;
+  const apiUrl = `https://api.github.com/repos/eddb/signreference/contents/uploads/${filename}`;
+  const headers = {
+    'Authorization': `Bearer ${token}`,
+    'Accept': 'application/vnd.github+json',
+    'Content-Type': 'application/json',
+  };
+
+  // Read blob as base64
+  const base64 = await blobToBase64(blob);
+
+  const res = await fetch(apiUrl, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify({ message: `Upload ${filename}`, content: base64 }),
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || res.status);
+  }
+
+  return `https://raw.githubusercontent.com/eddb/signreference/main/uploads/${filename}`;
+}
+
+async function addToSignsJson(token, newEntries) {
+  const apiUrl = 'https://api.github.com/repos/eddb/signreference/contents/signs.json';
+  const headers = {
+    'Authorization': `Bearer ${token}`,
+    'Accept': 'application/vnd.github+json',
+    'Content-Type': 'application/json',
+  };
+
+  // Get SHA
+  const infoRes = await fetch(apiUrl, { headers });
+  if (!infoRes.ok) throw new Error('GitHub API error ' + infoRes.status);
+  const info = await infoRes.json();
+  const sha = info.sha;
+
+  // Fetch current signs.json from Vercel
+  const fileRes = await fetch('/signs.json?_=' + Date.now());
+  if (!fileRes.ok) throw new Error('Could not fetch signs.json');
+  const data = await fileRes.json();
+
+  // Merge new entries
+  Object.assign(data.images, newEntries);
+  data.generated = new Date().toISOString();
+
+  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+  const n = Object.keys(newEntries).length;
+  const putRes = await fetch(apiUrl, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify({ message: `Add ${n} image${n===1?'':'s'} via upload page`, content: encoded, sha }),
+  });
+
+  if (!putRes.ok) {
+    const err = await putRes.json().catch(() => ({}));
+    throw new Error(err.message || putRes.status);
+  }
+}
+
+function blobToBase64(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+function generateId() {
+  return Array.from(crypto.getRandomValues(new Uint8Array(6)))
+    .map(b => b.toString(16).padStart(2,'0')).join('');
+}
+</script>
+</body>
+</html>
