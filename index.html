@@ -144,6 +144,11 @@
       color: var(--paper);
       border-color: #0000ee;
     }
+    .pill.excluded {
+      background: #cc0000;
+      color: var(--paper);
+      border-color: #cc0000;
+    }
 
     .search-wrap {
       display: flex;
@@ -671,7 +676,8 @@ const DEMO_DATA = [
 
 let allImages = [];
 let filtered = [];
-let activeTagFilters = new Set(); // multiple tags, AND logic
+let activeTagFilters  = new Set(); // include — AND logic
+let excludeTagFilters = new Set(); // exclude — none of these can be present
 let showNewOnly = false;
 let searchQuery = '';
 let lbIndex = 0;
@@ -711,17 +717,23 @@ const CURATED_GROUPS = [
 function parseHash() {
   const raw = location.hash.slice(1);
   if (!raw) return {};
-  if (raw.startsWith('tags=')) return { tags: raw.slice(5).split(',').map(decodeURIComponent) };
-  if (raw.startsWith('tag='))  return { tags: [decodeURIComponent(raw.slice(4))] };
-  if (raw.startsWith('new'))   return { new: true };
+  if (raw.startsWith('tags=')) {
+    const parts = raw.slice(5).split(',');
+    const tags    = parts.filter(t => !t.startsWith('-')).map(decodeURIComponent);
+    const exclude = parts.filter(t =>  t.startsWith('-')).map(t => decodeURIComponent(t.slice(1)));
+    return { tags, exclude };
+  }
+  if (raw.startsWith('tag=')) return { tags: [decodeURIComponent(raw.slice(4))], exclude: [] };
+  if (raw.startsWith('new'))  return { new: true };
   return { imageId: raw };
 }
 
 function buildFilterHash() {
-  if (activeTagFilters.size > 0) {
-    const tags = [...activeTagFilters].map(encodeURIComponent).join(',');
-    return `tags=${tags}`;
-  }
+  const parts = [
+    ...[...activeTagFilters].map(t => encodeURIComponent(t)),
+    ...[...excludeTagFilters].map(t => '-' + encodeURIComponent(t)),
+  ];
+  if (parts.length) return `tags=${parts.join(',')}`;
   if (showNewOnly) return 'new';
   return '';
 }
@@ -740,22 +752,32 @@ function buildFilters() {
     (img.tags || []).forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
   });
 
-  // Render each curated group
+  // Render each curated group — click cycles: off → include (blue) → exclude (red) → off
   CURATED_GROUPS.forEach(group => {
     const el = document.getElementById(`filter-${group.id}`);
     el.innerHTML = group.tags.map(tag => {
-      const count = tagCounts[tag] || 0;
-      const active = activeTagFilters.has(tag);
-      return `<button class="pill ${active ? 'active' : ''}" data-tag="${tag}">
-        ${tag.replace(/_/g,' ')} <span style="opacity:0.45;margin-left:2px">${count}</span>
+      const count    = tagCounts[tag] || 0;
+      const included = activeTagFilters.has(tag);
+      const excluded = excludeTagFilters.has(tag);
+      const cls      = included ? 'active' : excluded ? 'excluded' : '';
+      const prefix   = excluded ? '✗ ' : '';
+      const tip      = included ? 'click to exclude' : excluded ? 'click to remove' : 'click to include';
+      return `<button class="pill ${cls}" data-tag="${tag}" title="${tip}">
+        ${prefix}${tag.replace(/_/g,' ')} <span style="opacity:0.45;margin-left:2px">${count}</span>
       </button>`;
     }).join('');
 
     el.querySelectorAll('.pill').forEach(btn => {
       btn.addEventListener('click', () => {
         const tag = btn.dataset.tag;
-        if (activeTagFilters.has(tag)) activeTagFilters.delete(tag);
-        else activeTagFilters.add(tag);
+        if (activeTagFilters.has(tag)) {
+          activeTagFilters.delete(tag);
+          excludeTagFilters.add(tag);    // include → exclude
+        } else if (excludeTagFilters.has(tag)) {
+          excludeTagFilters.delete(tag); // exclude → off
+        } else {
+          activeTagFilters.add(tag);     // off → include
+        }
         applyFilters();
         buildFilters();
         pushFilterHash();
@@ -763,19 +785,26 @@ function buildFilters() {
     });
   });
 
-  // Active filters row — shows selected tags as removable chips
+  // Active filters row — included (blue) + excluded (red) chips
   const activeGroup = document.getElementById('active-filters-group');
   const activeList  = document.getElementById('active-tags-list');
-  if (activeTagFilters.size > 0) {
+  const hasActive   = activeTagFilters.size > 0 || excludeTagFilters.size > 0;
+  if (hasActive) {
     activeGroup.style.display = '';
-    activeList.innerHTML = [...activeTagFilters].map(tag => `
-      <button class="pill active" data-tag="${tag}">
-        ${tag.replace(/_/g,' ')} ✕
-      </button>
-    `).join('');
+    activeList.innerHTML = [
+      ...[...activeTagFilters].map(tag => `
+        <button class="pill active" data-tag="${tag}" data-mode="include">
+          ${tag.replace(/_/g,' ')} ✕
+        </button>`),
+      ...[...excludeTagFilters].map(tag => `
+        <button class="pill excluded" data-tag="${tag}" data-mode="exclude">
+          ✗ ${tag.replace(/_/g,' ')} ✕
+        </button>`),
+    ].join('');
     activeList.querySelectorAll('.pill').forEach(btn => {
       btn.addEventListener('click', () => {
-        activeTagFilters.delete(btn.dataset.tag);
+        if (btn.dataset.mode === 'include') activeTagFilters.delete(btn.dataset.tag);
+        else excludeTagFilters.delete(btn.dataset.tag);
         applyFilters();
         buildFilters();
         pushFilterHash();
@@ -812,9 +841,13 @@ function applyFilters() {
   const q = searchQuery.toLowerCase();
   filtered = allImages.filter(img => {
     if (showNewOnly && !img.is_new) return false;
-    // AND logic — every active tag must be present
+    // Include — every active tag must be present
     for (const tag of activeTagFilters) {
       if (!(img.tags||[]).includes(tag)) return false;
+    }
+    // Exclude — none of these tags can be present
+    for (const tag of excludeTagFilters) {
+      if ((img.tags||[]).includes(tag)) return false;
     }
     if (q) {
       const haystack = [img.text_content, img.description, ...(img.tags||[])].join(' ').toLowerCase();
@@ -1016,11 +1049,15 @@ document.addEventListener('keydown', e => {
 
 // ── Filter toggle ─────────────────────────────────────────────────────────────
 
-document.getElementById('shuffle-btn').addEventListener('click', () => {
+function shuffleFiltered() {
   for (let i = filtered.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
   }
+}
+
+document.getElementById('shuffle-btn').addEventListener('click', () => {
+  shuffleFiltered();
   renderGrid();
 });
 
@@ -1040,6 +1077,7 @@ document.getElementById('search').addEventListener('input', e => {
 
 document.getElementById('clear-btn').addEventListener('click', () => {
   activeTagFilters.clear();
+  excludeTagFilters.clear();
   showNewOnly = false;
   searchQuery = '';
   document.getElementById('search').value = '';
@@ -1069,8 +1107,9 @@ document.getElementById('share-filter-btn').addEventListener('click', function()
 
   // Restore state from URL hash
   const parsed = parseHash();
-  if (parsed.tags) {
-    parsed.tags.forEach(t => activeTagFilters.add(t));
+  if (parsed.tags || parsed.exclude) {
+    (parsed.tags    || []).forEach(t => activeTagFilters.add(t));
+    (parsed.exclude || []).forEach(t => excludeTagFilters.add(t));
     applyFilters();
     buildFilters();
     document.getElementById('filter-bar').classList.add('open');
@@ -1082,6 +1121,7 @@ document.getElementById('share-filter-btn').addEventListener('click', function()
     document.getElementById('filter-bar').classList.add('open');
     document.getElementById('filter-toggle').textContent = 'filter ↑';
   } else {
+    shuffleFiltered();
     renderGrid();
     if (parsed.imageId) {
       const idx = filtered.findIndex(img => img.id === parsed.imageId);
