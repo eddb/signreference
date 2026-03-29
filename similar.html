@@ -1,0 +1,2701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SIMILAR REVIEW 70–79%</title>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Courier Prime',monospace;background:#fff;color:#000;padding-bottom:80px}
+header{background:#000;color:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+header h1{font-size:1rem;letter-spacing:.05em}
+.save-bar{background:#f7f7f0;border-bottom:1px solid rgba(0,0,0,.15);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:52px;z-index:9}
+.status{font-size:.65rem;color:#551a8b;letter-spacing:.06em}
+.save-btn{font-family:'Courier Prime',monospace;font-size:.65rem;padding:6px 16px;background:#0000ee;color:#fff;border:none;cursor:pointer;border-radius:2px;letter-spacing:.06em}
+.save-btn:hover{background:#0000aa}
+.save-btn:disabled{background:#999;cursor:default}
+.token-area{display:flex;align-items:center;gap:8px;font-size:.62rem;color:#551a8b}
+.token-input{font-family:'Courier Prime',monospace;font-size:.68rem;padding:4px 8px;border:1px solid rgba(0,0,0,.2);border-radius:2px;width:200px;outline:none}
+.token-set{font-family:'Courier Prime',monospace;font-size:.62rem;padding:4px 10px;border:1px solid rgba(0,0,0,.2);background:#fff;cursor:pointer;border-radius:2px}
+.pair{border-bottom:2px solid #000;padding:24px;transition:opacity .3s}
+.pair.resolved{opacity:.3;pointer-events:none}
+.pair-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.score{font-size:.72rem;color:#0000ee;letter-spacing:.04em;font-weight:700}
+.keep-btn{font-family:'Courier Prime',monospace;font-size:.62rem;padding:5px 14px;border:1px solid #000;background:#fff;cursor:pointer;border-radius:2px}
+.keep-btn:hover{background:#000;color:#fff}
+.images{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.img-block{display:flex;flex-direction:column;gap:6px}
+.img-wrap{position:relative}
+.img-wrap img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:opacity .2s}
+.delete-overlay{position:absolute;inset:0;background:rgba(204,0,0,.85);color:#fff;display:none;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;letter-spacing:.12em}
+.img-block.marked .img-wrap img{opacity:.25}
+.img-block.marked .delete-overlay{display:flex}
+.img-block.marked .del-btn{background:#666;cursor:default}
+.img-block.already-deleted .img-wrap img{opacity:.15}
+.img-block.already-deleted .delete-overlay{display:flex;background:rgba(80,80,80,.85)}
+.img-label{font-size:.75rem;font-weight:700;color:#0000ee}
+.img-tags{font-size:.55rem;color:#551a8b;line-height:1.6}
+.del-btn{font-family:'Courier Prime',monospace;font-size:.65rem;padding:6px 14px;background:#cc0000;color:#fff;border:none;cursor:pointer;border-radius:2px;margin-top:4px;letter-spacing:.04em;transition:background .15s}
+.del-btn:hover{background:#aa0000}
+</style>
+</head>
+<body>
+<header>
+  <h1>SIMILAR REVIEW 70–79% — 96 pairs</h1>
+  <span style="font-size:.65rem;color:#0000ee" id="hdr-count">3881 images</span>
+</header>
+<div class="save-bar">
+  <span class="status" id="status">Checking against live signs.json…</span>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <div class="token-area" id="token-input-area">
+      GitHub token: <input class="token-input" id="token-input" type="password" placeholder="ghp_…">
+      <button class="token-set" id="token-set-btn">set</button>
+    </div>
+    <div class="token-area" id="token-saved-area" style="display:none">
+      token saved — <button style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:.62rem;color:#0000ee;text-decoration:underline" id="token-change-btn">change</button>
+    </div>
+    <button class="save-btn" id="save-btn">save to GitHub</button>
+  </div>
+</div>
+
+    <div class="pair" id="pair-0" data-id-a="fa84dc795502" data-id-b="407364992017">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 1 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(0)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-0-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/2lettreurs_CGYYFkiHMJt_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-0-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">PRÊT-À-MANGER / BLOOMFIELD / POUR EMPORTER / VINS NATURE / RESTAURANTBLOOMFIELD.COM / TÉL. 514 277-1001 / @RESTAURANT BLOOMFIELD</div>
+          <div class="img-tags">shop_window, restaurant, french_language, vinyl_lettering, storefront, montreal, two_colour, sans_serif</div>
+          <button class="del-btn" id="delbtn-0-a" onclick="markDelete('fa84dc795502',0,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-0-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341627312291840_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-0-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">PRÊT-À-MANGER BLOOMFIELD POUR EMPORTER VINS NATURE RESTAURANTBLOOMFIELD.COM TÉL. 514 277-1001 @RESTAURANTBLOOMFIELD</div>
+          <div class="img-tags">shop_window, restaurant, french_language, montreal, vinyl_lettering, two_colour, storefront, contemporary</div>
+          <button class="del-btn" id="delbtn-0-b" onclick="markDelete('407364992017',0,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-1" data-id-a="f9a375a1d98c" data-id-b="621ebf9b05e7">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 2 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(1)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-1-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765121234.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-1-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Inspiration</div>
+          <div class="img-tags">brush_pen, casual_script, calligraphy, monochrome, flourish, sharpie, lettering_practice, brush_strokes_visible</div>
+          <button class="del-btn" id="delbtn-1-a" onclick="markDelete('f9a375a1d98c',1,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-1-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765855329.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-1-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Autumn</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, monochrome, flourish, tombow, brush_strokes_visible, lettering_practice</div>
+          <button class="del-btn" id="delbtn-1-b" onclick="markDelete('621ebf9b05e7',1,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-2" data-id-a="f9a375a1d98c" data-id-b="533d6b134391">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 3 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(2)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-2-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765121234.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-2-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Inspiration</div>
+          <div class="img-tags">brush_pen, casual_script, calligraphy, monochrome, flourish, sharpie, lettering_practice, brush_strokes_visible</div>
+          <button class="del-btn" id="delbtn-2-a" onclick="markDelete('f9a375a1d98c',2,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-2-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150884226677.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-2-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Saturday</div>
+          <div class="img-tags">casual_script, brush_pen, calligraphy, swash, monochrome, lettering_practice, brush_strokes_visible, flourish</div>
+          <button class="del-btn" id="delbtn-2-b" onclick="markDelete('533d6b134391',2,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-3" data-id-a="f84b6dc14316" data-id-b="9207c84753d4">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 4 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(3)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-3-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630606478963867648.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-3-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">TOGETHER</div>
+          <div class="img-tags">mural, street_art, 3d_lettering, community_art, brick_wall, two_colour, east_london, large_scale</div>
+          <button class="del-btn" id="delbtn-3-a" onclick="markDelete('f84b6dc14316',3,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-3-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/racheljoylettering_CErbpxJBNYb_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-3-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">TOGETHER</div>
+          <div class="img-tags">mural, 3d_lettering, community_art, brick_wall, two_colour, east_london, street_art, isometric</div>
+          <button class="del-btn" id="delbtn-3-b" onclick="markDelete('9207c84753d4',3,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-4" data-id-a="e5ad2b1eca64" data-id-b="6287ef472c07">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 5 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(4)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-4-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630606979023421440.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-4-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">SPEEDBALL
+C. Howard BRAYER U.S.A.
+HUNT PEN CO., CAMDEN, N.J.</div>
+          <div class="img-tags">packaging, vintage, art_supplies, block_letters, ephemeral, two_colour, american_manufacturing, printmaking</div>
+          <button class="del-btn" id="delbtn-4-a" onclick="markDelete('e5ad2b1eca64',4,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-4-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/jazjanuary_CEmoc_cA2dd_2.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-4-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">SPEEDBALL
+C. Howard BRAYER U.S.A.
+HUNT PEN CO., CAMDEN, N.J.</div>
+          <div class="img-tags">packaging, vintage, block_letters, art_supplies, ephemeral, two_colour, mid_century, printmaking</div>
+          <button class="del-btn" id="delbtn-4-b" onclick="markDelete('6287ef472c07',4,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-5" data-id-a="e0b32d04dd03" data-id-b="85525f5fa635">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 6 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(5)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-5-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/189918379984.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-5-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">BUCKINGHAM BRIGHT CUT PLUG SMOKING TOBACCO JOHN J. BAGLEY & CO. DETROIT, MICH. U.S.A. BUCKINGHAM BRIGHT CUT PLUG</div>
+          <div class="img-tags">tobacco_tin, victorian_ornate, packaging, lithographed_tin, floral_decoration, multi_colour, americana, antique</div>
+          <button class="del-btn" id="delbtn-5-a" onclick="markDelete('e0b32d04dd03',5,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-5-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/Screenshot_20230812-154354.png" loading="lazy">
+            <div class="delete-overlay" id="overlay-5-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">BUCKINGHAM BRIGHT CUT PLUG SMOKING TOBACCO JOHN J. BAGLEY & CO. THE AMERICAN TOBACCO CO. SUCCESSOR MFR. CHOICE OF FINE VIRGINIA LEAF</div>
+          <div class="img-tags">victorian_ornate, tobacco_tin, packaging, lithographed_tin, floral_decoration, americana, antique, polychrome</div>
+          <button class="del-btn" id="delbtn-5-b" onclick="markDelete('85525f5fa635',5,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-6" data-id-a="dc9a12cd23d5" data-id-b="eb6c520425f9">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 7 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(6)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-6-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150542686980.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-6-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Inspiration</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, tombow, monochrome, brush_strokes_visible, lettering_practice, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-6-a" onclick="markDelete('dc9a12cd23d5',6,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-6-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163493275250.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-6-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Ryman Auditorium</div>
+          <div class="img-tags">brush_pen, casual_script, tombow, calligraphy, monochrome, brush_strokes_visible, nashville, lettering_practice</div>
+          <button class="del-btn" id="delbtn-6-b" onclick="markDelete('eb6c520425f9',6,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-7" data-id-a="dc9a12cd23d5" data-id-b="cc99b0aa3360">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 8 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(7)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-7-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150542686980.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-7-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Inspiration</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, tombow, monochrome, brush_strokes_visible, lettering_practice, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-7-a" onclick="markDelete('dc9a12cd23d5',7,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-7-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151023664518.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-7-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">girl you're breakin' me</div>
+          <div class="img-tags">casual_script, brush_pen, tombow, modern_calligraphy, monochrome, lettering_practice, two_colour, brush_strokes_visible</div>
+          <button class="del-btn" id="delbtn-7-b" onclick="markDelete('cc99b0aa3360',7,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-8" data-id-a="dc9a12cd23d5" data-id-b="621ebf9b05e7">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 9 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(8)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-8-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150542686980.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-8-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Inspiration</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, tombow, monochrome, brush_strokes_visible, lettering_practice, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-8-a" onclick="markDelete('dc9a12cd23d5',8,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-8-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765855329.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-8-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Autumn</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, monochrome, flourish, tombow, brush_strokes_visible, lettering_practice</div>
+          <button class="del-btn" id="delbtn-8-b" onclick="markDelete('621ebf9b05e7',8,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-9" data-id-a="dc9a12cd23d5" data-id-b="169d4b46f00e">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 10 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(9)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-9-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150542686980.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-9-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Inspiration</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, tombow, monochrome, brush_strokes_visible, lettering_practice, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-9-a" onclick="markDelete('dc9a12cd23d5',9,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-9-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150934724364.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-9-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">mighty</div>
+          <div class="img-tags">casual_script, brush_pen, calligraphy, monochrome, brush_strokes_visible, lettering_practice, modern_calligraphy, black_and_white</div>
+          <button class="del-btn" id="delbtn-9-b" onclick="markDelete('169d4b46f00e',9,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-10" data-id-a="db33ccff1996" data-id-b="6dfea798b997">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 11 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(10)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-10-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630601685573795840.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-10-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">ICON TATTOO</div>
+          <div class="img-tags">shop_window, tattoo_parlor, block_letters, shadow_block, vinyl_lettering, two_colour, storefront, reflection</div>
+          <button class="del-btn" id="delbtn-10-a" onclick="markDelete('db33ccff1996',10,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-10-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/jandssigns_CD4tUD7hkMH_2.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-10-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">ICON TATTOO</div>
+          <div class="img-tags">shop_window, tattoo_parlor, block_letters, shadow_block, two_colour, storefront, vinyl_lettering, red_and_white</div>
+          <button class="del-btn" id="delbtn-10-b" onclick="markDelete('6dfea798b997',10,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-11" data-id-a="db33ccff1996" data-id-b="0866fd74a7c5">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 12 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(11)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-11-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630601685573795840.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-11-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">ICON TATTOO</div>
+          <div class="img-tags">shop_window, tattoo_parlor, block_letters, shadow_block, vinyl_lettering, two_colour, storefront, reflection</div>
+          <button class="del-btn" id="delbtn-11-a" onclick="markDelete('db33ccff1996',11,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-11-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/jandssigns_CD4tUD7hkMH_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-11-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">ICON TATTOO</div>
+          <div class="img-tags">shop_window, tattoo_parlor, shadow_block, block_letters, vinyl_lettering, two_colour, storefront, dimensional_type</div>
+          <button class="del-btn" id="delbtn-11-b" onclick="markDelete('0866fd74a7c5',11,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-12" data-id-a="d8bcc06d49c7" data-id-b="164f2da56fe2">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 13 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(12)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-12-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150362860901.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-12-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">QUALITY BRAND 200 ML MADE IN CAPE TOWN POTION COFFEE STRAIGHT UP COLD BREW</div>
+          <div class="img-tags">cold_brew, packaging, victorian_ornate, white_on_dark, bottle_design, flourishes, craft_beverage, ornamental_border</div>
+          <button class="del-btn" id="delbtn-12-a" onclick="markDelete('d8bcc06d49c7',12,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-12-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/189843064274.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-12-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">QUALITY BRAND 200 ML MADE IN Cape Town POTION COFFEE STRAIGHT-UP COLD BREW</div>
+          <div class="img-tags">victorian_ornate, cold_brew, packaging, bottle_design, white_on_dark, flourishes, craft_beverage, south_african</div>
+          <button class="del-btn" id="delbtn-12-b" onclick="markDelete('164f2da56fe2',12,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-13" data-id-a="d4266254aee3" data-id-b="b4d0316cd6af">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 14 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(13)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-13-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/185678556149.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-13-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">NICE</div>
+          <div class="img-tags">brush_strokes_visible, calligraphy, sketchbook, zine, expressive_lettering, monochrome, casual_script, practice_sheet</div>
+          <button class="del-btn" id="delbtn-13-a" onclick="markDelete('d4266254aee3',13,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-13-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/189918066370.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-13-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Dribbble issue</div>
+          <div class="img-tags">brush_strokes_visible, casual_script, zine, monochrome, calligraphy, sketchbook, expressive_lettering, editorial</div>
+          <button class="del-btn" id="delbtn-13-b" onclick="markDelete('b4d0316cd6af',13,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-14" data-id-a="d0acd57f4ef6" data-id-b="19b84f1b0ddd">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 15 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(14)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-14-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163470389540.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-14-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Triple Fried</div>
+          <div class="img-tags">casual_script, gold_ink, brush_lettering, metallic_marker, black_paper, two_colour, hand_lettered, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-14-a" onclick="markDelete('d0acd57f4ef6',14,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-14-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163481742649.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-14-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Sorry but</div>
+          <div class="img-tags">casual_script, gold_ink, black_paper, metallic_marker, brush_lettering, two_colour, modern_calligraphy, pen_visible</div>
+          <button class="del-btn" id="delbtn-14-b" onclick="markDelete('19b84f1b0ddd',14,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-15" data-id-a="ce194ab2fa99" data-id-b="eaabade2f5db">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 16 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(15)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-15-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/eddyartist_CH-zVt8HPJ1_2.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-15-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">h</div>
+          <div class="img-tags">gold_gilt, victorian_ornate, reverse_glass, mother_of_pearl, star_motif, ornamental_capitals, sign_painting, gilded_glass</div>
+          <button class="del-btn" id="delbtn-15-a" onclick="markDelete('ce194ab2fa99',15,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-15-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/eddyartist_CH-zVt8HPJ1_4.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-15-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">MHP</div>
+          <div class="img-tags">gold_gilt, mother_of_pearl, victorian_ornate, reverse_glass, sign_painting, ornamental_capitals, star_motif, pink_background</div>
+          <button class="del-btn" id="delbtn-15-b" onclick="markDelete('eaabade2f5db',15,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-16" data-id-a="cc99b0aa3360" data-id-b="7999ca4e5393">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 17 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(16)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-16-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151023664518.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-16-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">girl you're breakin' me</div>
+          <div class="img-tags">casual_script, brush_pen, tombow, modern_calligraphy, monochrome, lettering_practice, two_colour, brush_strokes_visible</div>
+          <button class="del-btn" id="delbtn-16-a" onclick="markDelete('cc99b0aa3360',16,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-16-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151066690927.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-16-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">nice</div>
+          <div class="img-tags">brush_calligraphy, tombow, casual_script, brush_strokes_visible, monochrome, modern_calligraphy, lettering_practice, two_colour</div>
+          <button class="del-btn" id="delbtn-16-b" onclick="markDelete('7999ca4e5393',16,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-17" data-id-a="c8546a66d5b0" data-id-b="94c1c0719a80">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 18 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(17)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-17-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686436867364782080_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-17-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">FUCK OFF</div>
+          <div class="img-tags">graveyard, tombstones, skull, profanity, two_colour, cartoon, illustration, gothic_humor</div>
+          <button class="del-btn" id="delbtn-17-a" onclick="markDelete('c8546a66d5b0',17,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-17-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/dudesfactory_CNqGjTDLFjS_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-17-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">FUCK OFF</div>
+          <div class="img-tags">graveyard, tombstones, skull, profanity, black_and_white, illustration, two_colour, gothic_humor</div>
+          <button class="del-btn" id="delbtn-17-b" onclick="markDelete('94c1c0719a80',17,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-18" data-id-a="bdc84e17daa6" data-id-b="a748fd0fbfff">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 19 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(18)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-18-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150351307224.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-18-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Staying Foolish</div>
+          <div class="img-tags">casual_script, brush_lettering, motivational_quote, high_contrast, two_colour, swash, digital_lettering, black_background</div>
+          <button class="del-btn" id="delbtn-18-a" onclick="markDelete('bdc84e17daa6',18,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-18-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/189881972514.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-18-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Rise</div>
+          <div class="img-tags">casual_script, brush_lettering, two_colour, high_contrast, motivational, swash, digital_lettering, black_background</div>
+          <button class="del-btn" id="delbtn-18-b" onclick="markDelete('a748fd0fbfff',18,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-19" data-id-a="b5a64d7cc2ff" data-id-b="42359da33332">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 20 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(19)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-19-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150307778090.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-19-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Feedback Feed Fee Feedback</div>
+          <div class="img-tags">process_shot, formal_script, pencil_sketch, brush_lettering, lettering_practice, typography_development, two_colour, work_in_progress</div>
+          <button class="del-btn" id="delbtn-19-a" onclick="markDelete('b5a64d7cc2ff',19,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-19-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150399460572.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-19-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Feedback</div>
+          <div class="img-tags">process_shot, formal_script, pencil_sketch, brush_lettering, tracing_paper, lettering_practice, work_in_progress, two_colour</div>
+          <button class="del-btn" id="delbtn-19-b" onclick="markDelete('42359da33332',19,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-20" data-id-a="aaf8fa02eb17" data-id-b="89c1cebe1a4e">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 21 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(20)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-20-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CH6WGx0DCP7_7.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-20-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">DILLAS BADA DA ANIZA ES ÑONES MULITAS ADOBADA ASADA POLLO $5 LONGANIZA NOPALES CHAMPIÑONES BIRRIA TACOS ADOBADA ASADA POLLO $2 LONGANIZA NOPALES CHAMPIÑONES BIRRIA Hechos como en Tijuana Sangría Señorial Jarritos Mundet Coca-Cola</div>
+          <div class="img-tags">menu_board, taqueria, brush_painted, mexican_food, red_white, restaurant_signage, hand_lettered, two_colour</div>
+          <button class="del-btn" id="delbtn-20-a" onclick="markDelete('aaf8fa02eb17',20,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-20-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CH6WGx0DCP7_8.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-20-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">CONSOME de BIRRIA $3 PLATO DE BIRRIA ARROZ, FRIJOLES, BIRRIA CILANTRO, CEBOLLA, SALSA LIMONES, TORTILLAS (3) $15 BURRITOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 VAMPIROS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 QUESADILLAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 MULITAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 TACOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $2 Carlos's Tijuana Tacos CON TODO CILANTRO, CEBOLLA, GUACAMOLE Y SALSA SOLO FINES DE SEMANA MENUDO $12 CON PATA O SIN PATA CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS SOLO FINES DE SEMANA POZOLE $12 LECHUGA O REPOLLO, RABANOS CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS AGUAS FRESCAS $3 CHICA $5 GRANDE REFRESCOS COCA COLA FANTA SPRITE JARRITOS $3</div>
+          <div class="img-tags">taqueria, menu_board, brush_painted, red_white, mexican_food, sign_painting, hand_lettered, restaurant_signage</div>
+          <button class="del-btn" id="delbtn-20-b" onclick="markDelete('89c1cebe1a4e',20,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-21" data-id-a="a7f7392276af" data-id-b="cbdf89b9b30b">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 22 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(21)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-21-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150543229996.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-21-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Swingline No. 101 HIGH COMPRESSION STAPLE GUN WITH BUILT IN STAPLE EXTRACTOR USED FOR CARPENTRY UPHOLSTERY • INSULATING Swingline</div>
+          <div class="img-tags">packaging, vintage_hardware, casual_script, sans_serif, two_colour, mid_century, product_box, ephemeral</div>
+          <button class="del-btn" id="delbtn-21-a" onclick="markDelete('a7f7392276af',21,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-21-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/189843440929.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-21-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">FIX IT WITH Mortite® ALL PURPOSE WEATHERSTRIP COVERS 6 AVERAGE WINDOWS APPROX. 90 FEET ONE ROLL $1.39 HIGHER WEST OF ROCKIES AND CANADA COMMENDED PARENTS MAGAZINE</div>
+          <div class="img-tags">packaging, vintage_hardware, casual_script, mid_century, two_colour, product_box, illustrated, ephemeral</div>
+          <button class="del-btn" id="delbtn-21-b" onclick="markDelete('cbdf89b9b30b',21,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-22" data-id-a="a7a09b526892" data-id-b="b2dd8a57eca3">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 23 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(22)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-22-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341810701893632_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-22-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">MAKER</div>
+          <div class="img-tags">3d_lettering, isometric, mural, artist_at_work, large_scale, two_colour, geometric, contemporary</div>
+          <button class="del-btn" id="delbtn-22-a" onclick="markDelete('a7a09b526892',22,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-22-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/ben_johnston_CNVqLr0B4in_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-22-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">MAKER</div>
+          <div class="img-tags">mural, 3d_letterforms, isometric, large_scale, artist_at_work, two_colour, geometric, contemporary</div>
+          <button class="del-btn" id="delbtn-22-b" onclick="markDelete('b2dd8a57eca3',22,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-23" data-id-a="a635da266b50" data-id-b="4f33c0b16230">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 24 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(23)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-23-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163392971858.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-23-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Victor Rosario @vrrosario</div>
+          <div class="img-tags">brush_pen, casual_script, tombow, calligraphy, brush_strokes_visible, monochrome, name_lettering, social_media_handle</div>
+          <button class="del-btn" id="delbtn-23-a" onclick="markDelete('a635da266b50',23,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-23-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163536977596.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-23-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Jack Kerouac</div>
+          <div class="img-tags">brush_pen, casual_script, calligraphy, tombow, monochrome, brush_strokes_visible, name_lettering, expressive</div>
+          <button class="del-btn" id="delbtn-23-b" onclick="markDelete('4f33c0b16230',23,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-24" data-id-a="a06d237d6d0c" data-id-b="31769471c6af">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 25 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(24)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-24-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630608234899734528.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-24-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">OPEN</div>
+          <div class="img-tags">sign_painting, block_letters, three_dimensional, shop_sign, bold_colour, traditional_signwriting, two_colour, beveled_lettering</div>
+          <button class="del-btn" id="delbtn-24-a" onclick="markDelete('a06d237d6d0c',24,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-24-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/helynhandpainted___CA2sR7bjtwq___.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-24-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">OPEN</div>
+          <div class="img-tags">sign_painting, block_letters, three_dimensional, shop_sign, bold_colour, beveled_lettering, contemporary_signwriting, two_colour</div>
+          <button class="del-btn" id="delbtn-24-b" onclick="markDelete('31769471c6af',24,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-25" data-id-a="9dae4e0e2068" data-id-b="b3349f620fb3">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 26 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(25)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-25-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150303869322.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-25-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">moist</div>
+          <div class="img-tags">casual_script, gold_metallic, paint_marker, black_paper, brush_strokes_visible, two_colour, hand_lettering, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-25-a" onclick="markDelete('9dae4e0e2068',25,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-25-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/183698736540.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-25-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">you</div>
+          <div class="img-tags">casual_script, gold_metallic, brush_strokes_visible, black_paper, sketchbook, two_colour, modern_calligraphy, paint_marker</div>
+          <button class="del-btn" id="delbtn-25-b" onclick="markDelete('b3349f620fb3',25,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-26" data-id-a="8edd7dec9ec8" data-id-b="90003815f56d">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 27 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(26)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-26-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150646457246.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-26-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">flourish</div>
+          <div class="img-tags">brush_lettering, casual_script, brush_pen, monochrome, modern_calligraphy, brush_strokes_visible, practice_sheet, black_and_white</div>
+          <button class="del-btn" id="delbtn-26-a" onclick="markDelete('8edd7dec9ec8',26,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-26-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151241154651.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-26-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Fantastic!</div>
+          <div class="img-tags">brush_lettering, casual_script, monochrome, brush_pen, expressive, brush_strokes_visible, modern_calligraphy, practice_sheet</div>
+          <button class="del-btn" id="delbtn-26-b" onclick="markDelete('90003815f56d',26,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-27" data-id-a="8edd7dec9ec8" data-id-b="4ccf43da06ab">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 28 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(27)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-27-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150646457246.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-27-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">flourish</div>
+          <div class="img-tags">brush_lettering, casual_script, brush_pen, monochrome, modern_calligraphy, brush_strokes_visible, practice_sheet, black_and_white</div>
+          <button class="del-btn" id="delbtn-27-a" onclick="markDelete('8edd7dec9ec8',27,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-27-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151022057537.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-27-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">shortage</div>
+          <div class="img-tags">brush_lettering, casual_script, monochrome, brush_pen, practice_sheet, hand_lettered, modern_calligraphy, black_and_white</div>
+          <button class="del-btn" id="delbtn-27-b" onclick="markDelete('4ccf43da06ab',27,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-28" data-id-a="8ae60e0c4743" data-id-b="b8b93380214e">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 29 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(28)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-28-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686436356308828160_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-28-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">M</div>
+          <div class="img-tags">embroidered, baseball_cap, monogram, polka_dot_fill, sportswear, two_colour, headwear, vintage_inspired</div>
+          <button class="del-btn" id="delbtn-28-a" onclick="markDelete('8ae60e0c4743',28,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-28-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/youngjerks_CNnbYbnHSVL_3.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-28-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">M</div>
+          <div class="img-tags">embroidered, baseball_cap, monogram, polka_dot_fill, headwear, single_letter, two_colour, vintage_inspired</div>
+          <button class="del-btn" id="delbtn-28-b" onclick="markDelete('b8b93380214e',28,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-29" data-id-a="86a7bf98738d" data-id-b="dad6a64bcccd">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 30 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(29)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-29-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150885035068.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-29-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Energy</div>
+          <div class="img-tags">brush_calligraphy, casual_script, brush_pen, monochrome, brush_strokes_visible, modern_calligraphy, high_contrast, flourish</div>
+          <button class="del-btn" id="delbtn-29-a" onclick="markDelete('86a7bf98738d',29,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-29-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/154913137863.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-29-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Clash</div>
+          <div class="img-tags">brush_calligraphy, casual_script, brush_pen, monochrome, flourish, brush_strokes_visible, expressive_lettering, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-29-b" onclick="markDelete('dad6a64bcccd',29,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-30" data-id-a="85525f5fa635" data-id-b="761e20c1a9bb">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 31 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(30)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-30-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/Screenshot_20230812-154354.png" loading="lazy">
+            <div class="delete-overlay" id="overlay-30-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">BUCKINGHAM BRIGHT CUT PLUG SMOKING TOBACCO JOHN J. BAGLEY & CO. THE AMERICAN TOBACCO CO. SUCCESSOR MFR. CHOICE OF FINE VIRGINIA LEAF</div>
+          <div class="img-tags">victorian_ornate, tobacco_tin, packaging, lithographed_tin, floral_decoration, americana, antique, polychrome</div>
+          <button class="del-btn" id="delbtn-30-a" onclick="markDelete('85525f5fa635',30,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-30-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/Screenshot_20231023-195120.png" loading="lazy">
+            <div class="delete-overlay" id="overlay-30-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">BUCKINGHAM BRIGHT CUT PLUG SMOKING TOBACCO JOHN J. BAGLEY & CO. THE AMERICAN TOBACCO CO. SUCCESSOR MFR.</div>
+          <div class="img-tags">tobacco_tin, victorian_ornate, packaging, antique, floral_decoration, americana, lithographed_tin, multi_colour</div>
+          <button class="del-btn" id="delbtn-30-b" onclick="markDelete('761e20c1a9bb',30,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-31" data-id-a="82a51063c4fe" data-id-b="004e082b9ee4">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 32 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(31)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-31-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/182217646386.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-31-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">abcdhir prjmrg kdflqu btswcn vexsyz</div>
+          <div class="img-tags">alphabet_sheet, brush_lettering, casual_script, practice_sheet, lowercase, brush_strokes_visible, monochrome, calligraphy</div>
+          <button class="del-btn" id="delbtn-31-a" onclick="markDelete('82a51063c4fe',31,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-31-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/189862840807.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-31-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">abghir c pjmrg kdflqu btswcn vexsyz</div>
+          <div class="img-tags">alphabet_sheet, brush_lettering, casual_script, practice_sheet, lowercase, brush_strokes_visible, two_colour, calligraphy</div>
+          <button class="del-btn" id="delbtn-31-b" onclick="markDelete('004e082b9ee4',31,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-32" data-id-a="81adfcc4ce97" data-id-b="19b84f1b0ddd">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 33 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(32)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-32-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151002668098.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-32-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Unique.</div>
+          <div class="img-tags">casual_script, gold_ink, metallic_marker, black_paper, brush_lettering, calligraphy, two_colour, pen_visible</div>
+          <button class="del-btn" id="delbtn-32-a" onclick="markDelete('81adfcc4ce97',32,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-32-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163481742649.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-32-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Sorry but</div>
+          <div class="img-tags">casual_script, gold_ink, black_paper, metallic_marker, brush_lettering, two_colour, modern_calligraphy, pen_visible</div>
+          <button class="del-btn" id="delbtn-32-b" onclick="markDelete('19b84f1b0ddd',32,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-33" data-id-a="7f31f37625ab" data-id-b="3477a3b20456">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 34 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(33)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-33-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/185655074113.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-33-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">A. RONCONI</div>
+          <div class="img-tags">art_deco, gold_gilt, transom, wrought_iron, italian_shopfront, arched_window, geometric_lettering, reverse_glass</div>
+          <button class="del-btn" id="delbtn-33-a" onclick="markDelete('7f31f37625ab',33,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-33-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/619279138070708224.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-33-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">A. RONCONI</div>
+          <div class="img-tags">art_deco, gold_gilt, fanlight, transom, wrought_iron, italian_shopfront, reverse_glass, geometric_lettering</div>
+          <button class="del-btn" id="delbtn-33-b" onclick="markDelete('3477a3b20456',33,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-34" data-id-a="79fe8164a7be" data-id-b="eb6c520425f9">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 35 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(34)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-34-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150362638350.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-34-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Tombow DUAL-TIP
+Yi2 Tombow ABT N25 Acid Free</div>
+          <div class="img-tags">brush_pen, casual_script, product_showcase, calligraphy, monochrome, brush_strokes_visible, lettering_practice, tombow</div>
+          <button class="del-btn" id="delbtn-34-a" onclick="markDelete('79fe8164a7be',34,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-34-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163493275250.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-34-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Ryman Auditorium</div>
+          <div class="img-tags">brush_pen, casual_script, tombow, calligraphy, monochrome, brush_strokes_visible, nashville, lettering_practice</div>
+          <button class="del-btn" id="delbtn-34-b" onclick="markDelete('eb6c520425f9',34,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-35" data-id-a="79fe8164a7be" data-id-b="dc9a12cd23d5">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 36 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(35)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-35-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150362638350.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-35-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Tombow DUAL-TIP
+Yi2 Tombow ABT N25 Acid Free</div>
+          <div class="img-tags">brush_pen, casual_script, product_showcase, calligraphy, monochrome, brush_strokes_visible, lettering_practice, tombow</div>
+          <button class="del-btn" id="delbtn-35-a" onclick="markDelete('79fe8164a7be',35,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-35-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150542686980.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-35-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Inspiration</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, tombow, monochrome, brush_strokes_visible, lettering_practice, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-35-b" onclick="markDelete('dc9a12cd23d5',35,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-36" data-id-a="79fe8164a7be" data-id-b="621ebf9b05e7">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 37 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(36)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-36-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150362638350.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-36-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Tombow DUAL-TIP
+Yi2 Tombow ABT N25 Acid Free</div>
+          <div class="img-tags">brush_pen, casual_script, product_showcase, calligraphy, monochrome, brush_strokes_visible, lettering_practice, tombow</div>
+          <button class="del-btn" id="delbtn-36-a" onclick="markDelete('79fe8164a7be',36,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-36-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765855329.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-36-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Autumn</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, monochrome, flourish, tombow, brush_strokes_visible, lettering_practice</div>
+          <button class="del-btn" id="delbtn-36-b" onclick="markDelete('621ebf9b05e7',36,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-37" data-id-a="791252e0dbfd" data-id-b="1853edbbfb0f">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 38 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(37)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-37-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150304681911.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-37-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">handmade typography</div>
+          <div class="img-tags">brush_pen, casual_script, flourishes, monochrome, thick_thin_contrast, swashes, lettering_practice, brush_strokes_visible</div>
+          <button class="del-btn" id="delbtn-37-a" onclick="markDelete('791252e0dbfd',37,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-37-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150395690537.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-37-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">handmade typography</div>
+          <div class="img-tags">brush_pen, casual_script, calligraphy, swashes, monochrome, thick_thin_contrast, flourishes, lettering_practice</div>
+          <button class="del-btn" id="delbtn-37-b" onclick="markDelete('1853edbbfb0f',37,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-38" data-id-a="761ca1affb3a" data-id-b="b25a63cc4ed0">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 39 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(38)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-38-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/ben_johnston_CJEUAaMh9c1_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-38-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">PEACE PEOPLE</div>
+          <div class="img-tags">mural, 3d_lettering, overlapping_text, isometric, street_art, two_colour, large_scale, brick_wall</div>
+          <button class="del-btn" id="delbtn-38-a" onclick="markDelete('761ca1affb3a',38,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-38-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/ben_johnston_CJEUAaMh9c1_2.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-38-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">PEACE LOVE</div>
+          <div class="img-tags">mural, overlapping_text, isometric, two_colour, 3d_lettering, street_art, brick_wall, bold_type</div>
+          <button class="del-btn" id="delbtn-38-b" onclick="markDelete('b25a63cc4ed0',38,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-39" data-id-a="75232cf7229f" data-id-b="4ccf43da06ab">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 40 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(39)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-39-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765525510.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-39-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Trust</div>
+          <div class="img-tags">brush_lettering, casual_script, monochrome, hand_lettered, brush_pen, practice_sheet, modern_calligraphy, swash</div>
+          <button class="del-btn" id="delbtn-39-a" onclick="markDelete('75232cf7229f',39,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-39-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151022057537.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-39-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">shortage</div>
+          <div class="img-tags">brush_lettering, casual_script, monochrome, brush_pen, practice_sheet, hand_lettered, modern_calligraphy, black_and_white</div>
+          <button class="del-btn" id="delbtn-39-b" onclick="markDelete('4ccf43da06ab',39,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-40" data-id-a="7419eb408432" data-id-b="fa187c0b4e2a">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 41 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(40)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-40-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/brilliantsigns_CMpxW-Un9T2_2.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-40-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">HAIR SALON</div>
+          <div class="img-tags">gold_gilt, shop_window, victorian_revival, reverse_glass, ornamental_divider, dimensional_lettering, traditional_signwriting, high_street</div>
+          <button class="del-btn" id="delbtn-40-a" onclick="markDelete('7419eb408432',40,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-40-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/brilliantsigns_CMpxW-Un9T2_4.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-40-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">BILTON HAIR SALON</div>
+          <div class="img-tags">gold_gilt, shop_window, victorian_revival, glass_gilding, ornamental_divider, high_street, reverse_glass, traditional_signwriting</div>
+          <button class="del-btn" id="delbtn-40-b" onclick="markDelete('fa187c0b4e2a',40,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-41" data-id-a="7077dc888624" data-id-b="f97b3d4f581c">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 42 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(41)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-41-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630601929723084800.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-41-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">AHOY! PLEASE ORDER AT GBTAKEOUT.COM Grand Banks WE'LL TEXT YOU WHEN IT'S READY</div>
+          <div class="img-tags">casual_script, restaurant_signage, nautical_theme, waterfront, takeout, two_colour, hand_painted, new_york</div>
+          <button class="del-btn" id="delbtn-41-a" onclick="markDelete('7077dc888624',41,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-41-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/veryfinesigns_CC1EtRuDCB0_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-41-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">AHOY! PLEASE ORDER AT GBTAKEOUT.COM Grand Banks WE'LL TEXT YOU WHEN IT'S READY</div>
+          <div class="img-tags">casual_script, nautical_theme, restaurant_signage, hand_painted, waterfront, two_colour, wood_panel, takeout</div>
+          <button class="del-btn" id="delbtn-41-b" onclick="markDelete('f97b3d4f581c',41,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-42" data-id-a="6b5176894bb6" data-id-b="b52d929b059c">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 43 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(42)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-42-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150590381900.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-42-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Fortes Fortuna Juvat</div>
+          <div class="img-tags">latin_phrase, brush_pen, casual_script, monochrome, calligraphy, brush_strokes_visible, hand_lettering, motivational</div>
+          <button class="del-btn" id="delbtn-42-a" onclick="markDelete('6b5176894bb6',42,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-42-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150810620454.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-42-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">rise & shine</div>
+          <div class="img-tags">brush_pen, casual_script, calligraphy, motivational, monochrome, brush_strokes_visible, ampersand, hand_lettering</div>
+          <button class="del-btn" id="delbtn-42-b" onclick="markDelete('b52d929b059c',42,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-43" data-id-a="6b08d92b4067" data-id-b="3eaf872a670f">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 44 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(43)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-43-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630605968979394560.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-43-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">ASSOULINE
+BOOKS & GIFTS</div>
+          <div class="img-tags">shop_window, gold_gilt, luxury_retail, sans_serif, storefront, bookshop, gilded_glass, window_lettering</div>
+          <button class="del-btn" id="delbtn-43-a" onclick="markDelete('6b08d92b4067',43,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-43-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/signwritingjack___CCDRpSHJHS7___.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-43-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">ASSOULINE
+BOOKS & GIFTS</div>
+          <div class="img-tags">shop_window, gold_gilt, luxury_retail, sans_serif, bookshop, storefront, window_lettering, urban</div>
+          <button class="del-btn" id="delbtn-43-b" onclick="markDelete('3eaf872a670f',43,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-44" data-id-a="65e2c26df221" data-id-b="d25cbee7cdd4">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 45 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(44)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-44-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/177163820786.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-44-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">thirty three</div>
+          <div class="img-tags">coffee_cup, takeaway, casual_script, packaging, monochrome, brand_identity, minimalist, cafe</div>
+          <button class="del-btn" id="delbtn-44-a" onclick="markDelete('65e2c26df221',44,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-44-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/189842655699.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-44-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Bitter</div>
+          <div class="img-tags">casual_script, packaging, coffee_cup, takeaway, monochrome, brand_identity, minimalist, two_colour</div>
+          <button class="del-btn" id="delbtn-44-b" onclick="markDelete('d25cbee7cdd4',44,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-45" data-id-a="6287ef472c07" data-id-b="643e2b0962b2">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 46 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(45)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-45-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/jazjanuary_CEmoc_cA2dd_2.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-45-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">SPEEDBALL
+C. Howard BRAYER U.S.A.
+HUNT PEN CO., CAMDEN, N.J.</div>
+          <div class="img-tags">packaging, vintage, block_letters, art_supplies, ephemeral, two_colour, mid_century, printmaking</div>
+          <button class="del-btn" id="delbtn-45-a" onclick="markDelete('6287ef472c07',45,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-45-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/jazjanuary_CEmoc_cA2dd_3.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-45-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">SPEEDBALL BRAYER</div>
+          <div class="img-tags">packaging, vintage, block_letters, art_supplies, two_colour, ephemeral, mid_century, reversed_type</div>
+          <button class="del-btn" id="delbtn-45-b" onclick="markDelete('643e2b0962b2',45,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-46" data-id-a="621ebf9b05e7" data-id-b="eb6c520425f9">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 47 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(46)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-46-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765855329.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-46-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Autumn</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, monochrome, flourish, tombow, brush_strokes_visible, lettering_practice</div>
+          <button class="del-btn" id="delbtn-46-a" onclick="markDelete('621ebf9b05e7',46,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-46-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163493275250.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-46-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Ryman Auditorium</div>
+          <div class="img-tags">brush_pen, casual_script, tombow, calligraphy, monochrome, brush_strokes_visible, nashville, lettering_practice</div>
+          <button class="del-btn" id="delbtn-46-b" onclick="markDelete('eb6c520425f9',46,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-47" data-id-a="621ebf9b05e7" data-id-b="533d6b134391">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 48 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(47)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-47-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765855329.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-47-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Autumn</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, monochrome, flourish, tombow, brush_strokes_visible, lettering_practice</div>
+          <button class="del-btn" id="delbtn-47-a" onclick="markDelete('621ebf9b05e7',47,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-47-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150884226677.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-47-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Saturday</div>
+          <div class="img-tags">casual_script, brush_pen, calligraphy, swash, monochrome, lettering_practice, brush_strokes_visible, flourish</div>
+          <button class="del-btn" id="delbtn-47-b" onclick="markDelete('533d6b134391',47,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-48" data-id-a="591b8c83eef4" data-id-b="dc9e329ece9e">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 49 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(48)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-48-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150351039719.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-48-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Arctic.</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, flourish, monochrome, brush_strokes_visible, modern_lettering, underline_swash</div>
+          <button class="del-btn" id="delbtn-48-a" onclick="markDelete('591b8c83eef4',48,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-48-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150810786932.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-48-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Colour Decay</div>
+          <div class="img-tags">brush_lettering, casual_script, brush_strokes_visible, monochrome, calligraphy, flourish, modern_lettering, brush_pen</div>
+          <button class="del-btn" id="delbtn-48-b" onclick="markDelete('dc9e329ece9e',48,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-49" data-id-a="54288375c80f" data-id-b="aaf8fa02eb17">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 50 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(49)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-49-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686886061988823040_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-49-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">CONSOMÉ de BIRRIA $3 PLATO de BIRRIA ARROZ, FRIJOLES, BIRRIA CILANTRO, CEBOLLA, SALSA LIMONES, TORTILLAS (3) $15 BURRITOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 VAMPIROS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 QUESADILLAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 MULITAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 TACOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $2 Carlos's TIJUANA TACOS CON TODO CILANTRO, CEBOLLA, GUACAMOLE Y SALSA SOLO FINES DE SEMANA MENUDO $12 CON PATA O SIN PATA CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS SOLO FINES DE SEMANA POZOLE $12 LECHUGA O REPOLLO, RABANOS CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS AGUAS FRESCAS $3 CHICA $5 GRANDE REFRESCOS COCA COLA FANTA SPRITE JARRITOS $3</div>
+          <div class="img-tags">taqueria, menu_board, hand_lettered, red_white, block_letters, mexican_food, restaurant_signage, two_colour</div>
+          <button class="del-btn" id="delbtn-49-a" onclick="markDelete('54288375c80f',49,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-49-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CH6WGx0DCP7_7.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-49-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">DILLAS BADA DA ANIZA ES ÑONES MULITAS ADOBADA ASADA POLLO $5 LONGANIZA NOPALES CHAMPIÑONES BIRRIA TACOS ADOBADA ASADA POLLO $2 LONGANIZA NOPALES CHAMPIÑONES BIRRIA Hechos como en Tijuana Sangría Señorial Jarritos Mundet Coca-Cola</div>
+          <div class="img-tags">menu_board, taqueria, brush_painted, mexican_food, red_white, restaurant_signage, hand_lettered, two_colour</div>
+          <button class="del-btn" id="delbtn-49-b" onclick="markDelete('aaf8fa02eb17',49,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-50" data-id-a="46a09f495e48" data-id-b="941ced6bba8b">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 51 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(50)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-50-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/152563369629.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-50-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Chump</div>
+          <div class="img-tags">casual_script, gold_metallic, pilot_marker, black_paper, hand_lettering, brush_strokes_visible, two_colour, calligraphy</div>
+          <button class="del-btn" id="delbtn-50-a" onclick="markDelete('46a09f495e48',50,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-50-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/157779576543.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-50-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">work</div>
+          <div class="img-tags">gold_metallic, casual_script, sharpie, black_paper, brush_strokes_visible, calligraphy, two_colour, hand_lettering</div>
+          <button class="del-btn" id="delbtn-50-b" onclick="markDelete('941ced6bba8b',50,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-51" data-id-a="447377baefe6" data-id-b="903a00058228">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 52 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(51)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-51-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341808236740608_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-51-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Ships Coffee Shop</div>
+          <div class="img-tags">googie_architecture, roadside_sign, pylon_sign, coffee_shop, atomic_age, casual_script, mid_century_modern, los_angeles</div>
+          <button class="del-btn" id="delbtn-51-a" onclick="markDelete('447377baefe6',51,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-51-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/laexplained___CNYOvL1JUD-___.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-51-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Ships Coffee Shop</div>
+          <div class="img-tags">googie_architecture, roadside_sign, pylon_sign, coffee_shop, mid_century_modern, casual_script, los_angeles, space_age</div>
+          <button class="del-btn" id="delbtn-51-b" onclick="markDelete('903a00058228',51,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-52" data-id-a="3e337d52e2ee" data-id-b="9eb83279910b">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 53 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(52)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-52-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341786285785088_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-52-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">STORE</div>
+          <div class="img-tags">sign_painting, shopfront, shadow_block, brush_strokes_visible, in_progress, mahl_stick, two_colour, contemporary_traditional</div>
+          <button class="del-btn" id="delbtn-52-a" onclick="markDelete('3e337d52e2ee',52,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-52-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/tylerandco__CNSDr8pDpOt_3.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-52-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">STORE</div>
+          <div class="img-tags">sign_painting, shadow_block, shopfront, brush_strokes_visible, two_colour, mahl_stick, in_progress, contemporary_signwriting</div>
+          <button class="del-btn" id="delbtn-52-b" onclick="markDelete('9eb83279910b',52,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-53" data-id-a="38a2f5196c7d" data-id-b="856b26f87f7f">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 54 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(53)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-53-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/2lettreurs_CNGNq2gHyCu_3.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-53-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">RADIS</div>
+          <div class="img-tags">shop_window, restaurant_branding, vinyl_lettering, shadow_block, radish_illustration, two_colour, french_language, contemporary</div>
+          <button class="del-btn" id="delbtn-53-a" onclick="markDelete('38a2f5196c7d',53,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-53-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341731391815680_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-53-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">RADIS</div>
+          <div class="img-tags">shop_window, restaurant_branding, shadow_block, vinyl_lettering, radish_illustration, french, two_colour, contemporary</div>
+          <button class="del-btn" id="delbtn-53-b" onclick="markDelete('856b26f87f7f',53,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-54" data-id-a="3835a3f3da82" data-id-b="89c1cebe1a4e">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 55 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(54)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-54-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CH6WGx0DCP7_6.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-54-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">VAMPIROS QUESADILLAS MULL... ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 $7 $5</div>
+          <div class="img-tags">menu_board, taqueria, brush_painted, hand_lettered, red_white, mexican_food, sign_painting, restaurant</div>
+          <button class="del-btn" id="delbtn-54-a" onclick="markDelete('3835a3f3da82',54,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-54-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CH6WGx0DCP7_8.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-54-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">CONSOME de BIRRIA $3 PLATO DE BIRRIA ARROZ, FRIJOLES, BIRRIA CILANTRO, CEBOLLA, SALSA LIMONES, TORTILLAS (3) $15 BURRITOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 VAMPIROS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 QUESADILLAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 MULITAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 TACOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $2 Carlos's Tijuana Tacos CON TODO CILANTRO, CEBOLLA, GUACAMOLE Y SALSA SOLO FINES DE SEMANA MENUDO $12 CON PATA O SIN PATA CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS SOLO FINES DE SEMANA POZOLE $12 LECHUGA O REPOLLO, RABANOS CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS AGUAS FRESCAS $3 CHICA $5 GRANDE REFRESCOS COCA COLA FANTA SPRITE JARRITOS $3</div>
+          <div class="img-tags">taqueria, menu_board, brush_painted, red_white, mexican_food, sign_painting, hand_lettered, restaurant_signage</div>
+          <button class="del-btn" id="delbtn-54-b" onclick="markDelete('89c1cebe1a4e',54,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-55" data-id-a="2f831a9388bb" data-id-b="d82ed73463f5">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 56 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(55)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-55-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150683605909.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-55-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">RICH</div>
+          <div class="img-tags">mural, block_letters, brick_wall, street_art, three_dimensional_effect, bold_type, sign_painting, coral_reef</div>
+          <button class="del-btn" id="delbtn-55-a" onclick="markDelete('2f831a9388bb',55,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-55-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151002812689.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-55-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">RICH</div>
+          <div class="img-tags">mural, block_letters, brick_wall, street_art, three_dimensional_effect, bold_type, large_scale, sign_painting</div>
+          <button class="del-btn" id="delbtn-55-b" onclick="markDelete('d82ed73463f5',55,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-56" data-id-a="2c9d57129cda" data-id-b="3d733d91d06f">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 57 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(56)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-56-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341791456296960_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-56-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">POCO DELI</div>
+          <div class="img-tags">shop_window, reverse_glass, block_letters, shadow_block, two_colour, deli, hand_painted, contemporary_signwriting</div>
+          <button class="del-btn" id="delbtn-56-a" onclick="markDelete('2c9d57129cda',56,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-56-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/tozersigns_CNVb1FvsGwq_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-56-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">POCO DELI</div>
+          <div class="img-tags">shop_window, reverse_glass, block_letters, shadow_block, two_colour, deli, contemporary_sign_painting, hand_painted</div>
+          <button class="del-btn" id="delbtn-56-b" onclick="markDelete('3d733d91d06f',56,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-57" data-id-a="2b20f2b9f064" data-id-b="d45a3744aac9">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 58 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(57)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-57-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630604452191223808.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-57-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">SAY THEIR NAMES #BLACKLIVESMATTER</div>
+          <div class="img-tags">protest_art, brush_strokes_visible, two_colour, social_justice, hashtag, high_contrast, activist_lettering, digital_illustration</div>
+          <button class="del-btn" id="delbtn-57-a" onclick="markDelete('2b20f2b9f064',57,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-57-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/typism_CDidn3zlwQv_4.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-57-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">SAY THEIR NAMES #BLACKLIVESMATTER</div>
+          <div class="img-tags">protest_art, brush_strokes_visible, social_justice, two_colour, bold_typography, hashtag, activist_lettering, high_contrast</div>
+          <button class="del-btn" id="delbtn-57-b" onclick="markDelete('d45a3744aac9',57,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-58" data-id-a="24026f3c3ad7" data-id-b="aaf8fa02eb17">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 59 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(58)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-58-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686885934732656640_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-58-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">CONSOME de BIRRIA $3 PLATO DE BIRRIA ARROZ, FRIJOLES, BIRRIA CILANTRO, CEBOLLA, SALSA LIMONES, TORTILLAS (5) $15 BURRITOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 VAMPIROS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 QUESADILLAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 MULITAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 TACOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $2 Carlos's Tijuana Tacos CON TODO CILANTRO, CEBOLLA, GUACAMOLE Y SALSA MENUDO SOLO FINES DE SEMANA $12 CON PATA O SIN PATA CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS POZOLE SOLO FINES DE SEMANA $12 LECHUGA O REPOLLO, RABANOS CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS AGUAS FRESCAS $3 CHICA $5 GRANDE REFRESCOS COCA COLA FANTA SPRITE JARRITOS $3</div>
+          <div class="img-tags">menu_board, taqueria, brush_painted, red_white, hand_lettered, mexican_food, sign_painting, two_colour</div>
+          <button class="del-btn" id="delbtn-58-a" onclick="markDelete('24026f3c3ad7',58,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-58-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CH6WGx0DCP7_7.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-58-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">DILLAS BADA DA ANIZA ES ÑONES MULITAS ADOBADA ASADA POLLO $5 LONGANIZA NOPALES CHAMPIÑONES BIRRIA TACOS ADOBADA ASADA POLLO $2 LONGANIZA NOPALES CHAMPIÑONES BIRRIA Hechos como en Tijuana Sangría Señorial Jarritos Mundet Coca-Cola</div>
+          <div class="img-tags">menu_board, taqueria, brush_painted, mexican_food, red_white, restaurant_signage, hand_lettered, two_colour</div>
+          <button class="del-btn" id="delbtn-58-b" onclick="markDelete('aaf8fa02eb17',58,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-59" data-id-a="24026f3c3ad7" data-id-b="89c1cebe1a4e">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 60 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(59)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-59-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686885934732656640_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-59-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">CONSOME de BIRRIA $3 PLATO DE BIRRIA ARROZ, FRIJOLES, BIRRIA CILANTRO, CEBOLLA, SALSA LIMONES, TORTILLAS (5) $15 BURRITOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 VAMPIROS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 QUESADILLAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 MULITAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 TACOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $2 Carlos's Tijuana Tacos CON TODO CILANTRO, CEBOLLA, GUACAMOLE Y SALSA MENUDO SOLO FINES DE SEMANA $12 CON PATA O SIN PATA CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS POZOLE SOLO FINES DE SEMANA $12 LECHUGA O REPOLLO, RABANOS CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS AGUAS FRESCAS $3 CHICA $5 GRANDE REFRESCOS COCA COLA FANTA SPRITE JARRITOS $3</div>
+          <div class="img-tags">menu_board, taqueria, brush_painted, red_white, hand_lettered, mexican_food, sign_painting, two_colour</div>
+          <button class="del-btn" id="delbtn-59-a" onclick="markDelete('24026f3c3ad7',59,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-59-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CH6WGx0DCP7_8.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-59-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">CONSOME de BIRRIA $3 PLATO DE BIRRIA ARROZ, FRIJOLES, BIRRIA CILANTRO, CEBOLLA, SALSA LIMONES, TORTILLAS (3) $15 BURRITOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 VAMPIROS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 QUESADILLAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 MULITAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 TACOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $2 Carlos's Tijuana Tacos CON TODO CILANTRO, CEBOLLA, GUACAMOLE Y SALSA SOLO FINES DE SEMANA MENUDO $12 CON PATA O SIN PATA CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS SOLO FINES DE SEMANA POZOLE $12 LECHUGA O REPOLLO, RABANOS CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS AGUAS FRESCAS $3 CHICA $5 GRANDE REFRESCOS COCA COLA FANTA SPRITE JARRITOS $3</div>
+          <div class="img-tags">taqueria, menu_board, brush_painted, red_white, mexican_food, sign_painting, hand_lettered, restaurant_signage</div>
+          <button class="del-btn" id="delbtn-59-b" onclick="markDelete('89c1cebe1a4e',59,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-60" data-id-a="24026f3c3ad7" data-id-b="3835a3f3da82">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 61 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(60)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-60-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686885934732656640_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-60-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">CONSOME de BIRRIA $3 PLATO DE BIRRIA ARROZ, FRIJOLES, BIRRIA CILANTRO, CEBOLLA, SALSA LIMONES, TORTILLAS (5) $15 BURRITOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 VAMPIROS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 QUESADILLAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 MULITAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 TACOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $2 Carlos's Tijuana Tacos CON TODO CILANTRO, CEBOLLA, GUACAMOLE Y SALSA MENUDO SOLO FINES DE SEMANA $12 CON PATA O SIN PATA CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS POZOLE SOLO FINES DE SEMANA $12 LECHUGA O REPOLLO, RABANOS CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS AGUAS FRESCAS $3 CHICA $5 GRANDE REFRESCOS COCA COLA FANTA SPRITE JARRITOS $3</div>
+          <div class="img-tags">menu_board, taqueria, brush_painted, red_white, hand_lettered, mexican_food, sign_painting, two_colour</div>
+          <button class="del-btn" id="delbtn-60-a" onclick="markDelete('24026f3c3ad7',60,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-60-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CH6WGx0DCP7_6.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-60-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">VAMPIROS QUESADILLAS MULL... ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 $7 $5</div>
+          <div class="img-tags">menu_board, taqueria, brush_painted, hand_lettered, red_white, mexican_food, sign_painting, restaurant</div>
+          <button class="del-btn" id="delbtn-60-b" onclick="markDelete('3835a3f3da82',60,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-61" data-id-a="1fc508a9676e" data-id-b="6cccd278cc44">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 62 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(61)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-61-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341686348201984_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-61-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">A</div>
+          <div class="img-tags">gold_gilt, reverse_glass, victorian_ornate, shadow_box, initial_letter, decorative_capital, sign_painting, gilding</div>
+          <button class="del-btn" id="delbtn-61-a" onclick="markDelete('1fc508a9676e',61,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-61-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/brilliantsigns_CLww2LyHiZB_5.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-61-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">A</div>
+          <div class="img-tags">gold_gilt, reverse_glass, victorian_ornate, initial_letter, decorative_capital, framed, gilding, sign_painting</div>
+          <button class="del-btn" id="delbtn-61-b" onclick="markDelete('6cccd278cc44',61,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-62" data-id-a="1c1fe3228505" data-id-b="2eb8f1faa10d">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 63 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(62)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-62-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630603083664211968.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-62-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">ABCDEFGHIJ KLMNOPQRS TUVWXYZ& 123456789</div>
+          <div class="img-tags">alphabet_sheet, brush_script, multicolor, ribbon_lettering, specimen_sheet, interwoven_strokes, numerals, type_design</div>
+          <button class="del-btn" id="delbtn-62-a" onclick="markDelete('1c1fe3228505',62,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-62-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/genramirez___CFi7wrhhVvX___.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-62-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">ABCDEFGHIJ KLMNOPQRS TUVWXYZ& 123456789</div>
+          <div class="img-tags">alphabet_sheet, brush_script, multicolor, ribbon_lettering, specimen_sheet, overlapping_strokes, type_design, numerals</div>
+          <button class="del-btn" id="delbtn-62-b" onclick="markDelete('2eb8f1faa10d',62,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-63" data-id-a="19b0de092ec3" data-id-b="4a9536bd0c40">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 64 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(63)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-63-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686437248022020096_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-63-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">IT'S ALL CONNECTED SOMEHOW</div>
+          <div class="img-tags">folk_art, symmetrical, illustrative_lettering, arched_text, colorful, botanical, mystical, contemporary_illustration</div>
+          <button class="del-btn" id="delbtn-63-a" onclick="markDelete('19b0de092ec3',63,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-63-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/superniceletters_CMdQKmSnTJv_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-63-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">IT'S ALL CONNECTED SOMEHOW</div>
+          <div class="img-tags">folk_art, symmetrical, illustrative_lettering, arched_text, bold_sans_serif, colorful, mystical, contemporary_illustration</div>
+          <button class="del-btn" id="delbtn-63-b" onclick="markDelete('4a9536bd0c40',63,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-64" data-id-a="169d4b46f00e" data-id-b="52e6ad4fd693">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 65 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(64)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-64-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150934724364.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-64-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">mighty</div>
+          <div class="img-tags">casual_script, brush_pen, calligraphy, monochrome, brush_strokes_visible, lettering_practice, modern_calligraphy, black_and_white</div>
+          <button class="del-btn" id="delbtn-64-a" onclick="markDelete('169d4b46f00e',64,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-64-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163536410307.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-64-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Heaven</div>
+          <div class="img-tags">brush_pen, calligraphy, casual_script, black_and_white, brush_strokes_visible, lettering_practice, monochrome, expressive</div>
+          <button class="del-btn" id="delbtn-64-b" onclick="markDelete('52e6ad4fd693',64,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-65" data-id-a="0c620a53d605" data-id-b="ee6dc57739e4">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 66 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(65)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-65-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150363754458.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-65-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Fuck Yeah Friday</div>
+          <div class="img-tags">brush_lettering, formal_script, flourishes, monochrome, tombow, calligraphy, swashes, hand_lettered</div>
+          <button class="del-btn" id="delbtn-65-a" onclick="markDelete('0c620a53d605',65,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-65-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/152519070268.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-65-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">thank you.</div>
+          <div class="img-tags">brush_pen, flourishes, calligraphy, monochrome, swashes, tombow, formal_script, hand_lettered</div>
+          <button class="del-btn" id="delbtn-65-b" onclick="markDelete('ee6dc57739e4',65,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-66" data-id-a="0866fd74a7c5" data-id-b="6dfea798b997">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 67 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(66)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-66-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/jandssigns_CD4tUD7hkMH_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-66-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">ICON TATTOO</div>
+          <div class="img-tags">shop_window, tattoo_parlor, shadow_block, block_letters, vinyl_lettering, two_colour, storefront, dimensional_type</div>
+          <button class="del-btn" id="delbtn-66-a" onclick="markDelete('0866fd74a7c5',66,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-66-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/jandssigns_CD4tUD7hkMH_2.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-66-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">ICON TATTOO</div>
+          <div class="img-tags">shop_window, tattoo_parlor, block_letters, shadow_block, two_colour, storefront, vinyl_lettering, red_and_white</div>
+          <button class="del-btn" id="delbtn-66-b" onclick="markDelete('6dfea798b997',66,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-67" data-id-a="070b8da54e34" data-id-b="c93834516e28">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 68 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(67)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-67-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163388310744.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-67-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Rituals</div>
+          <div class="img-tags">casual_script, gold_ink, black_paper, metallic_pen, hand_lettering, brush_script, two_colour, calligraphy</div>
+          <button class="del-btn" id="delbtn-67-a" onclick="markDelete('070b8da54e34',67,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-67-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/177162166226.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-67-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Rituals</div>
+          <div class="img-tags">casual_script, gold_ink, black_paper, metallic_pen, hand_lettering, brush_script, two_colour, contemporary</div>
+          <button class="del-btn" id="delbtn-67-b" onclick="markDelete('c93834516e28',67,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-68" data-id-a="00e2dc8d1dc2" data-id-b="b3349f620fb3">
+      <div class="pair-header">
+        <span class="score">78% tag overlap — pair 69 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(68)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-68-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150744710930.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-68-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Share</div>
+          <div class="img-tags">gold_metallic, casual_script, black_paper, paint_marker, hand_lettering, modern_calligraphy, two_colour, brush_strokes_visible</div>
+          <button class="del-btn" id="delbtn-68-a" onclick="markDelete('00e2dc8d1dc2',68,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-68-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/183698736540.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-68-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">you</div>
+          <div class="img-tags">casual_script, gold_metallic, brush_strokes_visible, black_paper, sketchbook, two_colour, modern_calligraphy, paint_marker</div>
+          <button class="del-btn" id="delbtn-68-b" onclick="markDelete('b3349f620fb3',68,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-69" data-id-a="f463b3796f68" data-id-b="8e38d62ea1a5">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 70 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(69)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-69-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151002569862.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-69-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Mighty Fine</div>
+          <div class="img-tags">casual_script, brush_pen, monochrome, brush_strokes_visible, lettering_practice, black_and_white, expressive</div>
+          <button class="del-btn" id="delbtn-69-a" onclick="markDelete('f463b3796f68',69,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-69-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151067504425.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-69-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Saturday</div>
+          <div class="img-tags">casual_script, brush_strokes_visible, monochrome, brush_pen, lettering_practice, bold_strokes, black_and_white</div>
+          <button class="del-btn" id="delbtn-69-b" onclick="markDelete('8e38d62ea1a5',69,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-70" data-id-a="f125e4a6777b" data-id-b="4d32fea6b0fd">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 71 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(70)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-70-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341746913853440_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-70-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">—</div>
+          <div class="img-tags">skeleton_hand, ok_gesture, illustration, two_colour, graphic_design, bones, high_contrast</div>
+          <button class="del-btn" id="delbtn-70-a" onclick="markDelete('f125e4a6777b',70,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-70-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/dudesfactory_CNPl0t4LlB3_1.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-70-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">—</div>
+          <div class="img-tags">skeleton_hand, ok_gesture, illustration, two_colour, graphic_design, bones, monochrome</div>
+          <button class="del-btn" id="delbtn-70-b" onclick="markDelete('4d32fea6b0fd',70,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-71" data-id-a="ea2cee24cb21" data-id-b="deb564490382">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 72 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(71)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-71-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150304375133.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-71-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Cristina</div>
+          <div class="img-tags">brush_lettering, casual_script, name_lettering, monochrome, brush_strokes_visible, thick_thin_contrast, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-71-a" onclick="markDelete('ea2cee24cb21',71,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-71-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150955300251.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-71-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Toy Queen</div>
+          <div class="img-tags">brush_lettering, casual_script, flourished, monochrome, thick_thin_contrast, brush_strokes_visible, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-71-b" onclick="markDelete('deb564490382',71,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-72" data-id-a="e382c2c1b2de" data-id-b="f1c6c7748726">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 73 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(72)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-72-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150645392727.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-72-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">work Hard</div>
+          <div class="img-tags">casual_script, brush_pen, motivational, monochrome, hand_lettering, brush_strokes_visible, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-72-a" onclick="markDelete('e382c2c1b2de',72,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-72-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150883929513.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-72-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">let's go</div>
+          <div class="img-tags">casual_script, brush_pen, modern_calligraphy, monochrome, brush_strokes_visible, motivational, practice_sheet</div>
+          <button class="del-btn" id="delbtn-72-b" onclick="markDelete('f1c6c7748726',72,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-73" data-id-a="e382c2c1b2de" data-id-b="a9c61735d832">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 74 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(73)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-73-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150645392727.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-73-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">work Hard</div>
+          <div class="img-tags">casual_script, brush_pen, motivational, monochrome, hand_lettering, brush_strokes_visible, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-73-a" onclick="markDelete('e382c2c1b2de',73,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-73-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163392507695.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-73-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Stay True</div>
+          <div class="img-tags">brush_pen, casual_script, motivational, monochrome, hand_lettering, brush_strokes_visible, two_line_layout</div>
+          <button class="del-btn" id="delbtn-73-b" onclick="markDelete('a9c61735d832',73,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-74" data-id-a="d51366a59a74" data-id-b="c872905abc4e">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 75 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(74)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-74-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150394888700.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-74-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Kindness</div>
+          <div class="img-tags">brush_calligraphy, casual_script, brush_pen, monochrome, brush_strokes_visible, single_word, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-74-a" onclick="markDelete('d51366a59a74',74,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-74-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151021721764.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-74-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Caring</div>
+          <div class="img-tags">casual_script, brush_pen, monochrome, lettering_practice, brush_strokes_visible, modern_calligraphy, single_word</div>
+          <button class="del-btn" id="delbtn-74-b" onclick="markDelete('c872905abc4e',74,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-75" data-id-a="d51366a59a74" data-id-b="22fecf78061d">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 76 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(75)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-75-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150394888700.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-75-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Kindness</div>
+          <div class="img-tags">brush_calligraphy, casual_script, brush_pen, monochrome, brush_strokes_visible, single_word, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-75-a" onclick="markDelete('d51366a59a74',75,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-75-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150934594321.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-75-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">brothers</div>
+          <div class="img-tags">brush_calligraphy, casual_script, brush_strokes_visible, monochrome, expressive_lettering, brush_pen, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-75-b" onclick="markDelete('22fecf78061d',75,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-76" data-id-a="bf0a90b54b5d" data-id-b="c872905abc4e">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 77 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(76)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-76-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765804071.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-76-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Chill</div>
+          <div class="img-tags">casual_script, brush_strokes_visible, monochrome, brush_pen, modern_calligraphy, flat_lay, lettering_practice</div>
+          <button class="del-btn" id="delbtn-76-a" onclick="markDelete('bf0a90b54b5d',76,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-76-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151021721764.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-76-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Caring</div>
+          <div class="img-tags">casual_script, brush_pen, monochrome, lettering_practice, brush_strokes_visible, modern_calligraphy, single_word</div>
+          <button class="del-btn" id="delbtn-76-b" onclick="markDelete('c872905abc4e',76,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-77" data-id-a="9b4a4b92dada" data-id-b="67322a468513">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 78 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(77)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-77-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150275891560.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-77-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Here & Now</div>
+          <div class="img-tags">casual_script, brush_lettering, monochrome, hand_lettered, inspirational_phrase, brush_strokes_visible, practice_sheet</div>
+          <button class="del-btn" id="delbtn-77-a" onclick="markDelete('9b4a4b92dada',77,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-77-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151002508514.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-77-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Royl Heights</div>
+          <div class="img-tags">brush_lettering, casual_script, practice_sheet, monochrome, brush_strokes_visible, hand_lettered, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-77-b" onclick="markDelete('67322a468513',77,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-78" data-id-a="9945021338b8" data-id-b="cb9edf0da06d">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 79 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(78)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-78-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150277294992.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-78-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Its a Great Day!</div>
+          <div class="img-tags">brush_lettering, casual_script, black_and_white, brush_strokes_visible, motivational, modern_calligraphy, high_contrast</div>
+          <button class="del-btn" id="delbtn-78-a" onclick="markDelete('9945021338b8',78,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-78-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150308831487.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-78-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Slay all Day</div>
+          <div class="img-tags">casual_script, brush_strokes_visible, motivational, monochrome, brush_lettering, modern_calligraphy, high_contrast</div>
+          <button class="del-btn" id="delbtn-78-b" onclick="markDelete('cb9edf0da06d',78,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-79" data-id-a="904de953066a" data-id-b="724b0149ff36">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 80 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(79)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-79-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150308125088.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-79-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Skatchy</div>
+          <div class="img-tags">casual_script, logotype, brush_script, two_colour, high_contrast, brand_identity, digital_lettering</div>
+          <button class="del-btn" id="delbtn-79-a" onclick="markDelete('904de953066a',79,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-79-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150395730992.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-79-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Skatchy</div>
+          <div class="img-tags">casual_script, logotype, brush_lettering, high_contrast, two_colour, digital_lettering, brand_identity</div>
+          <button class="del-btn" id="delbtn-79-b" onclick="markDelete('724b0149ff36',79,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-80" data-id-a="904de953066a" data-id-b="17595a5fec25">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 81 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(80)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-80-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150308125088.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-80-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Skatchy</div>
+          <div class="img-tags">casual_script, logotype, brush_script, two_colour, high_contrast, brand_identity, digital_lettering</div>
+          <button class="del-btn" id="delbtn-80-a" onclick="markDelete('904de953066a',80,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-80-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150954960479.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-80-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Black Base</div>
+          <div class="img-tags">brush_script, two_colour, logotype, high_contrast, dynamic_strokes, brand_identity, digital_lettering</div>
+          <button class="del-btn" id="delbtn-80-b" onclick="markDelete('17595a5fec25',80,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-81" data-id-a="7faef42a76a4" data-id-b="f463b3796f68">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 82 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(81)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-81-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150350568151.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-81-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Casually</div>
+          <div class="img-tags">casual_script, brush_pen, monochrome, brush_strokes_visible, lettering_practice, single_word, black_and_white</div>
+          <button class="del-btn" id="delbtn-81-a" onclick="markDelete('7faef42a76a4',81,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-81-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151002569862.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-81-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Mighty Fine</div>
+          <div class="img-tags">casual_script, brush_pen, monochrome, brush_strokes_visible, lettering_practice, black_and_white, expressive</div>
+          <button class="del-btn" id="delbtn-81-b" onclick="markDelete('f463b3796f68',81,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-82" data-id-a="7faef42a76a4" data-id-b="c872905abc4e">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 83 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(82)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-82-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150350568151.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-82-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Casually</div>
+          <div class="img-tags">casual_script, brush_pen, monochrome, brush_strokes_visible, lettering_practice, single_word, black_and_white</div>
+          <button class="del-btn" id="delbtn-82-a" onclick="markDelete('7faef42a76a4',82,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-82-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151021721764.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-82-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Caring</div>
+          <div class="img-tags">casual_script, brush_pen, monochrome, lettering_practice, brush_strokes_visible, modern_calligraphy, single_word</div>
+          <button class="del-btn" id="delbtn-82-b" onclick="markDelete('c872905abc4e',82,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-83" data-id-a="7faef42a76a4" data-id-b="8e38d62ea1a5">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 84 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(83)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-83-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150350568151.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-83-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Casually</div>
+          <div class="img-tags">casual_script, brush_pen, monochrome, brush_strokes_visible, lettering_practice, single_word, black_and_white</div>
+          <button class="del-btn" id="delbtn-83-a" onclick="markDelete('7faef42a76a4',83,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-83-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151067504425.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-83-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Saturday</div>
+          <div class="img-tags">casual_script, brush_strokes_visible, monochrome, brush_pen, lettering_practice, bold_strokes, black_and_white</div>
+          <button class="del-btn" id="delbtn-83-b" onclick="markDelete('8e38d62ea1a5',83,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-84" data-id-a="724b0149ff36" data-id-b="9403ade68c90">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 85 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(84)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-84-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150395730992.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-84-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Skatchy</div>
+          <div class="img-tags">casual_script, logotype, brush_lettering, high_contrast, two_colour, digital_lettering, brand_identity</div>
+          <button class="del-btn" id="delbtn-84-a" onclick="markDelete('724b0149ff36',84,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-84-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/183698326678.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-84-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Letter Farm</div>
+          <div class="img-tags">logotype, casual_script, brush_lettering, two_colour, brand_identity, digital_lettering, swash</div>
+          <button class="del-btn" id="delbtn-84-b" onclick="markDelete('9403ade68c90',84,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-85" data-id-a="67322a468513" data-id-b="b133722418fc">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 86 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(85)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-85-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151002508514.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-85-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Royl Heights</div>
+          <div class="img-tags">brush_lettering, casual_script, practice_sheet, monochrome, brush_strokes_visible, hand_lettered, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-85-a" onclick="markDelete('67322a468513',85,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-85-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151003093494.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-85-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Birthday!</div>
+          <div class="img-tags">brush_lettering, casual_script, monochrome, brush_strokes_visible, modern_calligraphy, single_word, practice_sheet</div>
+          <button class="del-btn" id="delbtn-85-b" onclick="markDelete('b133722418fc',85,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-86" data-id-a="5fe58c664233" data-id-b="b133722418fc">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 87 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(86)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-86-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150590137735.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-86-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Anything</div>
+          <div class="img-tags">brush_lettering, casual_script, brush_strokes_visible, monochrome, practice_sheet, modern_calligraphy, bold_strokes</div>
+          <button class="del-btn" id="delbtn-86-a" onclick="markDelete('5fe58c664233',86,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-86-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151003093494.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-86-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Birthday!</div>
+          <div class="img-tags">brush_lettering, casual_script, monochrome, brush_strokes_visible, modern_calligraphy, single_word, practice_sheet</div>
+          <button class="del-btn" id="delbtn-86-b" onclick="markDelete('b133722418fc',86,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-87" data-id-a="5fe58c664233" data-id-b="9f578b06c21a">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 88 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(87)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-87-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150590137735.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-87-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Anything</div>
+          <div class="img-tags">brush_lettering, casual_script, brush_strokes_visible, monochrome, practice_sheet, modern_calligraphy, bold_strokes</div>
+          <button class="del-btn" id="delbtn-87-a" onclick="markDelete('5fe58c664233',87,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-87-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765665149.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-87-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Snitches GET Stitches</div>
+          <div class="img-tags">brush_lettering, casual_script, brush_strokes_visible, two_colour, modern_calligraphy, practice_sheet, bold_strokes</div>
+          <button class="del-btn" id="delbtn-87-b" onclick="markDelete('9f578b06c21a',87,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-88" data-id-a="5fe58c664233" data-id-b="67322a468513">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 89 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(88)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-88-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150590137735.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-88-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Anything</div>
+          <div class="img-tags">brush_lettering, casual_script, brush_strokes_visible, monochrome, practice_sheet, modern_calligraphy, bold_strokes</div>
+          <button class="del-btn" id="delbtn-88-a" onclick="markDelete('5fe58c664233',88,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-88-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151002508514.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-88-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Royl Heights</div>
+          <div class="img-tags">brush_lettering, casual_script, practice_sheet, monochrome, brush_strokes_visible, hand_lettered, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-88-b" onclick="markDelete('67322a468513',88,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-89" data-id-a="5fe58c664233" data-id-b="3dc60cae6200">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 90 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(89)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-89-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150590137735.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-89-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">Anything</div>
+          <div class="img-tags">brush_lettering, casual_script, brush_strokes_visible, monochrome, practice_sheet, modern_calligraphy, bold_strokes</div>
+          <button class="del-btn" id="delbtn-89-a" onclick="markDelete('5fe58c664233',89,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-89-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150640085687.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-89-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">alife</div>
+          <div class="img-tags">casual_script, brush_lettering, monochrome, bold_strokes, brush_strokes_visible, two_colour, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-89-b" onclick="markDelete('3dc60cae6200',89,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-90" data-id-a="43598588c1bc" data-id-b="e27d523a2e1d">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 91 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(90)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-90-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341680377528320_0.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-90-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">HANDMADE</div>
+          <div class="img-tags">shop_window, gold_gilt, window_lettering, craftsman, glassblowing, artisan, contemporary_signage</div>
+          <button class="del-btn" id="delbtn-90-a" onclick="markDelete('43598588c1bc',90,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-90-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/copenhagensigns___CLTjAESg7mi___.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-90-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">HANDMADE</div>
+          <div class="img-tags">shop_window, gold_gilt, glassblowing, artisan, reverse_glass, window_lettering, craftsman</div>
+          <button class="del-btn" id="delbtn-90-b" onclick="markDelete('e27d523a2e1d',90,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-91" data-id-a="3dc60cae6200" data-id-b="9f578b06c21a">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 92 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(91)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-91-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150640085687.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-91-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">alife</div>
+          <div class="img-tags">casual_script, brush_lettering, monochrome, bold_strokes, brush_strokes_visible, two_colour, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-91-a" onclick="markDelete('3dc60cae6200',91,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-91-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150765665149.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-91-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Snitches GET Stitches</div>
+          <div class="img-tags">brush_lettering, casual_script, brush_strokes_visible, two_colour, modern_calligraphy, practice_sheet, bold_strokes</div>
+          <button class="del-btn" id="delbtn-91-b" onclick="markDelete('9f578b06c21a',91,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-92" data-id-a="37f0c3c7157d" data-id-b="c872905abc4e">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 93 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(92)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-92-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150837991845.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-92-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">design</div>
+          <div class="img-tags">casual_script, brush_pen, lettering_practice, hot_pink, brush_strokes_visible, modern_calligraphy, single_word</div>
+          <button class="del-btn" id="delbtn-92-a" onclick="markDelete('37f0c3c7157d',92,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-92-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151021721764.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-92-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Caring</div>
+          <div class="img-tags">casual_script, brush_pen, monochrome, lettering_practice, brush_strokes_visible, modern_calligraphy, single_word</div>
+          <button class="del-btn" id="delbtn-92-b" onclick="markDelete('c872905abc4e',92,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-93" data-id-a="232a640bf2eb" data-id-b="7d3215540d9a">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 94 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(93)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-93-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150363701733.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-93-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">wilson</div>
+          <div class="img-tags">casual_script, brush_lettering, monochrome, brush_strokes_visible, calligraphy, name_lettering, high_contrast</div>
+          <button class="del-btn" id="delbtn-93-a" onclick="markDelete('232a640bf2eb',93,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-93-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150395582540.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-93-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Cristina</div>
+          <div class="img-tags">brush_lettering, casual_script, name_lettering, monochrome, brush_strokes_visible, calligraphy, hand_lettered</div>
+          <button class="del-btn" id="delbtn-93-b" onclick="markDelete('7d3215540d9a',93,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-94" data-id-a="22fecf78061d" data-id-b="a4d95da43452">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 95 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(94)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-94-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150934594321.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-94-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">brothers</div>
+          <div class="img-tags">brush_calligraphy, casual_script, brush_strokes_visible, monochrome, expressive_lettering, brush_pen, modern_calligraphy</div>
+          <button class="del-btn" id="delbtn-94-a" onclick="markDelete('22fecf78061d',94,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-94-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163537273352.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-94-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Heaven</div>
+          <div class="img-tags">brush_calligraphy, brush_strokes_visible, monochrome, expressive_lettering, brush_pen, modern_calligraphy, high_contrast</div>
+          <button class="del-btn" id="delbtn-94-b" onclick="markDelete('a4d95da43452',94,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-95" data-id-a="1ca16a683784" data-id-b="298437d3ae9c">
+      <div class="pair-header">
+        <span class="score">75% tag overlap — pair 96 of 96</span>
+        <button class="keep-btn" onclick="keepBoth(95)">keep both ✓</button>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-95-a">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150719163075.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-95-a">WILL DELETE</div>
+          </div>
+          <div class="img-label">non stop</div>
+          <div class="img-tags">casual_script, brush_lettering, two_colour, black_background, motivational, modern_calligraphy, high_contrast</div>
+          <button class="del-btn" id="delbtn-95-a" onclick="markDelete('1ca16a683784',95,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-95-b">
+          <div class="img-wrap">
+            <img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/183722407754.jpg" loading="lazy">
+            <div class="delete-overlay" id="overlay-95-b">WILL DELETE</div>
+          </div>
+          <div class="img-label">Grind</div>
+          <div class="img-tags">casual_script, brush_lettering, two_colour, motivational, modern_calligraphy, high_contrast, bold_strokes</div>
+          <button class="del-btn" id="delbtn-95-b" onclick="markDelete('298437d3ae9c',95,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+<script>
+const toDelete = new Set();
+
+// On load: fetch live signs.json and grey out already-deleted images
+(async () => {
+  try {
+    const res = await fetch('/signs.json?_=' + Date.now());
+    const db  = await res.json();
+    const live = new Set(Object.keys(db.images));
+    document.getElementById('hdr-count').textContent = live.size.toLocaleString() + ' images';
+    let alreadyGone = 0;
+    document.querySelectorAll('.pair').forEach(pair => {
+      const idA = pair.dataset.idA;
+      const idB = pair.dataset.idB;
+      const goneA = !live.has(idA);
+      const goneB = !live.has(idB);
+      if (goneA || goneB) {
+        alreadyGone++;
+        if (goneA) {
+          const block = pair.querySelector('[id^="block-"][id$="-a"]');
+          block.classList.add('already-deleted');
+          block.querySelector('.delete-overlay').textContent = 'DELETED';
+        }
+        if (goneB) {
+          const block = pair.querySelector('[id^="block-"][id$="-b"]');
+          block.classList.add('already-deleted');
+          block.querySelector('.delete-overlay').textContent = 'DELETED';
+        }
+        pair.classList.add('resolved');
+      }
+    });
+    const remaining = 96 - alreadyGone;
+    document.getElementById('status').textContent = alreadyGone > 0
+      ? alreadyGone + ' pairs already resolved. ' + remaining + ' remaining to review.'
+      : 'Review pairs below, then save.';
+  } catch(e) {
+    document.getElementById('status').textContent = 'Review pairs below, then save.';
+  }
+})();
+
+function markDelete(id, pairIdx, side) {
+  const other = side === 'a' ? 'b' : 'a';
+  const thisBlock  = document.getElementById('block-' + pairIdx + '-' + side);
+  const otherBlock = document.getElementById('block-' + pairIdx + '-' + other);
+  if (thisBlock.classList.contains('marked')) {
+    thisBlock.classList.remove('marked');
+    toDelete.delete(id);
+  } else {
+    thisBlock.classList.add('marked');
+    toDelete.add(id);
+    const otherId = document.getElementById('delbtn-' + pairIdx + '-' + other).getAttribute('onclick').match(/'([^']+)'/)[1];
+    otherBlock.classList.remove('marked');
+    toDelete.delete(otherId);
+  }
+  updateStatus();
+}
+
+function keepBoth(pairIdx) {
+  ['a','b'].forEach(side => {
+    const block = document.getElementById('block-' + pairIdx + '-' + side);
+    if (block.classList.contains('marked')) {
+      const id = document.getElementById('delbtn-' + pairIdx + '-' + side).getAttribute('onclick').match(/'([^']+)'/)[1];
+      toDelete.delete(id);
+      block.classList.remove('marked');
+    }
+  });
+  document.getElementById('pair-' + pairIdx).classList.add('resolved');
+  updateStatus();
+}
+
+function updateStatus() {
+  const n = toDelete.size;
+  document.getElementById('status').textContent = n === 0
+    ? 'Review pairs below, then save.'
+    : n + ' image' + (n===1?'':'s') + ' marked for deletion — click save when ready.';
+}
+
+function refreshTokenUI() {
+  const t = localStorage.getItem('gh_token');
+  document.getElementById('token-input-area').style.display = t ? 'none' : '';
+  document.getElementById('token-saved-area').style.display  = t ? ''     : 'none';
+}
+document.getElementById('token-set-btn').addEventListener('click', () => {
+  const v = document.getElementById('token-input').value.trim();
+  if (!v) return;
+  localStorage.setItem('gh_token', v);
+  document.getElementById('token-input').value = '';
+  refreshTokenUI();
+});
+document.getElementById('token-change-btn').addEventListener('click', () => {
+  localStorage.removeItem('gh_token');
+  refreshTokenUI();
+});
+refreshTokenUI();
+
+document.getElementById('save-btn').addEventListener('click', async () => {
+  if (toDelete.size === 0) { alert('Nothing marked for deletion yet.'); return; }
+  const token = localStorage.getItem('gh_token');
+  if (!token) { alert('Enter your GitHub token first.'); return; }
+  if (!confirm('Permanently delete ' + toDelete.size + ' image(s) from signs.json?')) return;
+  const btn = document.getElementById('save-btn');
+  btn.textContent = 'saving…';
+  btn.disabled = true;
+  const apiUrl = 'https://api.github.com/repos/eddb/signreference/contents/signs.json';
+  const headers = {'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','Content-Type':'application/json'};
+  const infoRes = await fetch(apiUrl, {headers});
+  if (!infoRes.ok) { alert('GitHub error ' + infoRes.status); btn.textContent='save to GitHub'; btn.disabled=false; return; }
+  const info = await infoRes.json();
+  const currentData = JSON.parse(atob(info.content.replace(/\n/g,'')));
+  toDelete.forEach(id => delete currentData.images[id]);
+  currentData.generated = new Date().toISOString();
+  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2))));
+  const putRes = await fetch(apiUrl, {
+    method: 'PUT', headers,
+    body: JSON.stringify({message: 'Remove ' + toDelete.size + ' similar images', content: encoded, sha: info.sha})
+  });
+  if (putRes.ok) {
+    document.getElementById('status').textContent = 'Saved! ' + toDelete.size + ' images removed. Vercel deploying…';
+    toDelete.forEach(id => {
+      document.querySelectorAll('.pair').forEach(pair => {
+        if (pair.dataset.idA === id || pair.dataset.idB === id) pair.classList.add('resolved');
+      });
+    });
+    toDelete.clear();
+  } else {
+    const err = await putRes.json().catch(()=>({}));
+    alert('Save failed: ' + (err.message || putRes.status));
+  }
+  btn.textContent = 'save to GitHub';
+  btn.disabled = false;
+});
+</script>
+</body>
+</html>

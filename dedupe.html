@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DUPLICATE REVIEW</title>
+<title>DUPLICATE REVIEW 85–100%</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -17,15 +17,13 @@ header h1{font-size:1rem;letter-spacing:.05em}
 .token-area{display:flex;align-items:center;gap:8px;font-size:.62rem;color:#551a8b}
 .token-input{font-family:'Courier Prime',monospace;font-size:.68rem;padding:4px 8px;border:1px solid rgba(0,0,0,.2);border-radius:2px;width:200px;outline:none}
 .token-set{font-family:'Courier Prime',monospace;font-size:.62rem;padding:4px 10px;border:1px solid rgba(0,0,0,.2);background:#fff;cursor:pointer;border-radius:2px}
-
 .pair{border-bottom:2px solid #000;padding:24px;transition:opacity .3s}
 .pair.resolved{opacity:.3;pointer-events:none}
 .pair-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .score{font-size:.72rem;color:#0000ee;letter-spacing:.04em;font-weight:700}
 .keep-btn{font-family:'Courier Prime',monospace;font-size:.62rem;padding:5px 14px;border:1px solid #000;background:#fff;cursor:pointer;border-radius:2px}
 .keep-btn:hover{background:#000;color:#fff}
-
-.images{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:0}
+.images{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .img-block{display:flex;flex-direction:column;gap:6px}
 .img-wrap{position:relative}
 .img-wrap img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:opacity .2s}
@@ -33,7 +31,8 @@ header h1{font-size:1rem;letter-spacing:.05em}
 .img-block.marked .img-wrap img{opacity:.25}
 .img-block.marked .delete-overlay{display:flex}
 .img-block.marked .del-btn{background:#666;cursor:default}
-
+.img-block.already-deleted .img-wrap img{opacity:.15}
+.img-block.already-deleted .delete-overlay{display:flex;background:rgba(80,80,80,.85)}
 .img-label{font-size:.75rem;font-weight:700;color:#0000ee}
 .img-tags{font-size:.55rem;color:#551a8b;line-height:1.6}
 .del-btn{font-family:'Courier Prime',monospace;font-size:.65rem;padding:6px 14px;background:#cc0000;color:#fff;border:none;cursor:pointer;border-radius:2px;margin-top:4px;letter-spacing:.04em;transition:background .15s}
@@ -42,11 +41,11 @@ header h1{font-size:1rem;letter-spacing:.05em}
 </head>
 <body>
 <header>
-  <h1>DUPLICATE REVIEW — 17 suspect pairs</h1>
-  <span style="font-size:.65rem;color:#0000ee">3881 total images</span>
+  <h1>DUPLICATE REVIEW 85–100% — 17 pairs</h1>
+  <span style="font-size:.65rem;color:#0000ee" id="hdr-count">3881 images</span>
 </header>
 <div class="save-bar">
-  <span class="status" id="status">Review pairs below, then save.</span>
+  <span class="status" id="status">Checking against live signs.json…</span>
   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
     <div class="token-area" id="token-input-area">
       GitHub token: <input class="token-input" id="token-input" type="password" placeholder="ghp_…">
@@ -59,7 +58,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
   </div>
 </div>
 
-    <div class="pair" id="pair-0">
+    <div class="pair" id="pair-0" data-id-a="f1a2ba175f1e" data-id-b="e96182ff015c">
       <div class="pair-header">
         <span class="score">100% tag overlap — pair 1 of 17</span>
         <button class="keep-btn" onclick="keepBoth(0)">keep both ✓</button>
@@ -85,7 +84,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-1">
+    <div class="pair" id="pair-1" data-id-a="e0b32d04dd03" data-id-b="761e20c1a9bb">
       <div class="pair-header">
         <span class="score">100% tag overlap — pair 2 of 17</span>
         <button class="keep-btn" onclick="keepBoth(1)">keep both ✓</button>
@@ -111,7 +110,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-2">
+    <div class="pair" id="pair-2" data-id-a="d4ead9d919df" data-id-b="5c881b6231e7">
       <div class="pair-header">
         <span class="score">100% tag overlap — pair 3 of 17</span>
         <button class="keep-btn" onclick="keepBoth(2)">keep both ✓</button>
@@ -137,7 +136,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-3">
+    <div class="pair" id="pair-3" data-id-a="9e4d6f0c454f" data-id-b="65a13b18bf6a">
       <div class="pair-header">
         <span class="score">100% tag overlap — pair 4 of 17</span>
         <button class="keep-btn" onclick="keepBoth(3)">keep both ✓</button>
@@ -163,7 +162,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-4">
+    <div class="pair" id="pair-4" data-id-a="9dae4e0e2068" data-id-b="00e2dc8d1dc2">
       <div class="pair-header">
         <span class="score">100% tag overlap — pair 5 of 17</span>
         <button class="keep-btn" onclick="keepBoth(4)">keep both ✓</button>
@@ -189,7 +188,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-5">
+    <div class="pair" id="pair-5" data-id-a="85bcf666139e" data-id-b="aafdfb9df164">
       <div class="pair-header">
         <span class="score">100% tag overlap — pair 6 of 17</span>
         <button class="keep-btn" onclick="keepBoth(5)">keep both ✓</button>
@@ -215,7 +214,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-6">
+    <div class="pair" id="pair-6" data-id-a="818f84bc22d4" data-id-b="c357a190c7f7">
       <div class="pair-header">
         <span class="score">100% tag overlap — pair 7 of 17</span>
         <button class="keep-btn" onclick="keepBoth(6)">keep both ✓</button>
@@ -241,7 +240,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-7">
+    <div class="pair" id="pair-7" data-id-a="72ad470aef63" data-id-b="d9c392ca35e7">
       <div class="pair-header">
         <span class="score">100% tag overlap — pair 8 of 17</span>
         <button class="keep-btn" onclick="keepBoth(7)">keep both ✓</button>
@@ -267,7 +266,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-8">
+    <div class="pair" id="pair-8" data-id-a="65a8c8e2e9cc" data-id-b="a2c99d3166fb">
       <div class="pair-header">
         <span class="score">100% tag overlap — pair 9 of 17</span>
         <button class="keep-btn" onclick="keepBoth(8)">keep both ✓</button>
@@ -293,7 +292,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-9">
+    <div class="pair" id="pair-9" data-id-a="5430e8bdd26e" data-id-b="5d86c2615dca">
       <div class="pair-header">
         <span class="score">100% tag overlap — pair 10 of 17</span>
         <button class="keep-btn" onclick="keepBoth(9)">keep both ✓</button>
@@ -319,7 +318,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-10">
+    <div class="pair" id="pair-10" data-id-a="f463b3796f68" data-id-b="52e6ad4fd693">
       <div class="pair-header">
         <span class="score">88% tag overlap — pair 11 of 17</span>
         <button class="keep-btn" onclick="keepBoth(10)">keep both ✓</button>
@@ -345,7 +344,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-11">
+    <div class="pair" id="pair-11" data-id-a="c872905abc4e" data-id-b="8d50dc3dba91">
       <div class="pair-header">
         <span class="score">88% tag overlap — pair 12 of 17</span>
         <button class="keep-btn" onclick="keepBoth(11)">keep both ✓</button>
@@ -371,7 +370,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-12">
+    <div class="pair" id="pair-12" data-id-a="a9f1e55d0a22" data-id-b="527f0feeeb2d">
       <div class="pair-header">
         <span class="score">88% tag overlap — pair 13 of 17</span>
         <button class="keep-btn" onclick="keepBoth(12)">keep both ✓</button>
@@ -397,7 +396,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-13">
+    <div class="pair" id="pair-13" data-id-a="7b6e9bbdc4ef" data-id-b="f1c6c7748726">
       <div class="pair-header">
         <span class="score">88% tag overlap — pair 14 of 17</span>
         <button class="keep-btn" onclick="keepBoth(13)">keep both ✓</button>
@@ -423,7 +422,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-14">
+    <div class="pair" id="pair-14" data-id-a="2c5ba9a4ad6f" data-id-b="c59138a068e6">
       <div class="pair-header">
         <span class="score">88% tag overlap — pair 15 of 17</span>
         <button class="keep-btn" onclick="keepBoth(14)">keep both ✓</button>
@@ -449,7 +448,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-15">
+    <div class="pair" id="pair-15" data-id-a="22fecf78061d" data-id-b="dad6a64bcccd">
       <div class="pair-header">
         <span class="score">88% tag overlap — pair 16 of 17</span>
         <button class="keep-btn" onclick="keepBoth(15)">keep both ✓</button>
@@ -475,7 +474,7 @@ header h1{font-size:1rem;letter-spacing:.05em}
         </div>
       </div>
     </div>
-    <div class="pair" id="pair-16">
+    <div class="pair" id="pair-16" data-id-a="0e9d237e5036" data-id-b="2ed51b2ddf49">
       <div class="pair-header">
         <span class="score">88% tag overlap — pair 17 of 17</span>
         <button class="keep-btn" onclick="keepBoth(16)">keep both ✓</button>
@@ -504,20 +503,53 @@ header h1{font-size:1rem;letter-spacing:.05em}
 <script>
 const toDelete = new Set();
 
+// On load: fetch live signs.json and grey out already-deleted images
+(async () => {
+  try {
+    const res = await fetch('/signs.json?_=' + Date.now());
+    const db  = await res.json();
+    const live = new Set(Object.keys(db.images));
+    document.getElementById('hdr-count').textContent = live.size.toLocaleString() + ' images';
+    let alreadyGone = 0;
+    document.querySelectorAll('.pair').forEach(pair => {
+      const idA = pair.dataset.idA;
+      const idB = pair.dataset.idB;
+      const goneA = !live.has(idA);
+      const goneB = !live.has(idB);
+      if (goneA || goneB) {
+        alreadyGone++;
+        if (goneA) {
+          const block = pair.querySelector('[id^="block-"][id$="-a"]');
+          block.classList.add('already-deleted');
+          block.querySelector('.delete-overlay').textContent = 'DELETED';
+        }
+        if (goneB) {
+          const block = pair.querySelector('[id^="block-"][id$="-b"]');
+          block.classList.add('already-deleted');
+          block.querySelector('.delete-overlay').textContent = 'DELETED';
+        }
+        pair.classList.add('resolved');
+      }
+    });
+    const remaining = 17 - alreadyGone;
+    document.getElementById('status').textContent = alreadyGone > 0
+      ? alreadyGone + ' pairs already resolved. ' + remaining + ' remaining to review.'
+      : 'Review pairs below, then save.';
+  } catch(e) {
+    document.getElementById('status').textContent = 'Review pairs below, then save.';
+  }
+})();
+
 function markDelete(id, pairIdx, side) {
   const other = side === 'a' ? 'b' : 'a';
   const thisBlock  = document.getElementById('block-' + pairIdx + '-' + side);
   const otherBlock = document.getElementById('block-' + pairIdx + '-' + other);
-
   if (thisBlock.classList.contains('marked')) {
-    // toggle off
     thisBlock.classList.remove('marked');
     toDelete.delete(id);
   } else {
-    // mark this for deletion, unmark the other
     thisBlock.classList.add('marked');
     toDelete.add(id);
-    // un-mark the other side if it was marked
     const otherId = document.getElementById('delbtn-' + pairIdx + '-' + other).getAttribute('onclick').match(/'([^']+)'/)[1];
     otherBlock.classList.remove('marked');
     toDelete.delete(otherId);
@@ -545,7 +577,6 @@ function updateStatus() {
     : n + ' image' + (n===1?'':'s') + ' marked for deletion — click save when ready.';
 }
 
-// Token
 function refreshTokenUI() {
   const t = localStorage.getItem('gh_token');
   document.getElementById('token-input-area').style.display = t ? 'none' : '';
@@ -564,38 +595,35 @@ document.getElementById('token-change-btn').addEventListener('click', () => {
 });
 refreshTokenUI();
 
-// Save
 document.getElementById('save-btn').addEventListener('click', async () => {
   if (toDelete.size === 0) { alert('Nothing marked for deletion yet.'); return; }
   const token = localStorage.getItem('gh_token');
   if (!token) { alert('Enter your GitHub token first.'); return; }
   if (!confirm('Permanently delete ' + toDelete.size + ' image(s) from signs.json?')) return;
-
   const btn = document.getElementById('save-btn');
   btn.textContent = 'saving…';
   btn.disabled = true;
-
   const apiUrl = 'https://api.github.com/repos/eddb/signreference/contents/signs.json';
   const headers = {'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','Content-Type':'application/json'};
-
   const infoRes = await fetch(apiUrl, {headers});
-  if (!infoRes.ok) { alert('GitHub error ' + infoRes.status + ' — check token'); btn.textContent='save to GitHub'; btn.disabled=false; return; }
+  if (!infoRes.ok) { alert('GitHub error ' + infoRes.status); btn.textContent='save to GitHub'; btn.disabled=false; return; }
   const info = await infoRes.json();
   const currentData = JSON.parse(atob(info.content.replace(/\n/g,'')));
-
   toDelete.forEach(id => delete currentData.images[id]);
   currentData.generated = new Date().toISOString();
-
   const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2))));
   const putRes = await fetch(apiUrl, {
     method: 'PUT', headers,
-    body: JSON.stringify({message: 'Remove ' + toDelete.size + ' near-duplicate images', content: encoded, sha: info.sha})
+    body: JSON.stringify({message: 'Remove ' + toDelete.size + ' similar images', content: encoded, sha: info.sha})
   });
-
   if (putRes.ok) {
     document.getElementById('status').textContent = 'Saved! ' + toDelete.size + ' images removed. Vercel deploying…';
+    toDelete.forEach(id => {
+      document.querySelectorAll('.pair').forEach(pair => {
+        if (pair.dataset.idA === id || pair.dataset.idB === id) pair.classList.add('resolved');
+      });
+    });
     toDelete.clear();
-    updateStatus();
   } else {
     const err = await putRes.json().catch(()=>({}));
     alert('Save failed: ' + (err.message || putRes.status));
