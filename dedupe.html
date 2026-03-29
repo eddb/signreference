@@ -501,9 +501,10 @@ header h1{font-size:1rem;letter-spacing:.05em}
       </div>
     </div>
 <script>
+
 const toDelete = new Set();
 
-// On load: fetch live signs.json and grey out already-deleted images
+// On load: fetch live signs.json from Vercel and grey out already-deleted images
 (async () => {
   try {
     const res = await fetch('/signs.json?_=' + Date.now());
@@ -512,28 +513,26 @@ const toDelete = new Set();
     document.getElementById('hdr-count').textContent = live.size.toLocaleString() + ' images';
     let alreadyGone = 0;
     document.querySelectorAll('.pair').forEach(pair => {
-      const idA = pair.dataset.idA;
-      const idB = pair.dataset.idB;
-      const goneA = !live.has(idA);
-      const goneB = !live.has(idB);
+      const goneA = !live.has(pair.dataset.idA);
+      const goneB = !live.has(pair.dataset.idB);
       if (goneA || goneB) {
         alreadyGone++;
         if (goneA) {
-          const block = pair.querySelector('[id^="block-"][id$="-a"]');
-          block.classList.add('already-deleted');
-          block.querySelector('.delete-overlay').textContent = 'DELETED';
+          const b = pair.querySelector('[id$="-a"].img-block');
+          b.classList.add('already-deleted');
+          b.querySelector('.delete-overlay').textContent = 'DELETED';
         }
         if (goneB) {
-          const block = pair.querySelector('[id^="block-"][id$="-b"]');
-          block.classList.add('already-deleted');
-          block.querySelector('.delete-overlay').textContent = 'DELETED';
+          const b = pair.querySelector('[id$="-b"].img-block');
+          b.classList.add('already-deleted');
+          b.querySelector('.delete-overlay').textContent = 'DELETED';
         }
         pair.classList.add('resolved');
       }
     });
-    const remaining = 17 - alreadyGone;
+    const remaining = document.querySelectorAll('.pair:not(.resolved)').length;
     document.getElementById('status').textContent = alreadyGone > 0
-      ? alreadyGone + ' pairs already resolved. ' + remaining + ' remaining to review.'
+      ? alreadyGone + ' pairs already resolved. ' + remaining + ' remaining.'
       : 'Review pairs below, then save.';
   } catch(e) {
     document.getElementById('status').textContent = 'Review pairs below, then save.';
@@ -600,23 +599,42 @@ document.getElementById('save-btn').addEventListener('click', async () => {
   const token = localStorage.getItem('gh_token');
   if (!token) { alert('Enter your GitHub token first.'); return; }
   if (!confirm('Permanently delete ' + toDelete.size + ' image(s) from signs.json?')) return;
+
   const btn = document.getElementById('save-btn');
   btn.textContent = 'saving…';
   btn.disabled = true;
+
   const apiUrl = 'https://api.github.com/repos/eddb/signreference/contents/signs.json';
   const headers = {'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','Content-Type':'application/json'};
-  const infoRes = await fetch(apiUrl, {headers});
-  if (!infoRes.ok) { alert('GitHub error ' + infoRes.status); btn.textContent='save to GitHub'; btn.disabled=false; return; }
-  const info = await infoRes.json();
-  const currentData = JSON.parse(atob(info.content.replace(/\n/g,'')));
-  toDelete.forEach(id => delete currentData.images[id]);
-  currentData.generated = new Date().toISOString();
-  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2))));
-  const putRes = await fetch(apiUrl, {
-    method: 'PUT', headers,
-    body: JSON.stringify({message: 'Remove ' + toDelete.size + ' similar images', content: encoded, sha: info.sha})
-  });
-  if (putRes.ok) {
+
+  try {
+    // Step 1: get SHA from GitHub API
+    const infoRes = await fetch(apiUrl, {headers});
+    if (!infoRes.ok) throw new Error('GitHub API error ' + infoRes.status);
+    const info = await infoRes.json();
+    const sha = info.sha;
+
+    // Step 2: fetch full file content from Vercel (GitHub API truncates files > 1MB)
+    const fileRes = await fetch('/signs.json?_=' + Date.now());
+    if (!fileRes.ok) throw new Error('Could not fetch signs.json');
+    const currentData = await fileRes.json();
+
+    // Step 3: remove marked images
+    toDelete.forEach(id => delete currentData.images[id]);
+    currentData.generated = new Date().toISOString();
+
+    // Step 4: encode and commit
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2))));
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT', headers,
+      body: JSON.stringify({message: 'Remove ' + toDelete.size + ' images', content: encoded, sha})
+    });
+
+    if (!putRes.ok) {
+      const err = await putRes.json().catch(()=>({}));
+      throw new Error(err.message || putRes.status);
+    }
+
     document.getElementById('status').textContent = 'Saved! ' + toDelete.size + ' images removed. Vercel deploying…';
     toDelete.forEach(id => {
       document.querySelectorAll('.pair').forEach(pair => {
@@ -624,13 +642,15 @@ document.getElementById('save-btn').addEventListener('click', async () => {
       });
     });
     toDelete.clear();
-  } else {
-    const err = await putRes.json().catch(()=>({}));
-    alert('Save failed: ' + (err.message || putRes.status));
+
+  } catch(e) {
+    alert('Save failed: ' + e.message);
   }
+
   btn.textContent = 'save to GitHub';
   btn.disabled = false;
 });
+
 </script>
 </body>
 </html>
