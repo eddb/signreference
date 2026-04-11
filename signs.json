@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-04-11T17:37:17.178Z",
+  "generated": "2026-04-11T17:53:47.729Z",
   "images": {
     "abd101187c9c": {
       "id": "abd101187c9c",
@@ -9208,37 +9208,6 @@
         "single_word"
       ]
     },
-    "724b0149ff36": {
-      "id": "724b0149ff36",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150395730992.jpg",
-      "filename": "150395730992.jpg",
-      "tagged_at": "2026-03-27T18:04:27.587634Z",
-      "text_content": "Skatchy",
-      "medium": "digital",
-      "surface": "other",
-      "lettering_style": "casual_script",
-      "decorative_technique": [
-        "none"
-      ],
-      "finish": "smooth",
-      "condition": "pristine",
-      "colors": [
-        "white",
-        "black"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "unknown",
-      "description": "A bold white casual brush script logotype reading 'Skatchy' set against a solid black background, with dynamic flowing strokes and high contrast.",
-      "tags": [
-        "casual_script",
-        "logotype",
-        "brush_lettering",
-        "high_contrast",
-        "two_colour",
-        "digital_lettering",
-        "brand_identity"
-      ]
-    },
     "4459ba8a7a57": {
       "id": "4459ba8a7a57",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150395753924.jpg",
@@ -9700,40 +9669,6 @@
         "monochrome",
         "hand_lettered",
         "thick_thin_contrast"
-      ]
-    },
-    "42359da33332": {
-      "id": "42359da33332",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150399460572.jpg",
-      "filename": "150399460572.jpg",
-      "tagged_at": "2026-03-27T18:06:42.161118Z",
-      "text_content": "Feedback",
-      "medium": "pencil_sketch",
-      "surface": "paper",
-      "lettering_style": "formal_script",
-      "decorative_technique": [
-        "outline",
-        "shaded_fill"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "grey",
-        "turquoise",
-        "white"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "unknown",
-      "description": "A hand-lettering process shot showing the word 'Feedback' in ornate formal script, with a detailed pencil sketch on tracing paper overlaying earlier turquoise brush-lettered explorations, alongside a mechanical pencil.",
-      "tags": [
-        "process_shot",
-        "formal_script",
-        "pencil_sketch",
-        "brush_lettering",
-        "tracing_paper",
-        "lettering_practice",
-        "work_in_progress",
-        "two_colour"
       ]
     },
     "c74bdc9259fb": {
@@ -38279,42 +38214,6 @@
         "contemporary_calligraphy"
       ]
     },
-    "d82ed73463f5": {
-      "id": "d82ed73463f5",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151002812689.jpg",
-      "filename": "151002812689.jpg",
-      "tagged_at": "2026-03-27T19:58:03.477497Z",
-      "text_content": "RICH",
-      "medium": "brush_painted",
-      "surface": "wall_exterior",
-      "lettering_style": "block_letters",
-      "decorative_technique": [
-        "shadow_block",
-        "outline",
-        "double_stroke"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "red",
-        "white",
-        "orange",
-        "dark_brown"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "United Kingdom",
-      "description": "Large-scale bold red block letters spelling 'RICH' painted on a dark brick wall with white outlines and orange drop shadows, situated below a colorful marine-life mural.",
-      "tags": [
-        "mural",
-        "block_letters",
-        "brick_wall",
-        "street_art",
-        "three_dimensional_effect",
-        "bold_type",
-        "large_scale",
-        "sign_painting"
-      ]
-    },
     "670e32a79698": {
       "id": "670e32a79698",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151002830345.jpg",
@@ -65102,38 +65001,6 @@
         "typographic_art"
       ]
     },
-    "c93834516e28": {
-      "id": "c93834516e28",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/177162166226.jpg",
-      "filename": "177162166226.jpg",
-      "tagged_at": "2026-03-27T21:40:16.675460Z",
-      "text_content": "Rituals",
-      "medium": "hand_lettered_pen",
-      "surface": "paper",
-      "lettering_style": "casual_script",
-      "decorative_technique": [
-        "none"
-      ],
-      "finish": "metallic",
-      "condition": "pristine",
-      "colors": [
-        "gold",
-        "black"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "unknown",
-      "description": "The word 'Rituals' is elegantly hand-lettered in flowing gold metallic ink on black paper, with a gold pen positioned beneath the lettering.",
-      "tags": [
-        "casual_script",
-        "gold_ink",
-        "black_paper",
-        "metallic_pen",
-        "hand_lettering",
-        "brush_script",
-        "two_colour",
-        "contemporary"
-      ]
-    },
     "b01142b05f78": {
       "id": "b01142b05f78",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/177162215267.jpg",
@@ -69198,38 +69065,6 @@
         "cusped_terminals",
         "hand_drawn",
         "lettering_study"
-      ]
-    },
-    "82a51063c4fe": {
-      "id": "82a51063c4fe",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/182217646386.jpg",
-      "filename": "182217646386.jpg",
-      "tagged_at": "2026-03-27T21:55:48.158307Z",
-      "text_content": "abcdhir prjmrg kdflqu btswcn vexsyz",
-      "medium": "brush_painted",
-      "surface": "paper",
-      "lettering_style": "casual_script",
-      "decorative_technique": [
-        "none"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "black",
-        "white"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "unknown",
-      "description": "A brush-lettered lowercase alphabet practice sheet arranged in six rows on lined paper, rendered in bold black casual script with dynamic thick-to-thin stroke variation.",
-      "tags": [
-        "alphabet_sheet",
-        "brush_lettering",
-        "casual_script",
-        "practice_sheet",
-        "lowercase",
-        "brush_strokes_visible",
-        "monochrome",
-        "calligraphy"
       ]
     },
     "23417eefa854": {
@@ -100273,41 +100108,6 @@
         "contemporary_traditional"
       ]
     },
-    "407364992017": {
-      "id": "407364992017",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341627312291840_0.jpg",
-      "filename": "686341627312291840_0.jpg",
-      "tagged_at": "2026-03-28T09:11:26.777883Z",
-      "text_content": "PRÊT-À-MANGER BLOOMFIELD POUR EMPORTER VINS NATURE RESTAURANTBLOOMFIELD.COM TÉL. 514 277-1001 @RESTAURANTBLOOMFIELD",
-      "medium": "vinyl_cut",
-      "surface": "window_glass",
-      "lettering_style": "sans_serif",
-      "decorative_technique": [
-        "outline",
-        "shadow_block"
-      ],
-      "finish": "gloss",
-      "condition": "pristine",
-      "colors": [
-        "green",
-        "orange",
-        "white",
-        "dark_green"
-      ],
-      "era_estimate": "2020s",
-      "country_hint": "Canada",
-      "description": "A dark green painted storefront window for Restaurant Bloomfield in Montreal featuring bold orange and green vinyl-cut sans-serif lettering advertising ready-to-eat food, takeout, and natural wines, with the restaurant's website, phone number, and Instagram handle in white below.",
-      "tags": [
-        "shop_window",
-        "restaurant",
-        "french_language",
-        "montreal",
-        "vinyl_lettering",
-        "two_colour",
-        "storefront",
-        "contemporary"
-      ]
-    },
     "af7f7cdeea57": {
       "id": "af7f7cdeea57",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341630385651712_0.jpg",
@@ -101379,39 +101179,6 @@
         "two_colour",
         "illustration",
         "bear"
-      ]
-    },
-    "856b26f87f7f": {
-      "id": "856b26f87f7f",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341731391815680_0.jpg",
-      "filename": "686341731391815680_0.jpg",
-      "tagged_at": "2026-03-28T09:15:15.898685Z",
-      "text_content": "RADIS",
-      "medium": "vinyl_cut",
-      "surface": "window_glass",
-      "lettering_style": "sans_serif",
-      "decorative_technique": [
-        "shadow_block"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "pink",
-        "white",
-        "magenta"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "France",
-      "description": "A modern restaurant storefront window featuring the word 'RADIS' in bold pink vinyl letters with a darker shadow effect, accompanied by a charming line-drawn radish illustration in white and pink on the glass door.",
-      "tags": [
-        "shop_window",
-        "restaurant_branding",
-        "shadow_block",
-        "vinyl_lettering",
-        "radish_illustration",
-        "french",
-        "two_colour",
-        "contemporary"
       ]
     },
     "72739214675b": {
@@ -103437,40 +103204,6 @@
         "black_and_white_photograph",
         "ladder",
         "mid_century"
-      ]
-    },
-    "24026f3c3ad7": {
-      "id": "24026f3c3ad7",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686885934732656640_0.jpg",
-      "filename": "686885934732656640_0.jpg",
-      "tagged_at": "2026-03-28T09:23:09.331588Z",
-      "text_content": "CONSOME de BIRRIA $3 PLATO DE BIRRIA ARROZ, FRIJOLES, BIRRIA CILANTRO, CEBOLLA, SALSA LIMONES, TORTILLAS (5) $15 BURRITOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 VAMPIROS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 QUESADILLAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 MULITAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 TACOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $2 Carlos's Tijuana Tacos CON TODO CILANTRO, CEBOLLA, GUACAMOLE Y SALSA MENUDO SOLO FINES DE SEMANA $12 CON PATA O SIN PATA CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS POZOLE SOLO FINES DE SEMANA $12 LECHUGA O REPOLLO, RABANOS CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS AGUAS FRESCAS $3 CHICA $5 GRANDE REFRESCOS COCA COLA FANTA SPRITE JARRITOS $3",
-      "medium": "brush_painted",
-      "surface": "wood",
-      "lettering_style": "mixed",
-      "decorative_technique": [
-        "outline",
-        "shadow_block"
-      ],
-      "finish": "gloss",
-      "condition": "pristine",
-      "colors": [
-        "red",
-        "white",
-        "black"
-      ],
-      "era_estimate": "2020s",
-      "country_hint": "United States",
-      "description": "A vibrant hand-painted Mexican taco shop menu board system featuring bold red and black brush-lettered text on white panels, with diamond-shaped price markers, listing tacos, burritos, quesadillas, mulitas, vampiros, and weekend specials in Spanish.",
-      "tags": [
-        "menu_board",
-        "taqueria",
-        "brush_painted",
-        "red_white",
-        "hand_lettered",
-        "mexican_food",
-        "sign_painting",
-        "two_colour"
       ]
     },
     "f40607c0735d": {
@@ -111164,76 +110897,6 @@
         "brick_wall"
       ]
     },
-    "b25a63cc4ed0": {
-      "id": "b25a63cc4ed0",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/ben_johnston_CJEUAaMh9c1_2.jpg",
-      "filename": "ben_johnston_CJEUAaMh9c1_2.jpg",
-      "tagged_at": "2026-03-28T09:56:20.482690Z",
-      "text_content": "PEACE LOVE",
-      "medium": "brush_painted",
-      "surface": "wall_exterior",
-      "lettering_style": "block_letters",
-      "decorative_technique": [
-        "shadow_block",
-        "perspective"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "pink",
-        "blue",
-        "black"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "United States",
-      "description": "A large-scale mural on a black brick wall featuring the overlapping words 'PEACE' and 'LOVE' rendered in bold 3D block letters with isometric perspective, one word in pink and the other in blue, creating a striking layered typographic composition.",
-      "tags": [
-        "mural",
-        "overlapping_text",
-        "isometric",
-        "two_colour",
-        "3d_lettering",
-        "street_art",
-        "brick_wall",
-        "bold_type"
-      ]
-    },
-    "b2dd8a57eca3": {
-      "id": "b2dd8a57eca3",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/ben_johnston_CNVqLr0B4in_1.jpg",
-      "filename": "ben_johnston_CNVqLr0B4in_1.jpg",
-      "tagged_at": "2026-03-28T09:56:31.979140Z",
-      "text_content": "MAKER",
-      "medium": "brush_painted",
-      "surface": "wall_interior",
-      "lettering_style": "block_letters",
-      "decorative_technique": [
-        "shadow_block",
-        "perspective",
-        "bevel"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "dark_blue",
-        "light_blue",
-        "yellow",
-        "black"
-      ],
-      "era_estimate": "2020s",
-      "country_hint": "unknown",
-      "description": "A mural artist works on a large-scale interior wall painting featuring the word 'MAKER' rendered in bold three-dimensional block letters with isometric perspective, using contrasting yellow foreground type against layered blue and teal dimensional letterforms on a dark background.",
-      "tags": [
-        "mural",
-        "3d_letterforms",
-        "isometric",
-        "large_scale",
-        "artist_at_work",
-        "two_colour",
-        "geometric",
-        "contemporary"
-      ]
-    },
     "d26f0473133a": {
       "id": "d26f0473133a",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/ben_johnston_CNVqLr0B4in_2.jpg",
@@ -111510,41 +111173,6 @@
         "decorative_initial",
         "dimensional_lettering",
         "reverse_glass"
-      ]
-    },
-    "6cccd278cc44": {
-      "id": "6cccd278cc44",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/brilliantsigns_CLww2LyHiZB_5.jpg",
-      "filename": "brilliantsigns_CLww2LyHiZB_5.jpg",
-      "tagged_at": "2026-03-28T09:57:38.686365Z",
-      "text_content": "A",
-      "medium": "gilded",
-      "surface": "window_glass",
-      "lettering_style": "victorian_ornate",
-      "decorative_technique": [
-        "gold_gilt",
-        "shadow_block",
-        "bevel"
-      ],
-      "finish": "metallic",
-      "condition": "pristine",
-      "colors": [
-        "gold",
-        "green",
-        "black"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "United Kingdom",
-      "description": "A large ornate Victorian-style gold leaf letter 'A' with decorative serifs and scrollwork, reverse-gilded on green-tinted glass and presented in a black wooden frame.",
-      "tags": [
-        "gold_gilt",
-        "reverse_glass",
-        "victorian_ornate",
-        "initial_letter",
-        "decorative_capital",
-        "framed",
-        "gilding",
-        "sign_painting"
       ]
     },
     "73fd2ead9e07": {
@@ -113590,40 +113218,6 @@
         "two_colour"
       ]
     },
-    "94c1c0719a80": {
-      "id": "94c1c0719a80",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/dudesfactory_CNqGjTDLFjS_1.jpg",
-      "filename": "dudesfactory_CNqGjTDLFjS_1.jpg",
-      "tagged_at": "2026-03-28T10:06:08.927344Z",
-      "text_content": "FUCK OFF",
-      "medium": "digital",
-      "surface": "other",
-      "lettering_style": "block_letters",
-      "decorative_technique": [
-        "shadow_block",
-        "perspective",
-        "outline"
-      ],
-      "finish": "smooth",
-      "condition": "pristine",
-      "colors": [
-        "black",
-        "white"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "unknown",
-      "description": "A black-and-white digital illustration depicting tombstones in a graveyard scene, each headstone bearing a letter spelling out 'FUCK OFF' in bold block letters with 3D perspective shadows, accompanied by a skull on the ground.",
-      "tags": [
-        "graveyard",
-        "tombstones",
-        "skull",
-        "profanity",
-        "black_and_white",
-        "illustration",
-        "two_colour",
-        "gothic_humor"
-      ]
-    },
     "92cc2e879ae0": {
       "id": "92cc2e879ae0",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/eddyartist_Btv8brYnLRb_1.jpg",
@@ -114637,40 +114231,6 @@
         "numerals",
         "color_overlay",
         "contemporary_lettering"
-      ]
-    },
-    "2eb8f1faa10d": {
-      "id": "2eb8f1faa10d",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/genramirez___CFi7wrhhVvX___.jpg",
-      "filename": "genramirez___CFi7wrhhVvX___.jpg",
-      "tagged_at": "2026-03-28T10:09:56.061559Z",
-      "text_content": "ABCDEFGHIJ KLMNOPQRS TUVWXYZ& 123456789",
-      "medium": "digital",
-      "surface": "other",
-      "lettering_style": "casual_script",
-      "decorative_technique": [
-        "shaded_fill"
-      ],
-      "finish": "smooth",
-      "condition": "pristine",
-      "colors": [
-        "pink",
-        "blue",
-        "orange",
-        "green"
-      ],
-      "era_estimate": "2020s",
-      "country_hint": "unknown",
-      "description": "A vibrant multicolored brush script alphabet specimen showing uppercase letters A through Z, an ampersand, and numerals 1 through 9, rendered in an interwoven ribbon-like style where overlapping strokes create dynamic color blending in pink, blue, orange, green, and purple tones.",
-      "tags": [
-        "alphabet_sheet",
-        "brush_script",
-        "multicolor",
-        "ribbon_lettering",
-        "specimen_sheet",
-        "overlapping_strokes",
-        "type_design",
-        "numerals"
       ]
     },
     "d316564edd41": {
@@ -116291,42 +115851,6 @@
         "mixed_typography"
       ]
     },
-    "31769471c6af": {
-      "id": "31769471c6af",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/helynhandpainted___CA2sR7bjtwq___.jpg",
-      "filename": "helynhandpainted___CA2sR7bjtwq___.jpg",
-      "tagged_at": "2026-03-28T10:16:09.320940Z",
-      "text_content": "OPEN",
-      "medium": "brush_painted",
-      "surface": "other",
-      "lettering_style": "block_letters",
-      "decorative_technique": [
-        "shadow_block",
-        "bevel",
-        "drop_shadow"
-      ],
-      "finish": "gloss",
-      "condition": "pristine",
-      "colors": [
-        "blue",
-        "yellow",
-        "orange",
-        "black"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "United Kingdom",
-      "description": "A vibrant blue rectangular sign featuring the word 'OPEN' in bold yellow-orange 3D block letters with beveled faces and dark drop shadows, leaning against a paint-splattered concrete wall.",
-      "tags": [
-        "sign_painting",
-        "block_letters",
-        "three_dimensional",
-        "shop_sign",
-        "bold_colour",
-        "beveled_lettering",
-        "contemporary_signwriting",
-        "two_colour"
-      ]
-    },
     "9ba59b6fee5c": {
       "id": "9ba59b6fee5c",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/helynhandpainted___CBDuN6PjlDz___.jpg",
@@ -116841,41 +116365,6 @@
         "distressed_texture",
         "mascot_character",
         "fun_run"
-      ]
-    },
-    "6287ef472c07": {
-      "id": "6287ef472c07",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/jazjanuary_CEmoc_cA2dd_2.jpg",
-      "filename": "jazjanuary_CEmoc_cA2dd_2.jpg",
-      "tagged_at": "2026-03-28T10:18:34.656215Z",
-      "text_content": "SPEEDBALL\nC. Howard BRAYER U.S.A.\nHUNT PEN CO., CAMDEN, N.J.",
-      "medium": "letterpress",
-      "surface": "packaging_label",
-      "lettering_style": "block_letters",
-      "decorative_technique": [
-        "outline",
-        "inline"
-      ],
-      "finish": "aged",
-      "condition": "worn",
-      "colors": [
-        "green",
-        "black",
-        "cream",
-        "gold"
-      ],
-      "era_estimate": "pre_1950",
-      "country_hint": "USA",
-      "description": "A vintage cardboard box for a Speedball brayer by C. Howard Hunt Pen Co. of Camden, NJ, featuring bold block lettering in green and cream on a dark background with a classic mid-century American packaging design.",
-      "tags": [
-        "packaging",
-        "vintage",
-        "block_letters",
-        "art_supplies",
-        "ephemeral",
-        "two_colour",
-        "mid_century",
-        "printmaking"
       ]
     },
     "643e2b0962b2": {
@@ -118972,41 +118461,6 @@
         "neon_signage",
         "los_angeles",
         "commercial_strip"
-      ]
-    },
-    "903a00058228": {
-      "id": "903a00058228",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/laexplained___CNYOvL1JUD-___.jpg",
-      "filename": "laexplained___CNYOvL1JUD-___.jpg",
-      "tagged_at": "2026-03-28T10:26:21.565214Z",
-      "text_content": "Ships Coffee Shop",
-      "medium": "illuminated",
-      "surface": "metal",
-      "lettering_style": "casual_script",
-      "decorative_technique": [
-        "outline",
-        "drop_shadow"
-      ],
-      "finish": "gloss",
-      "condition": "good",
-      "colors": [
-        "red",
-        "white",
-        "yellow",
-        "gold"
-      ],
-      "era_estimate": "1960s",
-      "country_hint": "United States",
-      "description": "A classic Googie-style roadside sign featuring a large red circular 'Ships' pylon sign with golden arrow accents above a boat-shaped building facade reading 'Coffee Shop' in yellow casual script lettering.",
-      "tags": [
-        "googie_architecture",
-        "roadside_sign",
-        "pylon_sign",
-        "coffee_shop",
-        "mid_century_modern",
-        "casual_script",
-        "los_angeles",
-        "space_age"
       ]
     },
     "c912e2753b53": {
@@ -123254,40 +122708,6 @@
         "contemporary_lettering"
       ]
     },
-    "9207c84753d4": {
-      "id": "9207c84753d4",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/racheljoylettering_CErbpxJBNYb_1.jpg",
-      "filename": "racheljoylettering_CErbpxJBNYb_1.jpg",
-      "tagged_at": "2026-03-28T10:42:32.915469Z",
-      "text_content": "TOGETHER",
-      "medium": "brush_painted",
-      "surface": "wall_exterior",
-      "lettering_style": "block_letters",
-      "decorative_technique": [
-        "shadow_block",
-        "perspective"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "teal",
-        "pink",
-        "black"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "United Kingdom",
-      "description": "A large-scale mural on a black brick wall spelling 'TOGETHER' in bold 3D block letters rendered in teal and pink with isometric shadow effects, located on Sanderstead Road E10 in East London.",
-      "tags": [
-        "mural",
-        "3d_lettering",
-        "community_art",
-        "brick_wall",
-        "two_colour",
-        "east_london",
-        "street_art",
-        "isometric"
-      ]
-    },
     "2c9441906e01": {
       "id": "2c9441906e01",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/racheljoylettering_CErbpxJBNYb_6.jpg",
@@ -125387,39 +124807,6 @@
         "antique"
       ]
     },
-    "3eaf872a670f": {
-      "id": "3eaf872a670f",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/signwritingjack___CCDRpSHJHS7___.jpg",
-      "filename": "signwritingjack___CCDRpSHJHS7___.jpg",
-      "tagged_at": "2026-03-28T10:50:53.932951Z",
-      "text_content": "ASSOULINE\nBOOKS & GIFTS",
-      "medium": "gilded",
-      "surface": "window_glass",
-      "lettering_style": "sans_serif",
-      "decorative_technique": [
-        "gold_gilt"
-      ],
-      "finish": "metallic",
-      "condition": "pristine",
-      "colors": [
-        "gold",
-        "dark_grey",
-        "brown"
-      ],
-      "era_estimate": "2010s",
-      "country_hint": "United States",
-      "description": "Elegant gold gilt sans-serif lettering on a dark glass storefront window reading 'ASSOULINE BOOKS & GIFTS', framed by a warm wood surround with blurred urban reflections visible in the glass.",
-      "tags": [
-        "shop_window",
-        "gold_gilt",
-        "luxury_retail",
-        "sans_serif",
-        "bookshop",
-        "storefront",
-        "window_lettering",
-        "urban"
-      ]
-    },
     "f1e21e2cdcdf": {
       "id": "f1e21e2cdcdf",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/signwritingjack___CI320NjJmQ____.jpg",
@@ -125454,40 +124841,6 @@
         "brush_strokes_visible",
         "traditional_craft",
         "hand_painted"
-      ]
-    },
-    "4a9536bd0c40": {
-      "id": "4a9536bd0c40",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/superniceletters_CMdQKmSnTJv_1.jpg",
-      "filename": "superniceletters_CMdQKmSnTJv_1.jpg",
-      "tagged_at": "2026-03-28T10:51:10.309262Z",
-      "text_content": "IT'S ALL CONNECTED SOMEHOW",
-      "medium": "digital",
-      "surface": "paper",
-      "lettering_style": "sans_serif",
-      "decorative_technique": [
-        "none"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "black",
-        "orange",
-        "blue",
-        "pink"
-      ],
-      "era_estimate": "2020s",
-      "country_hint": "United States",
-      "description": "A symmetrical folk-art-inspired digital illustration featuring bold black sans-serif lettering arched around a colorful central composition of hands, snakes, flowers, hearts, and an eye motif in vibrant oranges, blues, pinks, and greens.",
-      "tags": [
-        "folk_art",
-        "symmetrical",
-        "illustrative_lettering",
-        "arched_text",
-        "bold_sans_serif",
-        "colorful",
-        "mystical",
-        "contemporary_illustration"
       ]
     },
     "ad12116d411a": {
@@ -127266,40 +126619,6 @@
         "new_opening"
       ]
     },
-    "9eb83279910b": {
-      "id": "9eb83279910b",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/tylerandco__CNSDr8pDpOt_3.jpg",
-      "filename": "tylerandco__CNSDr8pDpOt_3.jpg",
-      "tagged_at": "2026-03-28T10:58:07.475335Z",
-      "text_content": "STORE",
-      "medium": "brush_painted",
-      "surface": "wall_exterior",
-      "lettering_style": "sans_serif",
-      "decorative_technique": [
-        "shadow_block"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "teal",
-        "coral",
-        "cream",
-        "brown"
-      ],
-      "era_estimate": "2020s",
-      "country_hint": "United Kingdom",
-      "description": "A sign painter hand-paints bold teal sans-serif letters with a coral 3D shadow effect on a cream-colored storefront fascia board, using a mahl stick for steady brush control.",
-      "tags": [
-        "sign_painting",
-        "shadow_block",
-        "shopfront",
-        "brush_strokes_visible",
-        "two_colour",
-        "mahl_stick",
-        "in_progress",
-        "contemporary_signwriting"
-      ]
-    },
     "a94cfa4736c4": {
       "id": "a94cfa4736c4",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/tylerandco__CNSDr8pDpOt_4.jpg",
@@ -127597,38 +126916,6 @@
         "seasonal"
       ]
     },
-    "d45a3744aac9": {
-      "id": "d45a3744aac9",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/typism_CDidn3zlwQv_4.jpg",
-      "filename": "typism_CDidn3zlwQv_4.jpg",
-      "tagged_at": "2026-03-28T10:59:26.016617Z",
-      "text_content": "SAY THEIR NAMES #BLACKLIVESMATTER",
-      "medium": "digital",
-      "surface": "other",
-      "lettering_style": "casual_script",
-      "decorative_technique": [
-        "none"
-      ],
-      "finish": "rough",
-      "condition": "pristine",
-      "colors": [
-        "white",
-        "black"
-      ],
-      "era_estimate": "2020s",
-      "country_hint": "United States",
-      "description": "Bold white brush-lettered protest typography reading 'SAY THEIR NAMES' on a black background with the hashtag #BLACKLIVESMATTER, created in a dynamic hand-painted brush style with visible stroke texture.",
-      "tags": [
-        "protest_art",
-        "brush_strokes_visible",
-        "social_justice",
-        "two_colour",
-        "bold_typography",
-        "hashtag",
-        "activist_lettering",
-        "high_contrast"
-      ]
-    },
     "c30602a4aef6": {
       "id": "c30602a4aef6",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/verycoolstudio___CXhIaUABjfo___.jpg",
@@ -127660,39 +126947,6 @@
         "font_showcase",
         "black_background",
         "digital_specimen"
-      ]
-    },
-    "f97b3d4f581c": {
-      "id": "f97b3d4f581c",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/veryfinesigns_CC1EtRuDCB0_1.jpg",
-      "filename": "veryfinesigns_CC1EtRuDCB0_1.jpg",
-      "tagged_at": "2026-03-28T10:59:41.730152Z",
-      "text_content": "AHOY! PLEASE ORDER AT GBTAKEOUT.COM Grand Banks WE'LL TEXT YOU WHEN IT'S READY",
-      "medium": "brush_painted",
-      "surface": "wood",
-      "lettering_style": "mixed",
-      "decorative_technique": [
-        "none"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "dark green",
-        "white",
-        "brown"
-      ],
-      "era_estimate": "2020s",
-      "country_hint": "United States",
-      "description": "A dark green painted wooden panel sign for Grand Banks restaurant featuring elegant white casual script lettering for the name flanked by decorative star motifs, with sans-serif instructional text above and below directing customers to order online.",
-      "tags": [
-        "casual_script",
-        "nautical_theme",
-        "restaurant_signage",
-        "hand_painted",
-        "waterfront",
-        "two_colour",
-        "wood_panel",
-        "takeout"
       ]
     },
     "1d49d2d161cc": {
@@ -129281,40 +128535,6 @@
         "two_colour"
       ]
     },
-    "89c1cebe1a4e": {
-      "id": "89c1cebe1a4e",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CH6WGx0DCP7_8.jpg",
-      "filename": "welldonesigns_CH6WGx0DCP7_8.jpg",
-      "tagged_at": "2026-03-28T11:07:15.467505Z",
-      "text_content": "CONSOME de BIRRIA $3 PLATO DE BIRRIA ARROZ, FRIJOLES, BIRRIA CILANTRO, CEBOLLA, SALSA LIMONES, TORTILLAS (3) $15 BURRITOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 VAMPIROS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 QUESADILLAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $7 MULITAS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $5 TACOS ADOBADA ASADA POLLO LONGANIZA NOPALES CHAMPIÑONES BIRRIA $2 Carlos's Tijuana Tacos CON TODO CILANTRO, CEBOLLA, GUACAMOLE Y SALSA SOLO FINES DE SEMANA MENUDO $12 CON PATA O SIN PATA CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS SOLO FINES DE SEMANA POZOLE $12 LECHUGA O REPOLLO, RABANOS CEBOLLA, LIMONES, OREGANO, CHILE Y TORTILLAS RECIEN HECHAS AGUAS FRESCAS $3 CHICA $5 GRANDE REFRESCOS COCA COLA FANTA SPRITE JARRITOS $3",
-      "medium": "brush_painted",
-      "surface": "other",
-      "lettering_style": "mixed",
-      "decorative_technique": [
-        "outline",
-        "none"
-      ],
-      "finish": "gloss",
-      "condition": "pristine",
-      "colors": [
-        "red",
-        "white",
-        "black"
-      ],
-      "era_estimate": "2020s",
-      "country_hint": "United States",
-      "description": "A bold red-and-white hand-painted menu board system for a Tijuana-style taco stand, featuring casual brush-lettered headings with arrow-shaped price callouts and neatly organized food categories in a classic taqueria signage style.",
-      "tags": [
-        "taqueria",
-        "menu_board",
-        "brush_painted",
-        "red_white",
-        "mexican_food",
-        "sign_painting",
-        "hand_lettered",
-        "restaurant_signage"
-      ]
-    },
     "e820ece31bc1": {
       "id": "e820ece31bc1",
       "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CHLo-FJDagI_1.jpg",
@@ -129597,40 +128817,6 @@
         "dotted_border",
         "chef_illustration",
         "nyc"
-      ]
-    },
-    "b8b93380214e": {
-      "id": "b8b93380214e",
-      "url": "https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/youngjerks_CNnbYbnHSVL_3.jpg",
-      "filename": "youngjerks_CNnbYbnHSVL_3.jpg",
-      "tagged_at": "2026-03-28T11:08:39.373035Z",
-      "text_content": "M",
-      "medium": "other",
-      "surface": "fabric",
-      "lettering_style": "serif",
-      "decorative_technique": [
-        "outline",
-        "inline"
-      ],
-      "finish": "matte",
-      "condition": "pristine",
-      "colors": [
-        "blue",
-        "white",
-        "cream"
-      ],
-      "era_estimate": "2020s",
-      "country_hint": "USA",
-      "description": "A blue baseball cap featuring a large embroidered serif letter 'M' in white with a polka-dot inline pattern revealing the blue fabric beneath, set against a matching blue background.",
-      "tags": [
-        "embroidered",
-        "baseball_cap",
-        "monogram",
-        "polka_dot_fill",
-        "headwear",
-        "single_letter",
-        "two_colour",
-        "vintage_inspired"
       ]
     },
     "8fb32c750bed": {
