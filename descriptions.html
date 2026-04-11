@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DESCRIPTION DUPLICATES</title>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Courier Prime',monospace;background:#fff;color:#000;padding-bottom:80px}
+header{background:#000;color:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+header h1{font-size:1rem;letter-spacing:.05em}
+.save-bar{background:#f7f7f0;border-bottom:1px solid rgba(0,0,0,.15);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:52px;z-index:9}
+.status{font-size:.65rem;color:#551a8b;letter-spacing:.06em}
+.save-btn{font-family:'Courier Prime',monospace;font-size:.65rem;padding:6px 16px;background:#0000ee;color:#fff;border:none;cursor:pointer;border-radius:2px}
+.save-btn:hover{background:#0000aa}
+.save-btn:disabled{background:#999;cursor:default}
+.token-area{display:flex;align-items:center;gap:8px;font-size:.62rem;color:#551a8b}
+.token-input{font-family:'Courier Prime',monospace;font-size:.68rem;padding:4px 8px;border:1px solid rgba(0,0,0,.2);border-radius:2px;width:200px;outline:none}
+.token-set{font-family:'Courier Prime',monospace;font-size:.62rem;padding:4px 10px;border:1px solid rgba(0,0,0,.2);background:#fff;cursor:pointer;border-radius:2px}
+.pair{border-bottom:2px solid #000;padding:24px;transition:opacity .3s}
+.pair.resolved{opacity:.3;pointer-events:none}
+.pair-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.score{font-size:.72rem;color:#0000ee;letter-spacing:.04em;font-weight:700}
+.keep-btn{font-family:'Courier Prime',monospace;font-size:.62rem;padding:5px 14px;border:1px solid #000;background:#fff;cursor:pointer;border-radius:2px}
+.keep-btn:hover{background:#000;color:#fff}
+.desc-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px}
+.desc{font-size:.6rem;color:#551a8b;line-height:1.5;font-style:italic}
+.images{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.img-block{display:flex;flex-direction:column;gap:6px}
+.img-wrap{position:relative}
+.img-wrap img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:opacity .2s}
+.delete-overlay{position:absolute;inset:0;background:rgba(204,0,0,.85);color:#fff;display:none;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;letter-spacing:.12em}
+.img-block.marked .img-wrap img{opacity:.25}
+.img-block.marked .delete-overlay{display:flex}
+.img-block.marked .del-btn{background:#666;cursor:default}
+.img-block.already-deleted .img-wrap img{opacity:.15}
+.img-block.already-deleted .delete-overlay{display:flex;background:rgba(80,80,80,.85)}
+.img-label{font-size:.75rem;font-weight:700;color:#0000ee}
+.del-btn{font-family:'Courier Prime',monospace;font-size:.65rem;padding:6px 14px;background:#cc0000;color:#fff;border:none;cursor:pointer;border-radius:2px;margin-top:4px;letter-spacing:.04em}
+.del-btn:hover{background:#aa0000}
+</style>
+</head>
+<body>
+<header>
+  <h1>DESCRIPTION DUPLICATES — 32 pairs</h1>
+  <span style="font-size:.65rem;color:#0000ee" id="hdr-count">3882 images</span>
+</header>
+<div class="save-bar">
+  <span class="status" id="status">Checking against live signs.json…</span>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <div class="token-area" id="token-input-area" style="display:flex">
+      GitHub token: <input class="token-input" id="token-input" type="password" placeholder="ghp_…">
+      <button class="token-set" id="token-set-btn">set</button>
+    </div>
+    <div class="token-area" id="token-saved-area" style="display:none">
+      token saved — <button style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:.62rem;color:#0000ee;text-decoration:underline" id="token-change-btn">change</button>
+    </div>
+    <button class="save-btn" id="save-btn">save to GitHub</button>
+  </div>
+</div>
+
+    <div class="pair" id="pair-0" data-id-a="f125e4a6777b" data-id-b="4d32fea6b0fd">
+      <div class="pair-header">
+        <span class="score">93% description match — pair 1 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(0)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A stylized illustration of a skeleton hand making an OK gesture in cream/off-white on a solid black background, with no text or lettering present.</div>
+        <div class="desc">A stylized illustration of a skeleton hand making an OK gesture in cream/off-white against a solid black background, with no text or lettering present.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-0-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341746913853440_0.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">—</div>
+          <button class="del-btn" id="delbtn-0-a" onclick="markDelete('f125e4a6777b',0,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-0-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/dudesfactory_CNPl0t4LlB3_1.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">—</div>
+          <button class="del-btn" id="delbtn-0-b" onclick="markDelete('4d32fea6b0fd',0,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-1" data-id-a="cce58522c70d" data-id-b="9128ead95a2f">
+      <div class="pair-header">
+        <span class="score">92% description match — pair 2 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(1)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A projecting illuminated lightbox sign for Mark's Off Madison NYC, featuring blue lettering on a white background with a wavy banner element around the word 'MARK'S', mounted on a dark grey metal-clad building facade.</div>
+        <div class="desc">An illuminated projecting lightbox sign for Mark's Off Madison NYC, featuring blue lettering on a white face with a wavy banner element around the word 'MARK'S', mounted on a dark grey metal-clad building facade.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-1-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686436482763849728_0.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">MARK'S OFF MADISON NYC</div>
+          <button class="del-btn" id="delbtn-1-a" onclick="markDelete('cce58522c70d',1,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-1-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/youngjerks_CNnbYbnHSVL_4.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">MARK'S OFF MADISON NYC</div>
+          <button class="del-btn" id="delbtn-1-b" onclick="markDelete('9128ead95a2f',1,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-2" data-id-a="3523c52c4d56" data-id-b="47e27c914b89">
+      <div class="pair-header">
+        <span class="score">89% description match — pair 3 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(2)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A retro-styled illustrative poster featuring a smiling sun hugging a school building, with mixed lettering styles including casual script, bold sans-serif, and marquee-dotted letters promoting solar or renewable energy for schools.</div>
+        <div class="desc">A retro-styled illustrated poster featuring a smiling sun hugging a school building, with mixed lettering styles including casual script, bold sans-serif, and marquee-dotted block letters promoting solar or renewable energy for schools.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-2-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150304537233.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Help power THIS SCHOOL WITH Living ENERGY</div>
+          <button class="del-btn" id="delbtn-2-a" onclick="markDelete('3523c52c4d56',2,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-2-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150395340918.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Help power THIS SCHOOL WITH Living ENERGY</div>
+          <button class="del-btn" id="delbtn-2-b" onclick="markDelete('47e27c914b89',2,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-3" data-id-a="65a8c8e2e9cc" data-id-b="a2c99d3166fb">
+      <div class="pair-header">
+        <span class="score">88% description match — pair 4 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(3)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">The word 'Instagram' hand-lettered in flowing black brush-pen calligraphy on white paper, with the uncapped marker pen and its cap placed beneath the lettering.</div>
+        <div class="desc">The word 'Instagram' hand-lettered in flowing black brush-pen calligraphy on white paper, with the uncapped marker pen and its cap placed below the lettering.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-3-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150303981541.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Instagram</div>
+          <button class="del-btn" id="delbtn-3-a" onclick="markDelete('65a8c8e2e9cc',3,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-3-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150395382577.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Instagram</div>
+          <button class="del-btn" id="delbtn-3-b" onclick="markDelete('a2c99d3166fb',3,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-4" data-id-a="cbc2a52b478f" data-id-b="340d69295957">
+      <div class="pair-header">
+        <span class="score">88% description match — pair 5 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(4)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">Bold black brush-lettered script reading 'Creature Comforts' on white paper, placed on a paint-splattered work surface, showcasing dynamic and confident casual script with thick-to-thin stroke variation.</div>
+        <div class="desc">Bold black brush-lettered casual script reading 'Creature Comforts' on white paper, placed on a paint-splattered work surface, showcasing confident hand-lettering with dynamic thick-to-thin stroke contrast.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-4-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630607617980530688.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Creature Comforts</div>
+          <button class="del-btn" id="delbtn-4-a" onclick="markDelete('cbc2a52b478f',4,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-4-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/veryfinesigns_CDoYFQbjBHl_1.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Creature Comforts</div>
+          <button class="del-btn" id="delbtn-4-b" onclick="markDelete('340d69295957',4,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-5" data-id-a="6e560e6190d0" data-id-b="87343df06f30">
+      <div class="pair-header">
+        <span class="score">86% description match — pair 6 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(5)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A white paper shopping bag with an all-over repeating pattern of the 'MARK'S OFF MADISON NYC' logo in blue, featuring a wavy banner motif with sans-serif and slightly playful lettering.</div>
+        <div class="desc">A white paper shopping bag with a repeating all-over pattern of the 'Mark's Off Madison NYC' logo in blue, featuring a wavy banner motif with sans-serif and serif mixed lettering.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-5-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686436482968420352_0.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">MARK'S OFF MADISON NYC</div>
+          <button class="del-btn" id="delbtn-5-a" onclick="markDelete('6e560e6190d0',5,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-5-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/youngjerks_CNnbYbnHSVL_1.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">MARK'S OFF MADISON NYC</div>
+          <button class="del-btn" id="delbtn-5-b" onclick="markDelete('87343df06f30',5,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-6" data-id-a="f9e916c536c9" data-id-b="c3d4bd2e3cfa">
+      <div class="pair-header">
+        <span class="score">85% description match — pair 7 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(6)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A vibrant hand-painted interior restaurant mural featuring bilingual Spanish-English text in a mix of bold block letters, casual script, and decorative display typefaces advertising tacos, burritos, and bowls made by hand with love.</div>
+        <div class="desc">A vibrant hand-painted interior restaurant mural featuring bilingual Spanish-English text in a mix of bold block letters, casual script, and decorative serif styles advertising tacos, burritos, and bowls made by hand with love.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-6-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CGX1u4ojOal_1.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">BIENVENIDO TACOS · BURRITOS Bowls y más Always Fresh HECHO A MANO CON AMOR</div>
+          <button class="del-btn" id="delbtn-6-a" onclick="markDelete('f9e916c536c9',6,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-6-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CGX1u4ojOal_9.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">BIENVENIDO TACOS · BURRITOS Bowls y más Always Fresh HECHO A MANO CON AMOR</div>
+          <button class="del-btn" id="delbtn-6-b" onclick="markDelete('c3d4bd2e3cfa',6,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-7" data-id-a="2189109dd9f8" data-id-b="95765385d47d">
+      <div class="pair-header">
+        <span class="score">85% description match — pair 8 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(7)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">Bold black casual script lettering reading 'Thanks!' with glossy inline highlights and a soft grey drop shadow, set at a dynamic upward angle on a white background.</div>
+        <div class="desc">Bold black casual script lettering reading 'Thanks!' with white inline highlights and a grey drop shadow, set at a dynamic upward angle on a plain white background.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-7-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163533307418.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Thanks!</div>
+          <button class="del-btn" id="delbtn-7-a" onclick="markDelete('2189109dd9f8',7,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-7-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/176193893387.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Thanks!</div>
+          <button class="del-btn" id="delbtn-7-b" onclick="markDelete('95765385d47d',7,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-8" data-id-a="eb78bf18f970" data-id-b="f2f39637398f">
+      <div class="pair-header">
+        <span class="score">84% description match — pair 9 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(8)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A reverse-glass gilded sign reading 'BATHROOM' in bold gold leaf block letters with dark shadow effects on a rich teal background, bordered by copper leaf pinstripes and set in a black frame.</div>
+        <div class="desc">A reverse-glass gilded sign reading 'BATHROOM' in bold gold leaf block letters with dark drop shadows on a rich teal background, bordered by copper leaf pinstripes and set in a black frame.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-8-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341139772620800_0.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">BATHROOM</div>
+          <button class="del-btn" id="delbtn-8-a" onclick="markDelete('eb78bf18f970',8,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-8-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/thehectorbrain_CXTiq6ijh_t_6.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">BATHROOM</div>
+          <button class="del-btn" id="delbtn-8-b" onclick="markDelete('f2f39637398f',8,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-9" data-id-a="0ef07141744a" data-id-b="a3edbe20413f">
+      <div class="pair-header">
+        <span class="score">83% description match — pair 10 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(9)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A spiral-bound sketchbook page showing multiple pencil sketch explorations of the phrase 'Born Traveler' in flowing script and perspective block lettering styles, with a wooden mechanical pencil resting on the page.</div>
+        <div class="desc">A spiral-bound sketchbook page showing multiple pencil explorations of the phrase 'Born Traveler' in various lettering styles including flowing casual script and block perspective lettering, with a wooden mechanical pencil resting on the page.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-9-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150307697059.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Born Traveler</div>
+          <button class="del-btn" id="delbtn-9-a" onclick="markDelete('0ef07141744a',9,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-9-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150399297246.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Born Traveler</div>
+          <button class="del-btn" id="delbtn-9-b" onclick="markDelete('a3edbe20413f',9,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-10" data-id-a="f04ae526d334" data-id-b="b88a27aa56d6">
+      <div class="pair-header">
+        <span class="score">82% description match — pair 11 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(10)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A gold serif capital letter R with a bold blue three-dimensional shadow block, mounted in a black shadow box frame against a vibrant hot pink background.</div>
+        <div class="desc">A framed shadow box artwork featuring a dimensional gold serif capital letter R with a bold blue 3D block shadow, mounted against a vibrant hot pink background in a black frame.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-10-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341705251831808_0.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">R</div>
+          <button class="del-btn" id="delbtn-10-a" onclick="markDelete('f04ae526d334',10,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-10-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/ashjanson___CMNXQNpJCzQ___.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">R</div>
+          <button class="del-btn" id="delbtn-10-b" onclick="markDelete('b88a27aa56d6',10,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-11" data-id-a="52e6ad4fd693" data-id-b="a4d95da43452">
+      <div class="pair-header">
+        <span class="score">81% description match — pair 12 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(11)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">The word 'Heaven' written in bold, expressive brush-pen calligraphy with dynamic thick-and-thin strokes on white paper, with the pen visible in the lower right corner.</div>
+        <div class="desc">The word 'Heaven' is rendered in bold, dynamic brush calligraphy with expressive thick-and-thin strokes in black ink on white paper, with a brush pen visible in the lower right corner.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-11-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163536410307.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Heaven</div>
+          <button class="del-btn" id="delbtn-11-a" onclick="markDelete('52e6ad4fd693',11,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-11-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163537273352.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Heaven</div>
+          <button class="del-btn" id="delbtn-11-b" onclick="markDelete('a4d95da43452',11,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-12" data-id-a="25d28120c862" data-id-b="022b45e19eac">
+      <div class="pair-header">
+        <span class="score">81% description match — pair 13 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(12)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">The word 'Affirmation' written in bold, dynamic brush-pen calligraphy with expressive thick-and-thin stroke contrast on white paper, with the brush pen tip visible at the bottom of the frame.</div>
+        <div class="desc">The word 'Imagine' written in bold, fluid brush-pen calligraphy with expressive thick-to-thin stroke contrast on white paper, with the brush pen tip visible at the bottom of the frame.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-12-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150675254292.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Affirmation</div>
+          <button class="del-btn" id="delbtn-12-a" onclick="markDelete('25d28120c862',12,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-12-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/151002408521.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Imagine</div>
+          <button class="del-btn" id="delbtn-12-b" onclick="markDelete('022b45e19eac',12,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-13" data-id-a="7f31f37625ab" data-id-b="3477a3b20456">
+      <div class="pair-header">
+        <span class="score">81% description match — pair 14 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(13)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">An ornate Art Deco gilded glass transom sign reading 'A. RONCONI' in geometric gold lettering on a black ground, set beneath an arched fanlight with decorative wrought iron scrollwork and floral motifs.</div>
+        <div class="desc">An elegant Art Deco gilded glass transom sign reading 'A. RONCONI' in geometric gold lettering on black glass, set within an ornate arched fanlight with decorative wrought iron scrollwork and floral motifs above.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-13-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/185655074113.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">A. RONCONI</div>
+          <button class="del-btn" id="delbtn-13-a" onclick="markDelete('7f31f37625ab',13,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-13-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/619279138070708224.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">A. RONCONI</div>
+          <button class="del-btn" id="delbtn-13-b" onclick="markDelete('3477a3b20456',13,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-14" data-id-a="791252e0dbfd" data-id-b="1853edbbfb0f">
+      <div class="pair-header">
+        <span class="score">81% description match — pair 15 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(14)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A beautifully hand-lettered brush pen composition reading 'handmade typography' in flowing casual script with dramatic thick-thin contrast and ornamental swashes, photographed on white paper surrounded by decorative stones.</div>
+        <div class="desc">A bold brush-pen calligraphic composition reading 'handmade typography' in flowing casual script with dramatic thick-thin contrast and ornamental swashes, photographed on white paper surrounded by decorative stones.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-14-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150304681911.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">handmade typography</div>
+          <button class="del-btn" id="delbtn-14-a" onclick="markDelete('791252e0dbfd',14,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-14-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150395690537.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">handmade typography</div>
+          <button class="del-btn" id="delbtn-14-b" onclick="markDelete('1853edbbfb0f',14,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-15" data-id-a="43598588c1bc" data-id-b="e27d523a2e1d">
+      <div class="pair-header">
+        <span class="score">80% description match — pair 16 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(15)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">Gold leaf sans-serif lettering spelling 'HANDMADE' on a shop window, photographed from outside with a craftsperson holding a glassblowing pipe visible through the glass.</div>
+        <div class="desc">Gold leaf sans-serif lettering spelling 'HANDMADE' applied to a shop window, photographed from outside with the reflection of a person holding a glassblowing pipe visible through the glass.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-15-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341680377528320_0.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">HANDMADE</div>
+          <button class="del-btn" id="delbtn-15-a" onclick="markDelete('43598588c1bc',15,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-15-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/copenhagensigns___CLTjAESg7mi___.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">HANDMADE</div>
+          <button class="del-btn" id="delbtn-15-b" onclick="markDelete('e27d523a2e1d',15,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-16" data-id-a="f922d8650f2d" data-id-b="2b89fda65380">
+      <div class="pair-header">
+        <span class="score">79% description match — pair 17 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(16)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">The iconic Subway Inn dive bar storefront at night, dominated by a large red neon 'SUBWAY INN' sign flanked by vertical 'BAR' signs, with the window below filled with colorful neon beer brand signs including Budweiser, Coors Light, Blue Moon, and a Mets logo, plus an Atomic Wings banner.</div>
+        <div class="desc">A classic New York City dive bar storefront dominated by a large red neon 'SUBWAY INN' sign flanked by vertical 'BAR' neon tubes, with the window below filled with colorful beer brand neon signs including Coors Light, Budweiser, Blue Moon, and a Mets logo, plus a yellow Atomic Wings banner.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-16-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/618918527052726272.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">BAR SUBWAY INN BAR / ATOMIC WINGS / Super-Charged American Favorites / SUBWAY INN BAR, 143 E 60th Street 212-752-6500 / atomicwings.com / Coors LIGHT / OPEN / Mets / Budweiser / ATM / Blue Moon / B</div>
+          <button class="del-btn" id="delbtn-16-a" onclick="markDelete('f922d8650f2d',16,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-16-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/jamesandkarla___CI9YPFOnE1v___.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">BAR SUBWAY INN BAR ATOMIC WINGS Super-Charged American Favorites SUBWAY INN BAR, 143 E 60th Street 212-752-6500 atomicwings.com Coors LIGHT OPEN Mets ATM Budweiser Blue Moon</div>
+          <button class="del-btn" id="delbtn-16-b" onclick="markDelete('2b89fda65380',16,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-17" data-id-a="d8bcc06d49c7" data-id-b="164f2da56fe2">
+      <div class="pair-header">
+        <span class="score">79% description match — pair 18 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(17)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">Three dark glass bottles of Potion Coffee cold brew featuring elaborate Victorian-inspired white hand-lettered typography with ornate swashes, decorative borders, and flourishes screen-printed directly onto the bottles.</div>
+        <div class="desc">Three dark glass bottles of cold brew coffee featuring ornate Victorian-style white hand-lettered typography reading 'Potion Coffee Straight-Up Cold Brew' with elaborate swashes, flourishes, and decorative framing elements screen-printed directly onto the bottles.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-17-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150362860901.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">QUALITY BRAND 200 ML MADE IN CAPE TOWN POTION COFFEE STRAIGHT UP COLD BREW</div>
+          <button class="del-btn" id="delbtn-17-a" onclick="markDelete('d8bcc06d49c7',17,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-17-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/189843064274.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">QUALITY BRAND 200 ML MADE IN Cape Town POTION COFFEE STRAIGHT-UP COLD BREW</div>
+          <button class="del-btn" id="delbtn-17-b" onclick="markDelete('164f2da56fe2',17,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-18" data-id-a="ab2191deefe6" data-id-b="f39bf293f11a">
+      <div class="pair-header">
+        <span class="score">79% description match — pair 19 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(18)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A gold-leaf Victorian-style reverse glass lettering reading 'HAIR SALON' with pink shadow effects and an ornamental flourish beneath, painted on a shop window reflecting a traditional British high street.</div>
+        <div class="desc">A gold-leaf Victorian-style reverse-glass lettering reading 'HAIR SALON' with pink shading and ornamental flourish beneath, applied to a shop window reflecting a traditional British high street.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-18-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341716324859904_0.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">HAIR SALON</div>
+          <button class="del-btn" id="delbtn-18-a" onclick="markDelete('ab2191deefe6',18,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-18-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/brilliantsigns_CMpxW-Un9T2_3.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">HAIR SALON</div>
+          <button class="del-btn" id="delbtn-18-b" onclick="markDelete('f39bf293f11a',18,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-19" data-id-a="a36de8777473" data-id-b="3f1639f616cb">
+      <div class="pair-header">
+        <span class="score">79% description match — pair 20 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(19)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">The word 'Amazing!' written in flowing casual brush script using a marker with a multicolored tropical floral pattern filling the letterforms, photographed on white paper with the patterned marker tip visible below.</div>
+        <div class="desc">The word 'Amazing!' written in flowing casual script calligraphy using a marker with a multicolored tropical floral pattern visible within the letterforms, photographed on white paper with the marker tip visible below.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-19-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150303935324.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Amazing!</div>
+          <button class="del-btn" id="delbtn-19-a" onclick="markDelete('a36de8777473',19,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-19-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150395428809.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Amazing!</div>
+          <button class="del-btn" id="delbtn-19-b" onclick="markDelete('3f1639f616cb',19,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-20" data-id-a="8d72f6dcf7a3" data-id-b="960ace3cdb57">
+      <div class="pair-header">
+        <span class="score">79% description match — pair 21 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(20)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A clean digital logo featuring the word 'Stencil' in a bold, rounded casual script typeface in light blue against a very pale blue-grey background, with a small copyright symbol.</div>
+        <div class="desc">A clean digital logo featuring the word 'Stencil' in a bold, rounded casual script typeface in bright cyan blue on a very light grey background, accompanied by a small copyright symbol.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-20-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150674741005.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Stencil©</div>
+          <button class="del-btn" id="delbtn-20-a" onclick="markDelete('8d72f6dcf7a3',20,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-20-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150766122272.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Stencil©</div>
+          <button class="del-btn" id="delbtn-20-b" onclick="markDelete('960ace3cdb57',20,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-21" data-id-a="61be2658f21b" data-id-b="b7aa16ae074f">
+      <div class="pair-header">
+        <span class="score">77% description match — pair 22 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(21)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A glossy hand-painted sign on a black panel with teal border, mounted on a brick wall, featuring bold casual script reading 'Tip Your Artist' in white with red and yellow shadow detailing, and 'THANK YOU' in yellow italic below, flanked by retro starburst ornaments.</div>
+        <div class="desc">A glossy hand-painted sign on a black panel with turquoise border, featuring bold casual script lettering reading 'Tip Your Artist' in white with red and yellow shadows, and 'THANK YOU' in yellow italic below, flanked by red starburst decorations, mounted on a brick wall.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-21-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630602824782430208.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Tip Your Artist THANK YOU</div>
+          <button class="del-btn" id="delbtn-21-a" onclick="markDelete('61be2658f21b',21,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-21-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/welldonesigns_CC_12G_DV3n_1.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Tip Your Artist THANK YOU</div>
+          <button class="del-btn" id="delbtn-21-b" onclick="markDelete('b7aa16ae074f',21,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-22" data-id-a="053a18b9dcf3" data-id-b="6fb6f28e6a8e">
+      <div class="pair-header">
+        <span class="score">77% description match — pair 23 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(22)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A vintage hand-painted shop sign on a dark brown wooden board featuring 'SORRY...WE'RE' in bold orange block capitals and 'CLOSED' in large yellow casual brush script below.</div>
+        <div class="desc">A vintage hand-painted shop sign on a dark brown wooden board featuring 'SORRY...WE'RE' in orange block capitals and 'CLOSED' in large yellow casual brush script, showing signs of age and wear.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-22-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630605103909552128.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">SORRY...WE'RE CLOSED</div>
+          <button class="del-btn" id="delbtn-22-a" onclick="markDelete('053a18b9dcf3',22,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-22-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/downervolt___CB6ctfWBXhR___.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">SORRY...WE'RE CLOSED</div>
+          <button class="del-btn" id="delbtn-22-b" onclick="markDelete('6fb6f28e6a8e',22,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-23" data-id-a="67dc4c14c500" data-id-b="b4b8b36bf0a2">
+      <div class="pair-header">
+        <span class="score">77% description match — pair 24 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(23)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A bold two-tone logo featuring 'THE DUDES INN' in chunky retro block lettering flanked by two mirrored human skulls in profile, with a small palm tree and sunset motif beneath, all rendered in cream on a solid black background.</div>
+        <div class="desc">A bold two-tone logo featuring the text 'THE DUDES INN' in chunky retro block lettering flanked by two mirrored human skulls in profile, with a small palm tree island motif centered below, all in cream on a black background.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-23-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686341743948513281_0.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">THE DUDES INN</div>
+          <button class="del-btn" id="delbtn-23-a" onclick="markDelete('67dc4c14c500',23,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-23-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/dudesfactory_CNPl0t4LlB3_4.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">THE DUDES INN</div>
+          <button class="del-btn" id="delbtn-23-b" onclick="markDelete('b4b8b36bf0a2',23,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-24" data-id-a="eaf2ab784a02" data-id-b="ac3d297ab672">
+      <div class="pair-header">
+        <span class="score">76% description match — pair 25 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(24)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A bold, symmetrical digital illustration featuring cream-colored chunky rounded sans-serif lettering arched over a vibrant folk-art-inspired composition of hearts, snakes, hands, flowers, and an all-seeing eye in a rich palette against a dark charcoal background.</div>
+        <div class="desc">A vibrant, symmetrical digital illustration featuring bold cream-colored sans-serif lettering arched above and below a richly colored folk-art-inspired composition of hearts, snakes, hands, flowers, and an all-seeing eye, set against a dark charcoal background.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-24-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/686437248051429376_0.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">IT'S ALL CONNECTED SOMEHOW</div>
+          <button class="del-btn" id="delbtn-24-a" onclick="markDelete('eaf2ab784a02',24,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-24-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/superniceletters_CMdQKmSnTJv_2.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">IT'S ALL CONNECTED SOMEHOW</div>
+          <button class="del-btn" id="delbtn-24-b" onclick="markDelete('ac3d297ab672',24,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-25" data-id-a="9dae4e0e2068" data-id-b="6d6c52994c05">
+      <div class="pair-header">
+        <span class="score">76% description match — pair 26 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(25)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">The word 'moist' written in flowing gold casual script lettering with a gold paint marker on black paper, photographed with the marker pen positioned below the artwork.</div>
+        <div class="desc">The word 'moist' written in flowing gold metallic marker script on black paper, with a gold paint pen positioned below the lettering.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-25-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150303869322.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">moist</div>
+          <button class="del-btn" id="delbtn-25-a" onclick="markDelete('9dae4e0e2068',25,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-25-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150397121793.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">moist</div>
+          <button class="del-btn" id="delbtn-25-b" onclick="markDelete('6d6c52994c05',25,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-26" data-id-a="73832d6da4fc" data-id-b="1957f42d31b5">
+      <div class="pair-header">
+        <span class="score">76% description match — pair 27 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(26)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">Elegant gold metallic brush-pen calligraphy reading 'Stranger Things' in flowing casual script on black paper, with a gold paint marker visible at the bottom of the frame.</div>
+        <div class="desc">Elegant gold metallic brush-pen lettering reading 'Back to Work' in a flowing casual script on black paper, with the gold paint marker visible at the bottom of the frame.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-26-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150351379235.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Stranger Things</div>
+          <button class="del-btn" id="delbtn-26-a" onclick="markDelete('73832d6da4fc',26,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-26-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150362157083.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Back to Work</div>
+          <button class="del-btn" id="delbtn-26-b" onclick="markDelete('1957f42d31b5',26,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-27" data-id-a="fde74d74b18b" data-id-b="bd70a51e8462">
+      <div class="pair-header">
+        <span class="score">76% description match — pair 28 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(27)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">White vinyl-cut sans-serif lettering reading 'FARMHOUSE ALE' arranged in a gentle upward arc on kraft brown paper, likely a stencil or transfer layout for a brewery sign or label.</div>
+        <div class="desc">White vinyl-cut uppercase letters spelling 'FARMHOUSE ALE' arranged in a gentle upward arc on kraft brown paper, likely a stencil or transfer layout for a brewery sign or label.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-27-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630607108285562880.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">FARMHOUSE ALE</div>
+          <button class="del-btn" id="delbtn-27-a" onclick="markDelete('fde74d74b18b',27,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-27-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/letter_boy___CEGPp8_FmtZ___.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">FARMHOUSE ALE</div>
+          <button class="del-btn" id="delbtn-27-b" onclick="markDelete('bd70a51e8462',27,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-28" data-id-a="7649f524b10f" data-id-b="94e2ccd81369">
+      <div class="pair-header">
+        <span class="score">76% description match — pair 29 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(28)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A bold, brush-painted casual script sign reading 'DELBOYS' in black italic lettering on a white fascia board above a seaside novelty and beach goods shop, evoking a classic British coastal town aesthetic.</div>
+        <div class="desc">A bold, brush-painted casual script shop sign reading 'DELBOYS' in black italic lettering on a white fascia board above a seaside novelty and beach goods shop.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-28-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150307497086.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">DELBOYS</div>
+          <button class="del-btn" id="delbtn-28-a" onclick="markDelete('7649f524b10f',28,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-28-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150399519514.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">DELBOYS</div>
+          <button class="del-btn" id="delbtn-28-b" onclick="markDelete('94e2ccd81369',28,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-29" data-id-a="8a07ef4ba65e" data-id-b="86387f9f7c43">
+      <div class="pair-header">
+        <span class="score">75% description match — pair 30 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(29)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">A framed black panel featuring bold white block letters reading 'FOREVER & EVER' with gold three-dimensional shadow effects and a decorative swash ampersand, displayed in a black wooden frame.</div>
+        <div class="desc">A framed black panel featuring bold white 3D block letters reading 'FOREVER & EVER' with gold shadow effects and an ornate decorative ampersand, set in a black wooden frame.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-29-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/630606102715924480.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">FOREVER & EVER</div>
+          <button class="del-btn" id="delbtn-29-a" onclick="markDelete('8a07ef4ba65e',29,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-29-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/ashjanson_CBTcMwoJSwr_5.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">FOREVER & EVER</div>
+          <button class="del-btn" id="delbtn-29-b" onclick="markDelete('86387f9f7c43',29,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-30" data-id-a="574428790c91" data-id-b="9cfcba9ea2fe">
+      <div class="pair-header">
+        <span class="score">75% description match — pair 31 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(30)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">Bold black brush-script lettering reading 'Conot' on a white sheet of paper held by a black bulldog clip, photographed at an angle.</div>
+        <div class="desc">A bold black casual script lettering reading 'Conot' printed on white paper held by a black bulldog clip, photographed at an angle.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-30-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/163387420829.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Conot</div>
+          <button class="del-btn" id="delbtn-30-a" onclick="markDelete('574428790c91',30,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-30-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/618920008335147008.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Conot</div>
+          <button class="del-btn" id="delbtn-30-b" onclick="markDelete('9cfcba9ea2fe',30,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+    <div class="pair" id="pair-31" data-id-a="15c3b4e70f28" data-id-b="c73a0bd67e31">
+      <div class="pair-header">
+        <span class="score">75% description match — pair 32 of 32</span>
+        <button class="keep-btn" onclick="keepBoth(31)">keep both ✓</button>
+      </div>
+      <div class="desc-row">
+        <div class="desc">Elegant gold metallic marker script lettering reading 'Wake Up!' on black paper, with the gold paint pen visible at the top of the composition.</div>
+        <div class="desc">Elegant gold metallic pen lettering reading 'Wake Up!' in flowing formal script on black paper, with the gold pen visible at the top of the composition.</div>
+      </div>
+      <div class="images">
+        <div class="img-block" id="block-31-a">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150810518364.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Wake Up!</div>
+          <button class="del-btn" id="delbtn-31-a" onclick="markDelete('15c3b4e70f28',31,'a')">✕ delete this one</button>
+        </div>
+        <div class="img-block" id="block-31-b">
+          <div class="img-wrap"><img src="https://pub-333d3acf923442969d677ec2b7d7e6c0.r2.dev/150810956367.jpg" loading="lazy"><div class="delete-overlay">WILL DELETE</div></div>
+          <div class="img-label">Wake Up!</div>
+          <button class="del-btn" id="delbtn-31-b" onclick="markDelete('c73a0bd67e31',31,'b')">✕ delete this one</button>
+        </div>
+      </div>
+    </div>
+<script>
+const toDelete = new Set();
+
+(async () => {
+  try {
+    const res = await fetch('/signs.json?_=' + Date.now());
+    const db = await res.json();
+    const live = new Set(Object.keys(db.images));
+    document.getElementById('hdr-count').textContent = live.size.toLocaleString() + ' images';
+    let gone = 0;
+    document.querySelectorAll('.pair').forEach(pair => {
+      const gA = !live.has(pair.dataset.idA), gB = !live.has(pair.dataset.idB);
+      if (gA || gB) {
+        gone++;
+        if (gA) { const b = document.getElementById('block-' + pair.id.slice(5) + '-a'); b.classList.add('already-deleted'); b.querySelector('.delete-overlay').textContent='DELETED'; }
+        if (gB) { const b = document.getElementById('block-' + pair.id.slice(5) + '-b'); b.classList.add('already-deleted'); b.querySelector('.delete-overlay').textContent='DELETED'; }
+        pair.classList.add('resolved');
+      }
+    });
+    const rem = document.querySelectorAll('.pair:not(.resolved)').length;
+    document.getElementById('status').textContent = gone > 0 ? gone + ' already resolved. ' + rem + ' remaining.' : 'Review pairs below, then save.';
+  } catch(e) { document.getElementById('status').textContent = 'Review pairs below, then save.'; }
+})();
+
+function markDelete(id, pairIdx, side) {
+  const other = side==='a'?'b':'a';
+  const thisBlock = document.getElementById('block-'+pairIdx+'-'+side);
+  const otherBlock = document.getElementById('block-'+pairIdx+'-'+other);
+  if (thisBlock.classList.contains('marked')) { thisBlock.classList.remove('marked'); toDelete.delete(id); }
+  else {
+    thisBlock.classList.add('marked'); toDelete.add(id);
+    const otherId = document.getElementById('delbtn-'+pairIdx+'-'+other).getAttribute('onclick').match(/'([^']+)'/)[1];
+    otherBlock.classList.remove('marked'); toDelete.delete(otherId);
+  }
+  updateStatus();
+}
+function keepBoth(pairIdx) {
+  ['a','b'].forEach(side => {
+    const block = document.getElementById('block-'+pairIdx+'-'+side);
+    if (block.classList.contains('marked')) {
+      const id = document.getElementById('delbtn-'+pairIdx+'-'+side).getAttribute('onclick').match(/'([^']+)'/)[1];
+      toDelete.delete(id); block.classList.remove('marked');
+    }
+  });
+  document.getElementById('pair-'+pairIdx).classList.add('resolved');
+  updateStatus();
+}
+function updateStatus() {
+  const n = toDelete.size;
+  document.getElementById('status').textContent = n===0 ? 'Review pairs below, then save.' : n+' image'+(n===1?'':'s')+' marked for deletion — click save when ready.';
+}
+function refreshTokenUI() {
+  const t = localStorage.getItem('gh_token');
+  document.getElementById('token-input-area').style.display = t?'none':'flex';
+  document.getElementById('token-saved-area').style.display  = t?'flex':'none';
+}
+document.getElementById('token-set-btn').addEventListener('click', () => {
+  const v = document.getElementById('token-input').value.trim(); if (!v) return;
+  localStorage.setItem('gh_token', v); document.getElementById('token-input').value=''; refreshTokenUI();
+});
+document.getElementById('token-change-btn').addEventListener('click', () => { localStorage.removeItem('gh_token'); refreshTokenUI(); });
+refreshTokenUI();
+
+document.getElementById('save-btn').addEventListener('click', async () => {
+  if (toDelete.size===0) { alert('Nothing marked.'); return; }
+  const token = localStorage.getItem('gh_token');
+  if (!token) { alert('Enter GitHub token first.'); return; }
+  if (!confirm('Delete '+toDelete.size+' image(s)?')) return;
+  const btn = document.getElementById('save-btn'); btn.textContent='saving…'; btn.disabled=true;
+  const apiUrl = 'https://api.github.com/repos/eddb/signreference/contents/signs.json';
+  const headers = {'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','Content-Type':'application/json'};
+  try {
+    const infoRes = await fetch(apiUrl, {headers}); if (!infoRes.ok) throw new Error('GitHub '+infoRes.status);
+    const {sha} = await infoRes.json();
+    const fileRes = await fetch('/signs.json?_='+Date.now()); if (!fileRes.ok) throw new Error('fetch signs.json');
+    const db = await fileRes.json();
+    toDelete.forEach(id => delete db.images[id]);
+    db.generated = new Date().toISOString();
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(db,null,2))));
+    const put = await fetch(apiUrl,{method:'PUT',headers,body:JSON.stringify({message:'Remove '+toDelete.size+' description-duplicate images',content:encoded,sha})});
+    if (!put.ok) { const e=await put.json().catch(()=>({})); throw new Error(e.message||put.status); }
+    document.getElementById('status').textContent = 'Saved! '+toDelete.size+' removed. Vercel deploying…';
+    toDelete.forEach(id => document.querySelectorAll('.pair').forEach(p => { if(p.dataset.idA===id||p.dataset.idB===id) p.classList.add('resolved'); }));
+    toDelete.clear();
+  } catch(e) { alert('Failed: '+e.message); }
+  btn.textContent='save to GitHub'; btn.disabled=false;
+});
+</script>
+</body>
+</html>
