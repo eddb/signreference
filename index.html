@@ -678,6 +678,9 @@ let allImages = [];
 let filtered = [];
 let activeTagFilters  = new Set(); // include — AND logic
 let excludeTagFilters = new Set(); // exclude — none of these can be present
+
+// Tags hidden by default on fresh load (no URL hash override)
+const DEFAULT_EXCLUDES = ['brush_pen','digital_lettering','modern_calligraphy','lettering_practice'];
 let showNewOnly = false;
 let searchQuery = '';
 let lbIndex = 0;
@@ -1121,6 +1124,9 @@ document.getElementById('share-filter-btn').addEventListener('click', function()
     document.getElementById('filter-bar').classList.add('open');
     document.getElementById('filter-toggle').textContent = 'filter ↑';
   } else {
+    DEFAULT_EXCLUDES.forEach(t => excludeTagFilters.add(t));
+    applyFilters();
+    buildFilters();
     shuffleFiltered();
     renderGrid();
     if (parsed.imageId) {
