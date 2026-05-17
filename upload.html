@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noai, noimageai">
 <title>UPLOAD — STALK THE WOLVES</title>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -85,6 +86,15 @@ a.back-link:hover{color:var(--paper)}
 
 /* ── Empty state ── */
 .empty-hint{padding:40px 24px;text-align:center;color:var(--muted);font-size:.7rem;letter-spacing:.06em;display:none}
+
+/* ── Duplicate warning ── */
+.dup-warning{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#fff8e1;border-bottom:2px solid #f5a623;font-size:.65rem;letter-spacing:.03em}
+.dup-warning img{width:64px;height:64px;object-fit:cover;border-radius:2px;flex-shrink:0;border:1px solid rgba(0,0,0,.1)}
+.dup-warning .dup-text{flex:1;line-height:1.6}
+.dup-warning .dup-text strong{font-size:.7rem}
+.dup-warning .dup-text a{color:var(--blue)}
+.dup-warning .dup-dismiss{font-family:'Courier Prime',monospace;font-size:.6rem;padding:4px 10px;border:1px solid #f5a623;background:var(--paper);cursor:pointer;border-radius:2px;white-space:nowrap;flex-shrink:0}
+.dup-warning .dup-dismiss:hover{background:#f5a623;color:var(--paper)}
 </style>
 </head>
 <body>
@@ -137,8 +147,55 @@ const CURATED_GROUPS = [
   { label: 'Colour', tags: ['monochrome','two_colour','three_colour','black_and_white','high_contrast'] },
 ];
 
+// ── Perceptual hash ───────────────────────────────────────────────────
+async function computePhash(blob) {
+  const img = await createImageBitmap(blob);
+  const canvas = document.createElement('canvas');
+  canvas.width = 8; canvas.height = 8;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, 8, 8);
+  const d = ctx.getImageData(0, 0, 8, 8).data;
+  const px = [];
+  for (let i = 0; i < 64; i++) px.push(0.299*d[i*4] + 0.587*d[i*4+1] + 0.114*d[i*4+2]);
+  const avg = px.reduce((a,b) => a+b) / 64;
+  let h = '';
+  for (let i = 0; i < 64; i += 4) {
+    const n = ((px[i]>=avg?1:0)<<3)|((px[i+1]>=avg?1:0)<<2)|((px[i+2]>=avg?1:0)<<1)|(px[i+3]>=avg?1:0);
+    h += n.toString(16);
+  }
+  return h;
+}
+
+function hammingDistance(a, b) {
+  let d = 0;
+  for (let i = 0; i < a.length; i++) {
+    let x = parseInt(a[i],16) ^ parseInt(b[i],16);
+    while (x) { d += x&1; x >>= 1; }
+  }
+  return d;
+}
+
+let signsDb = null; // [{id, url, phash}] — loaded once
+
+async function loadSignsDb() {
+  const res = await fetch('/signs.json?_=' + Date.now());
+  const data = await res.json();
+  return Object.values(data.images)
+    .filter(img => img.phash)
+    .map(img => ({ id: img.id, url: img.url, phash: img.phash }));
+}
+
+function findBestMatch(hash, db) {
+  let best = null;
+  for (const entry of db) {
+    const d = hammingDistance(hash, entry.phash);
+    if (!best || d < best.distance) best = { distance: d, id: entry.id, url: entry.url };
+  }
+  return best;
+}
+
 // ── State ─────────────────────────────────────────────────────────────
-let items = []; // { file, blob, previewUrl, textContent, tags: Set }
+let items = []; // { file, blob, previewUrl, textContent, tags: Set, phash }
 
 // ── Token ─────────────────────────────────────────────────────────────
 function refreshTokenUI() {
@@ -176,14 +233,44 @@ fileInput.addEventListener('change', () => { addFiles([...fileInput.files]); fil
 // ── Add files ─────────────────────────────────────────────────────────
 async function addFiles(files) {
   const imageFiles = files.filter(f => f.type.startsWith('image/') || /\.(heic|heif)$/i.test(f.name));
+
+  // Load hash DB lazily (only when first file is added)
+  if (!signsDb) {
+    try { signsDb = await loadSignsDb(); } catch(e) { signsDb = []; }
+  }
+
   for (const file of imageFiles) {
     const blob = await resizeImage(file);
     const previewUrl = URL.createObjectURL(blob);
-    const item = { file, blob, previewUrl, textContent: '', tags: new Set() };
+    const phash = await computePhash(blob);
+    const item = { file, blob, previewUrl, textContent: '', tags: new Set(), phash };
     items.push(item);
-    renderItem(item, items.length - 1);
+    const idx = items.length - 1;
+    renderItem(item, idx);
+
+    if (signsDb.length > 0) {
+      const match = findBestMatch(phash, signsDb);
+      if (match && match.distance <= 10) showDupWarning(idx, match);
+    }
   }
   updateActionBar();
+}
+
+function showDupWarning(idx, match) {
+  const el = document.getElementById(`item-${idx}`);
+  if (!el) return;
+  const pct = Math.round((1 - match.distance / 64) * 100);
+  const warn = document.createElement('div');
+  warn.className = 'dup-warning';
+  warn.innerHTML = `
+    <img src="${match.url}" alt="existing image">
+    <div class="dup-text">
+      <strong>Possible duplicate</strong> — ${pct}% similar to an existing image<br>
+      <a href="/#${match.id}" target="_blank">View in gallery →</a>
+    </div>
+    <button class="dup-dismiss" onclick="this.closest('.dup-warning').remove()">Upload anyway</button>
+  `;
+  el.insertBefore(warn, el.firstChild);
 }
 
 // ── Resize image client-side ──────────────────────────────────────────
@@ -382,6 +469,7 @@ async function uploadAll() {
         colors: [],
         era_estimate: 'unknown',
         country_hint: 'unknown',
+        phash: item.phash || '',
       };
       statusEl.textContent = '✓ done';
       statusEl.className = 'upload-status done';
