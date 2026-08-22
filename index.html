@@ -89,6 +89,7 @@
       text-underline-offset: 2px;
     }
     .filter-toggle:hover { color: #551a8b; }
+    .filter-toggle.on { color: #cc0000; font-weight: 700; }
 
     /* ── Filter bar ── */
     .filter-bar {
@@ -539,6 +540,7 @@
 <div class="subheader">
   <span class="subheader-left">reference material</span>
   <div style="display:flex;gap:16px;align-items:center">
+    <button class="filter-toggle" id="newest-btn">newest ↓</button>
     <button class="filter-toggle" id="shuffle-btn">shuffle ↺</button>
     <button class="filter-toggle" id="filter-toggle">filter ↓</button>
   </div>
@@ -683,6 +685,7 @@ let excludeTagFilters = new Set(); // exclude — none of these can be present
 // Tags hidden by default on fresh load (no URL hash override)
 const DEFAULT_EXCLUDES = ['brush_pen','digital_lettering','modern_calligraphy','lettering_practice'];
 let showNewOnly = false;
+let sortNewest = false;
 let searchQuery = '';
 let lbIndex = 0;
 
@@ -859,6 +862,7 @@ function applyFilters() {
     }
     return true;
   });
+  if (sortNewest) sortFilteredNewest();
   renderGrid();
   const countText = filtered.length < allImages.length
     ? `${filtered.length} / ${allImages.length} images`
@@ -1060,8 +1064,26 @@ function shuffleFiltered() {
   }
 }
 
+// Sort filtered by upload/tag time, newest first (missing dates sink to the bottom)
+function sortFilteredNewest() {
+  filtered.sort((a, b) => (b.tagged_at || '').localeCompare(a.tagged_at || ''));
+}
+
 document.getElementById('shuffle-btn').addEventListener('click', () => {
+  sortNewest = false;
+  document.getElementById('newest-btn').classList.remove('on');
   shuffleFiltered();
+  renderGrid();
+});
+
+document.getElementById('newest-btn').addEventListener('click', () => {
+  sortNewest = !sortNewest;
+  document.getElementById('newest-btn').classList.toggle('on', sortNewest);
+  if (sortNewest) {
+    sortFilteredNewest();
+  } else {
+    shuffleFiltered();
+  }
   renderGrid();
 });
 
