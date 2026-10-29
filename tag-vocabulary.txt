@@ -1,0 +1,35 @@
+STALK THE WOLVES TAG VOCABULARY
+Built from the 3,845 images in signs.json (tagger.py was not in the repo, so these are the values actually in use, not the original prompt list).
+Use ONLY the values below, spelled exactly. Lowercase with underscores. If nothing fits, use 'other' or 'unknown' where listed.
+Pick one value for: medium, surface, lettering_style, finish, condition, era_estimate, country_hint.
+Pick several for: decorative_technique, colors, tags.
+
+== medium ==
+brush_painted (946), digital (792), hand_lettered_pen (700), screen_printed (299), pencil_sketch (292), gilded (179), letterpress (173), vinyl_cut (142), other (110), unknown (42), enamel (37), cast_metal (37), neon (32), illuminated (26), chalk (17), carved (13), mixed (8)
+
+== surface ==
+paper (1716), other (791), window_glass (327), metal (272), wood (186), wall_exterior (152), packaging_label (131), wall_interior (83), fabric (71), canvas (54), unknown (42), chalkboard (20)
+
+== lettering_style ==
+mixed (1214), casual_script (1115), block_letters (327), victorian_ornate (311), sans_serif (262), formal_script (202), serif (166), gothic_blackletter (65), art_deco (65), none (52), unknown (42), italic (16), monogram (8)
+
+== decorative_technique ==
+outline (1642), none (1483), shadow_block (1343), inline (745), double_stroke (562), shaded_fill (526), drop_shadow (518), gold_gilt (297), perspective (257), bevel (205), mother_of_pearl (30), underline (1)
+
+== finish ==
+matte (1715), smooth (787), gloss (497), aged (340), metallic (298), rough (141), iridescent (15), other (10)
+
+== condition ==
+pristine (2792), good (632), worn (249), weathered (98), unknown (42), damaged (10), aged (9), faded (7)
+
+== era_estimate ==
+2010s (2647), 2020s (538), pre_1950 (364), unknown (107), 1960s (64), 1950s (58), 1970s (28), 2000s (17), 1980s (13), 1990s (9)
+
+== colors == (single words or underscore_joined, lowercase, 'grey' not 'gray'; common values only, 1 to 4 per image)
+white (2636), black (2098), red (870), cream (678), gold (633), grey (533), blue (481), yellow (362), pink (289), orange (287), brown (267), green (260), teal (239), navy (141), graphite (125), light_blue (122), dark_grey (112), dark_green (98), dark_brown (80), silver (67), light_grey (58), purple (58), coral (57), tan (55), dark_blue (46), charcoal (36), dark_red (33), dark_navy (32), cyan (30), turquoise (25), natural_wood (22), maroon (20), olive (20), peach (20), beige (19), copper (19), navy_blue (16), dark_teal (14), magenta (14), mint_green (14), off_white (13), mint (12), salmon (12), rust (12), lavender (11), dark_purple (11), kraft_brown (10), hot_pink (10)
+
+== country_hint == (full English name, capitalised, e.g. United States, United Kingdom; 'unknown' if unsure)
+unknown (1452), United States (1363), United Kingdom (467), France (111), Denmark (51), Germany (50), Australia (48), Mexico (39), Japan (35), Canada (28), Spain (26), Portugal (23), Italy (20), Indonesia (19), Netherlands (18), Argentina (11), Sweden (9), Austria (9), Norway (8), Russia (6), Ireland (5), Switzerland (4), Finland (4), Poland (4), Philippines (3), Czech Republic (3), Brazil (3), South Africa (2), Turkey (2), Belgium (2), Europe (2), Hungary (2), Croatia (2), Soviet Union (1), Dominican Republic (1), Iceland (1), Chile (1), Singapore (1), Scandinavia (1), Vietnam (1), Morocco (1), Panama (1), Greece (1), Costa Rica (1), India (1), Cuba (1), Romania (1)
+
+== tags == (freeform, lowercase_with_underscores, 4 to 10 per image. 50 most common shown; reuse these where they fit)
+casual_script (1286), two_colour (1230), brush_strokes_visible (788), monochrome (756), block_letters (455), hand_lettered (451), sign_painting (415), victorian_ornate (269), brush_lettering (266), calligraphy (249), brush_pen (246), gold_gilt (232), mixed_styles (221), shop_window (219), hand_painted (217), modern_calligraphy (213), packaging (209), lettering_practice (207), shadow_block (187), alphabet_sheet (185), reverse_glass (177), work_in_progress (171), black_and_white (169), hand_drawn (162), three_colour (161), hand_lettering (161), ephemeral (158), americana (158), formal_script (156), brush_script (155), motivational (155), dimensional_lettering (153), digital_lettering (150), high_contrast (149), serif (140), sketchbook (139), sans_serif (123), pencil_sketch (121), mid_century (121), storefront (118), brand_identity (117), flourishes (109), brush_painted (107), motivational_quote (107), mural (105), mixed_lettering (104), practice_sheet (88), script_lettering (88), flat_lay (83), three_dimensional (81)
