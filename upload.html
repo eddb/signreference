@@ -458,6 +458,7 @@ async function uploadAll() {
         id,
         url,
         filename: url.split('/').pop(),
+        source_filename: item.file.name,
         tagged_at: new Date().toISOString(),
         text_content: item.textContent.trim(),
         tags: [...item.tags].sort(),
