@@ -539,40 +539,54 @@ async function uploadImageToGitHub(token, blob, originalName) {
 }
 
 async function addToSignsJson(token, newEntries) {
-  const apiUrl = 'https://api.github.com/repos/eddb/signreference/contents/signs.json';
+  const repo = 'eddb/signreference';
+  const apiUrl = `https://api.github.com/repos/${repo}/contents/signs.json`;
   const headers = {
     'Authorization': `Bearer ${token}`,
     'Accept': 'application/vnd.github+json',
-    'Content-Type': 'application/json',
   };
-
-  // Get SHA
-  const infoRes = await fetch(apiUrl, { headers });
-  if (!infoRes.ok) throw new Error('GitHub API error ' + infoRes.status);
-  const info = await infoRes.json();
-  const sha = info.sha;
-
-  // Fetch current signs.json from Vercel
-  const fileRes = await fetch('/signs.json?_=' + Date.now());
-  if (!fileRes.ok) throw new Error('Could not fetch signs.json');
-  const data = await fileRes.json();
-
-  // Merge new entries
-  Object.assign(data.images, newEntries);
-  data.generated = new Date().toISOString();
-
-  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
   const n = Object.keys(newEntries).length;
-  const putRes = await fetch(apiUrl, {
-    method: 'PUT',
-    headers,
-    body: JSON.stringify({ message: `Add ${n} image${n===1?'':'s'} via upload page`, content: encoded, sha }),
-  });
 
-  if (!putRes.ok) {
+  // Retry loop: if another batch saves between our read and write, GitHub
+  // rejects the write (409); we re-read the latest file and try again.
+  // This is what makes rapid back-to-back batches safe.
+  for (let attempt = 0; attempt < 6; attempt++) {
+    // 1. Current version id (sha) of signs.json. Metadata only, so the
+    //    file being large (content omitted over 1MB) does not matter.
+    const infoRes = await fetch(apiUrl + '?ref=main&_=' + Date.now(), { headers, cache: 'no-store' });
+    if (!infoRes.ok) throw new Error('GitHub API error ' + infoRes.status);
+    const sha = (await infoRes.json()).sha;
+
+    // 2. Fetch the actual bytes for THAT exact version via the git blob API
+    //    (always consistent with the sha, and never a stale cache).
+    const blobRes = await fetch(`https://api.github.com/repos/${repo}/git/blobs/${sha}`, {
+      headers: { ...headers, 'Accept': 'application/vnd.github.raw' },
+      cache: 'no-store',
+    });
+    if (!blobRes.ok) throw new Error('Could not read signs.json (' + blobRes.status + ')');
+    const data = JSON.parse(await blobRes.text());
+
+    // 3. Merge our new entries onto the freshest version.
+    Object.assign(data.images, newEntries);
+    data.generated = new Date().toISOString();
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+
+    // 4. Write it back, tied to the sha we read.
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: `Add ${n} image${n===1?'':'s'} via upload page`,
+        content: encoded, sha, branch: 'main',
+      }),
+    });
+
+    if (putRes.ok) return;
+    if (putRes.status === 409) continue; // someone else saved first; re-read and retry
     const err = await putRes.json().catch(() => ({}));
     throw new Error(err.message || putRes.status);
   }
+  throw new Error('Could not save after several tries (too many uploads at once). Wait a moment and try the remaining photos again.');
 }
 
 function blobToBase64(blob) {
